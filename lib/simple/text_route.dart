@@ -1,25 +1,31 @@
 import 'package:flutter/material.dart';
 
 class TextPage extends StatelessWidget {
+  const TextPage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("文本组件"),
+        title: const Text("文本组件"),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Text(
-            "Hello World",
-            textAlign: TextAlign.left,
+          Container(
+            width: double.infinity,
+            height: 100,
+            child: const Text(
+              "Hello World",
+              textAlign: TextAlign.left,
+            ),
           ),
-          Text(
+          const Text(
             "Hello world Hello world Hello world Hello world Hello world Hello world Hello world Hello world Hello world Hello world Hello world ",
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
           ),
-          Text(
+          const Text(
             "Hello World",
             textScaleFactor: 1.5,
           ),
@@ -35,14 +41,17 @@ class TextPage extends StatelessWidget {
               decorationStyle: TextDecorationStyle.dashed,
             ),
           ),
-          Text(
+          const Text(
             "Hello World",
             textScaleFactor: 1.5,
           ),
-          Text.rich(TextSpan(
+          const Text.rich(TextSpan(
             children: [
               TextSpan(
                 text: "Hello World",
+                style: TextStyle(
+                  color: Colors.green,
+                ),
               ),
               TextSpan(
                 text: "www.baidu.com",
@@ -52,13 +61,29 @@ class TextPage extends StatelessWidget {
               ),
             ],
           )),
+          RichText(
+            text: const TextSpan(children: [
+              TextSpan(
+                text: "Hello World222",
+                style: TextStyle(
+                  color: Colors.green,
+                ),
+              ),
+              TextSpan(
+                text: "www.baidu.com",
+                style: TextStyle(
+                  color: Colors.blue,
+                ),
+              ),
+            ]),
+          ),
           DefaultTextStyle(
-            style: TextStyle(
+            style: const TextStyle(
               color: Colors.red,
               fontSize: 20,
             ),
             child: Column(
-              children: [
+              children: const [
                 Text("AAA"),
                 Text("BBB"),
                 Text("CCC"),

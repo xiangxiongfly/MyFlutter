@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:myflutter/simple/custom_input.dart';
 
 class InputPage extends StatefulWidget {
+  const InputPage({Key? key}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
@@ -43,84 +44,86 @@ class _InputPageState extends State<InputPage> {
       appBar: AppBar(
         title: const Text("输入框组件"),
       ),
-      body: Column(
-        children: [
-          TextField(
-            autofocus: true,
-            focusNode: focusNode1,
-            maxLength: 6,
-            inputFormatters: [
-              WhitelistingTextInputFormatter(RegExp("[a-zA-Z]")),
-            ],
-            decoration: InputDecoration(
-              labelText: "用户名",
-              hintText: "请输入用户名",
-              prefixIcon: Icon(Icons.person),
-            ),
-            onChanged: (value) {
-              print("内容变化1：$value");
-            },
-            controller: _usernameController,
-            textInputAction: TextInputAction.search,
-          ),
-          TextField(
-            autofocus: true,
-            focusNode: focusNode2,
-            decoration: InputDecoration(
-              labelText: "邮箱",
-              hintText: "请输入邮箱账号",
-              prefixIcon: Icon(Icons.mail),
-            ),
-            keyboardType: TextInputType.emailAddress,
-            controller: _inputController,
-          ),
-          TextField(
-            decoration: InputDecoration(
-              labelText: "密码",
-              hintText: "请输入密码",
-              prefixIcon: Icon(Icons.lock),
-            ),
-            keyboardType: TextInputType.number,
-            obscureText: true,
-          ),
-          Builder(builder: (context) {
-            return Column(
-              children: [
-                RaisedButton(
-                  child: Text("移动焦点"),
-                  onPressed: () {
-                    if (focusScopeNode == null) {
-                      focusScopeNode = FocusScope.of(context);
-                      focusScopeNode!.requestFocus(focusNode1);
-                    } else {
-                      // focusScopeNode!.requestFocus(focusNode2);
-                      focusScopeNode!.nextFocus();
-                    }
-                  },
-                ),
-                RaisedButton(
-                  child: Text("隐藏键盘"),
-                  onPressed: () {
-                    //所有编辑框失去焦点，就会收起键盘
-                    focusNode1.unfocus();
-                    focusNode2.unfocus();
-                  },
-                ),
-                RaisedButton(
-                  child: Text("自定义"),
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) {
-                        return CustomTextFieldPage();
-                      }),
-                    );
-                  },
-                ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            TextField(
+              autofocus: true,
+              focusNode: focusNode1,
+              maxLength: 6,
+              inputFormatters: [
+                WhitelistingTextInputFormatter(RegExp("[a-zA-Z]")),
               ],
-            );
-          }),
-        ],
+              decoration: const InputDecoration(
+                labelText: "用户名",
+                hintText: "请输入用户名",
+                prefixIcon: Icon(Icons.person),
+              ),
+              onChanged: (value) {
+                print("内容变化1：$value");
+              },
+              controller: _usernameController,
+              textInputAction: TextInputAction.search,
+            ),
+            TextField(
+              autofocus: true,
+              focusNode: focusNode2,
+              decoration: const InputDecoration(
+                labelText: "邮箱",
+                hintText: "请输入邮箱账号",
+                prefixIcon: Icon(Icons.mail),
+              ),
+              keyboardType: TextInputType.emailAddress,
+              controller: _inputController,
+            ),
+            const TextField(
+              decoration: InputDecoration(
+                labelText: "密码",
+                hintText: "请输入密码",
+                prefixIcon: Icon(Icons.lock),
+              ),
+              keyboardType: TextInputType.number,
+              obscureText: true,
+            ),
+            Builder(builder: (context) {
+              return Column(
+                children: [
+                  RaisedButton(
+                    child: const Text("移动焦点"),
+                    onPressed: () {
+                      if (focusScopeNode == null) {
+                        focusScopeNode = FocusScope.of(context);
+                        focusScopeNode!.requestFocus(focusNode1);
+                      } else {
+                        // focusScopeNode!.requestFocus(focusNode2);
+                        focusScopeNode!.nextFocus();
+                      }
+                    },
+                  ),
+                  RaisedButton(
+                    child: const Text("隐藏键盘"),
+                    onPressed: () {
+                      //所有编辑框失去焦点，就会收起键盘
+                      focusNode1.unfocus();
+                      focusNode2.unfocus();
+                    },
+                  ),
+                  RaisedButton(
+                    child: const Text("自定义"),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) {
+                          return const CustomTextFieldPage();
+                        }),
+                      );
+                    },
+                  ),
+                ],
+              );
+            }),
+          ],
+        ),
       ),
     );
   }
