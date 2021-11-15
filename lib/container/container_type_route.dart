@@ -17,9 +17,21 @@ class ContainerTypePage extends StatelessWidget {
               },
             ),
             OutlinedButton(
+              child: Text("SizedBox"),
+              onPressed: () {
+                Navigator.pushNamed(context, "sized_box_route");
+              },
+            ),
+            OutlinedButton(
               child: Text("Padding"),
               onPressed: () {
                 Navigator.pushNamed(context, "padding_route");
+              },
+            ),
+            OutlinedButton(
+              child: Text("AspectRatio"),
+              onPressed: () {
+                Navigator.pushNamed(context, "aspect_ratio_route");
               },
             ),
             OutlinedButton(

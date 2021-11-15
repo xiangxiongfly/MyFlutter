@@ -32,6 +32,8 @@ import 'package:myflutter/simple/simple_type_route.dart';
 import 'package:myflutter/simple/switch_checkbox_route.dart';
 import 'package:myflutter/simple/text_route.dart';
 
+import 'container/aspect_ratio_route.dart';
+import 'container/sized_box_route.dart';
 import 'second.dart';
 import 'layout/layout_builder_route.dart';
 import 'layout/layout_type_route.dart';
@@ -77,7 +79,9 @@ class MyApp extends StatelessWidget {
         //容器类组件
         "container_type_route": (context) => ContainerTypePage(),
         "container_route": (context) => ContainerPage(),
+        "sized_box_route": (context) => SizedBoxPage(),
         "padding_route": (context) => PaddingPage(),
+        "aspect_ratio_route": (context) => AspectRatioPage(),
         "DecoratedBox_route": (context) => DecoratedBoxPage(),
         "transform_route": (context) => TransformPage(),
         "clip_route": (context) => ClipPage(),
