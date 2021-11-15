@@ -2,70 +2,64 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class WrapFlowPage extends StatelessWidget {
+  const WrapFlowPage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("流式布局组件"),
+        title: const Text("流式布局组件"),
       ),
-      body: Column(
-        children: [
-          Wrap(
-            //主轴间距
-            spacing: 8,
-            //纵轴间距
-            runSpacing: 2,
-            alignment: WrapAlignment.start,
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.all(10),
+          child: Column(
             children: [
-              Chip(
-                label: Text("ABC"),
-                avatar: CircleAvatar(
-                  backgroundColor: Colors.blue,
-                  child: Text("A"),
+              Container(
+                height: 500,
+                child: Wrap(
+                  //主轴间距
+                  spacing: 8,
+                  //纵轴间距
+                  runSpacing: 4,
+                  //布局方向
+                  direction: Axis.horizontal,
+                  //主轴对齐方式
+                  // alignment: WrapAlignment.start,
+                  //纵轴对齐方式
+                  // crossAxisAlignment: WrapCrossAlignment.end,
+                  //纵轴方向 每一行对齐方式
+                  // runAlignment: WrapAlignment.end,
+                  children: List.generate(
+                    13,
+                    (index) {
+                      double w = 50.0 + 5 * index;
+                      double h = 50.0 + 5 * index;
+                      return Container(
+                        width: w,
+                        height: h,
+                        color: Colors.red,
+                        alignment: Alignment.center,
+                        child: Text("$index"),
+                      );
+                    },
+                  ),
                 ),
               ),
-              Chip(
-                label: Text("EFG"),
-                avatar: CircleAvatar(
-                  backgroundColor: Colors.blue,
-                  child: Text("E"),
-                ),
+              Flow(
+                delegate: MyFlowDelegate(margin: EdgeInsets.all(10)),
+                children: [
+                  Container(width: 80, height: 80, color: Colors.red),
+                  Container(width: 80, height: 80, color: Colors.green),
+                  Container(width: 80, height: 80, color: Colors.blue),
+                  Container(width: 80, height: 80, color: Colors.red),
+                  Container(width: 80, height: 80, color: Colors.green),
+                  Container(width: 80, height: 80, color: Colors.blue),
+                ],
               ),
-              Chip(
-                label: Text("HIK"),
-                avatar: CircleAvatar(
-                  backgroundColor: Colors.blue,
-                  child: Text("H"),
-                ),
-              ),
-              Chip(
-                label: Text("LMN"),
-                avatar: CircleAvatar(
-                  backgroundColor: Colors.blue,
-                  child: Text("L"),
-                ),
-              ),
-              Chip(
-                label: Text("OPQ"),
-                avatar: CircleAvatar(
-                  backgroundColor: Colors.blue,
-                  child: Text("O"),
-                ),
-              )
             ],
           ),
-          Flow(
-            delegate: MyFlowDelegate(margin: EdgeInsets.all(10)),
-            children: [
-              Container(width: 80, height: 80, color: Colors.red),
-              Container(width: 80, height: 80, color: Colors.green),
-              Container(width: 80, height: 80, color: Colors.blue),
-              Container(width: 80, height: 80, color: Colors.red),
-              Container(width: 80, height: 80, color: Colors.green),
-              Container(width: 80, height: 80, color: Colors.blue),
-            ],
-          ),
-        ],
+        ),
       ),
     );
   }

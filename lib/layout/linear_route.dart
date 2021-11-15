@@ -6,7 +6,7 @@ class LinearLayoutPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("线性布局组件"),
+        title: const Text("Row&Column组件"),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

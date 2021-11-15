@@ -40,9 +40,9 @@ class FlexPage extends StatelessWidget {
             ),
             SizedBox(height: 10),
             Container(
-              height: 200,
+              height: 30,
               child: Flex(
-                direction: Axis.vertical,
+                direction: Axis.horizontal,
                 children: [
                   Expanded(
                     flex: 1,
@@ -51,7 +51,7 @@ class FlexPage extends StatelessWidget {
                       color: Colors.red[200],
                     ),
                   ),
-                  Spacer(),
+                  const Spacer(),
                   Expanded(
                     flex: 2,
                     child: Container(

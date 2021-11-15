@@ -1,7 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:myflutter/layout/indexed_stack_route.dart';
 
 class StackPositionedPage extends StatelessWidget {
+  StackPositionedPage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -15,7 +18,7 @@ class StackPositionedPage extends StatelessWidget {
             //设置未定位组件的对齐方式
             alignment: Alignment.center,
             //未定位的如何适应Stack空间
-            // fit: StackFit.expand,
+            fit: StackFit.loose,
             children: [
               Container(
                 color: Colors.red,
@@ -31,6 +34,34 @@ class StackPositionedPage extends StatelessWidget {
               Positioned(
                 child: Text("hello stack"),
                 top: 50,
+              ),
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: TextButton(
+                  child: Text("跳转IndexedStack"),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (BuildContext context) {
+                        return IndexedStackPage();
+                      }),
+                    );
+                  },
+                ),
+              ),
+              Positioned(
+                bottom: 100,
+                child: TextButton(
+                  child: Text("跳转IndexedStack"),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (BuildContext context) {
+                        return IndexedStackPage();
+                      }),
+                    );
+                  },
+                ),
               ),
             ],
           ),

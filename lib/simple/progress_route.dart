@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class ProgressPage extends StatefulWidget {
@@ -34,36 +35,40 @@ class _ProgressPageState extends State<ProgressPage>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("进度条组件"),
+        title: const Text("进度条组件"),
       ),
       body: Padding(
-        padding: EdgeInsets.all(10),
+        padding: const EdgeInsets.all(10),
         child: Column(
           children: [
-            LinearProgressIndicator(
+            const Text("模糊进度条"),
+            const LinearProgressIndicator(
               value: 0.5,
               backgroundColor: Colors.grey,
               valueColor: AlwaysStoppedAnimation(Colors.blue),
             ),
-            SizedBox(height: 20),
-            LinearProgressIndicator(
+            const Text("具体进度条"),
+            const LinearProgressIndicator(
               backgroundColor: Colors.grey,
               valueColor: AlwaysStoppedAnimation(Colors.blue),
             ),
-            SizedBox(height: 20),
-            CircularProgressIndicator(
+            const SizedBox(height: 20),
+            const Text("模糊进度条"),
+            const CircularProgressIndicator(
               backgroundColor: Colors.grey,
               valueColor: AlwaysStoppedAnimation(Colors.red),
             ),
-            SizedBox(height: 20),
-            CircularProgressIndicator(
+            const Text("具体进度条"),
+            const CircularProgressIndicator(
+              //边框宽度
               strokeWidth: 2.0,
               backgroundColor: Colors.grey,
               valueColor: AlwaysStoppedAnimation(Colors.red),
               value: 0.5,
             ),
-            SizedBox(height: 20),
-            SizedBox(
+            const SizedBox(height: 20),
+            const Text("条形进度条设置宽高"),
+            const SizedBox(
               height: 3,
               width: 100,
               child: LinearProgressIndicator(
@@ -72,8 +77,9 @@ class _ProgressPageState extends State<ProgressPage>
                 valueColor: AlwaysStoppedAnimation(Colors.blue),
               ),
             ),
-            SizedBox(height: 20),
-            SizedBox(
+            const SizedBox(height: 20),
+            const Text("环进度条设置宽高"),
+            const SizedBox(
               height: 100,
               width: 100,
               child: CircularProgressIndicator(
@@ -82,13 +88,18 @@ class _ProgressPageState extends State<ProgressPage>
                 valueColor: AlwaysStoppedAnimation(Colors.blue),
               ),
             ),
-            SizedBox(height: 20),
-            Text("3秒由灰色变蓝色动画"),
+            const SizedBox(height: 20),
+            const Text("3秒由灰色变蓝色动画"),
             LinearProgressIndicator(
               backgroundColor: Colors.grey,
               valueColor: ColorTween(begin: Colors.grey, end: Colors.blue)
                   .animate(_animationController),
               value: _animationController.value,
+            ),
+            const Text("ios风格"),
+            const CupertinoActivityIndicator(
+              radius: 10,
+              animating: true,
             ),
           ],
         ),
