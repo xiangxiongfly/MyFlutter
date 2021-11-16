@@ -33,7 +33,9 @@ import 'package:myflutter/simple/switch_checkbox_route.dart';
 import 'package:myflutter/simple/text_route.dart';
 
 import 'container/aspect_ratio_route.dart';
+import 'container/fractionally_sized_box_route.dart';
 import 'container/sized_box_route.dart';
+import 'gesture_detector/gesture_detector_type_route.dart';
 import 'second.dart';
 import 'layout/layout_builder_route.dart';
 import 'layout/layout_type_route.dart';
@@ -80,6 +82,7 @@ class MyApp extends StatelessWidget {
         "container_type_route": (context) => ContainerTypePage(),
         "container_route": (context) => ContainerPage(),
         "sized_box_route": (context) => SizedBoxPage(),
+        "fractionally_sized_box_route": (context) => FractionallySizedBoxPage(),
         "padding_route": (context) => PaddingPage(),
         "aspect_ratio_route": (context) => AspectRatioPage(),
         "DecoratedBox_route": (context) => DecoratedBoxPage(),
@@ -97,6 +100,8 @@ class MyApp extends StatelessWidget {
         "tabbar_view_route": (context) => TabBarViewPage(),
         "custom_scroll_view_route": (context) => CustomScrollViewPage(),
         "nested_scroll_view_route": (context) => NestedScrollViewPage(),
+        //手势组件
+        "gesture_detector_type_page": (context) => GestureDetectorTypePage()
       },
       initialRoute: "/",
     );
@@ -253,6 +258,12 @@ class MyBody extends StatelessWidget {
             child: Text("滚动组件"),
             onPressed: () {
               Navigator.pushNamed(context, "scroll_type_route");
+            },
+          ),
+          ElevatedButton(
+            child: Text("手势组件"),
+            onPressed: () {
+              Navigator.pushNamed(context, "gesture_detector_type_page");
             },
           ),
         ],
