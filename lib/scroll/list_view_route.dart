@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class ListViewPage extends StatefulWidget {
+  const ListViewPage({Key? key}) : super(key: key);
+
   @override
   State<StatefulWidget> createState() {
     return _ListViewPageState();
@@ -39,18 +41,8 @@ class _ListViewPageState extends State<ListViewPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("ListView"),
-        actions: [],
-      ),
-      body: ListView.builder(
-          itemCount: null,
-          itemExtent: 50,
-          physics: BouncingScrollPhysics(),
-          controller: _controller,
-          itemBuilder: (BuildContext context, int index) {
-            return ListTile(title: Text("$index"));
-          }),
+      appBar: AppBar(title: const Text("ListView")),
+      body: getListView04(_controller),
       floatingActionButton: !showTopBtn
           ? null
           : FloatingActionButton(
@@ -61,7 +53,7 @@ class _ListViewPageState extends State<ListViewPage> {
                   curve: Curves.ease,
                 );
               },
-              child: Icon(Icons.arrow_upward),
+              child: const Icon(Icons.arrow_upward),
             ),
     );
   }
@@ -69,25 +61,25 @@ class _ListViewPageState extends State<ListViewPage> {
 
 Widget getListView01() {
   return ListView(
-    shrinkWrap: true,
-    prototypeItem: Padding(padding: EdgeInsets.all(50), child: Text("A")),
-    padding: EdgeInsets.all(20),
-    children: const [
-      Text("A"),
-      Text("B"),
-      Text("C"),
-      Text("D"),
-    ],
+    itemExtent: 50,
+    // prototypeItem: Padding(
+    //   padding: EdgeInsets.all(20),
+    //   child: Text("A"),
+    // ),
+    children: List.generate(5, (index) {
+      return Center(child: Text("$index"));
+    }),
   );
 }
 
 Widget getListView02() {
   return ListView.builder(
-      itemCount: null,
-      itemExtent: 50,
-      itemBuilder: (BuildContext context, int index) {
-        return ListTile(title: Text("$index"));
-      });
+    itemCount: 50,
+    itemExtent: 50,
+    itemBuilder: (BuildContext context, int index) {
+      return ListTile(title: Center(child: Text("$index")));
+    },
+  );
 }
 
 Widget getListView03() {
@@ -96,10 +88,22 @@ Widget getListView03() {
   return ListView.separated(
     itemCount: 100,
     itemBuilder: (BuildContext context, int index) {
-      return ListTile(title: Text("$index"));
+      return ListTile(title: Center(child: Text("$index")));
     },
     separatorBuilder: (BuildContext context, int index) {
       return index % 2 == 0 ? divider1 : divider2;
+    },
+  );
+}
+
+Widget getListView04(controller) {
+  return ListView.builder(
+    itemCount: null,
+    itemExtent: 50,
+    physics: BouncingScrollPhysics(),
+    controller: controller,
+    itemBuilder: (BuildContext context, int index) {
+      return ListTile(title: Center(child: Text("$index")));
     },
   );
 }

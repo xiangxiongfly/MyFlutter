@@ -13,6 +13,7 @@ import 'package:myflutter/layout/constraint_route.dart';
 import 'package:myflutter/layout/flex_route.dart';
 import 'package:myflutter/layout/linear_route.dart';
 import 'package:myflutter/layout/wrap_flow_route.dart';
+import 'package:myflutter/sample/banner.dart';
 import 'package:myflutter/scroll/animated_list_route.dart';
 import 'package:myflutter/scroll/custom_scroll_view_route.dart';
 import 'package:myflutter/scroll/grid_view_route.dart';
@@ -20,7 +21,7 @@ import 'package:myflutter/scroll/list_view_route.dart';
 import 'package:myflutter/scroll/nested_scroll_view_route.dart';
 import 'package:myflutter/scroll/notification_listener_route.dart';
 import 'package:myflutter/scroll/page_view_route.dart';
-import 'package:myflutter/scroll/scroll_type.dart';
+import 'package:myflutter/scroll/scroll_type_route.dart';
 import 'package:myflutter/scroll/scroll_view_route.dart';
 import 'package:myflutter/scroll/tabbar_view_route.dart';
 import 'package:myflutter/simple/button_route.dart';
@@ -178,7 +179,7 @@ class MyDrawer extends StatelessWidget {
                     padding: EdgeInsets.symmetric(horizontal: 16),
                     child: ClipOval(
                       child: Image.asset(
-                        "images/logo.png",
+                        "images/avatar.jpg",
                         width: 80,
                       ),
                     ),
@@ -206,12 +207,16 @@ class MyDrawer extends StatelessWidget {
                     },
                   ),
                   ListTile(
-                    leading: Icon(Icons.account_box),
-                    title: Text("账号"),
-                  ),
-                  ListTile(
-                    leading: Icon(Icons.settings),
-                    title: Text("设置"),
+                    leading: Icon(Icons.slideshow),
+                    title: Text("轮播图"),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (BuildContext context) {
+                          return BannerPage();
+                        }),
+                      );
+                    },
                   ),
                   ListTile(
                     leading: Icon(Icons.close),

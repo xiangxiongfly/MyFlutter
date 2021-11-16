@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 
 class SingleChildScrollViewPage extends StatelessWidget {
+  const SingleChildScrollViewPage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("SingleChildScrollView"),
+        title: const Text("SingleChildScrollView"),
       ),
       body: MyScrollView(),
     );

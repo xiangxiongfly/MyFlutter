@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class PageViewPage extends StatefulWidget {
+  const PageViewPage({Key? key}) : super(key: key);
+
   @override
   State<StatefulWidget> createState() {
     return _PageViewPageState();
@@ -10,9 +12,14 @@ class PageViewPage extends StatefulWidget {
 class _PageViewPageState extends State<PageViewPage> {
   @override
   Widget build(BuildContext context) {
-    List<Page> list = [];
-    for (int i = 0; i < 5; i++) {
-      list.add(Page(title: "$i"));
+    List<Page> pages = [];
+    for (int i = 0; i < Colors.primaries.length; i++) {
+      pages.add(
+        Page(
+          title: "$i",
+          color: Colors.primaries[i],
+        ),
+      );
     }
 
     return Scaffold(
@@ -21,7 +28,9 @@ class _PageViewPageState extends State<PageViewPage> {
       ),
       body: PageView(
         allowImplicitScrolling: true,
-        children: list,
+        children: pages,
+        controller: PageController(viewportFraction: 0.8, initialPage: 10),
+        onPageChanged: (index) {},
       ),
     );
   }
@@ -29,13 +38,16 @@ class _PageViewPageState extends State<PageViewPage> {
 
 class Page extends StatelessWidget {
   final String title;
+  final Color color;
 
-  const Page({Key? key, required this.title}) : super(key: key);
+  const Page({Key? key, required this.title, required this.color})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    print("创建子元素 $title");
-    return Center(
+    return Container(
+      color: color,
+      alignment: Alignment.center,
       child: Text(
         "$title",
         textScaleFactor: 2,

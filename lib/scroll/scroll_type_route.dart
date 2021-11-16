@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:myflutter/scroll/data_table_route.dart';
 
 class ScrollTypePage extends StatelessWidget {
   @override
@@ -51,6 +52,17 @@ class ScrollTypePage extends StatelessWidget {
                 Navigator.pushNamed(context, "tabbar_view_route");
               },
               child: Text("TabBarView"),
+            ),
+            TextButton(
+              child: Text("DataTable"),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (BuildContext context) {
+                    return DataTablePage();
+                  }),
+                );
+              },
             ),
             TextButton(
               onPressed: () {
