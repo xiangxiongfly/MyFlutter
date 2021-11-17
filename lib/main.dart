@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:myflutter/container/clipe_route.dart';
 import 'package:myflutter/container/container_route.dart';
 import 'package:myflutter/container/container_type_route.dart';
@@ -13,6 +14,7 @@ import 'package:myflutter/layout/constraint_route.dart';
 import 'package:myflutter/layout/flex_route.dart';
 import 'package:myflutter/layout/linear_route.dart';
 import 'package:myflutter/layout/wrap_flow_route.dart';
+import 'package:myflutter/other/other_type_route.dart';
 import 'package:myflutter/sample/banner.dart';
 import 'package:myflutter/scroll/animated_list_route.dart';
 import 'package:myflutter/scroll/custom_scroll_view_route.dart';
@@ -55,6 +57,17 @@ class MyApp extends StatelessWidget {
       //隐藏debug角标
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
+      //国际化
+      localizationsDelegates: [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: [
+        const Locale('zh'),
+        const Locale('en'),
+      ],
+
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
@@ -101,7 +114,9 @@ class MyApp extends StatelessWidget {
         "tabbar_view_route": (context) => TabBarViewPage(),
         "custom_scroll_view_route": (context) => CustomScrollViewPage(),
         //手势组件
-        "gesture_detector_type_page": (context) => GestureDetectorTypePage()
+        "gesture_detector_type_page": (context) => GestureDetectorTypePage(),
+        //功能组件
+        "other_type_page": (context) => OtherTypePage(),
       },
       initialRoute: "/",
     );
@@ -270,6 +285,12 @@ class MyBody extends StatelessWidget {
               Navigator.pushNamed(context, "gesture_detector_type_page");
             },
           ),
+          ElevatedButton(
+            child: Text("功能组件"),
+            onPressed: () {
+              Navigator.pushNamed(context, "other_type_page");
+            },
+          ),
         ],
       ),
     );
@@ -290,18 +311,9 @@ class _MyBottomNavigationBarState extends State<MyBottomNavigationBar> {
   Widget build(BuildContext context) {
     return BottomNavigationBar(
       items: const [
-        BottomNavigationBarItem(
-          icon: Icon(Icons.home),
-          label: "home",
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.business),
-          label: "business",
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.school),
-          label: "school",
-        ),
+        BottomNavigationBarItem(icon: Icon(Icons.home), label: "home"),
+        BottomNavigationBarItem(icon: Icon(Icons.business), label: "business"),
+        BottomNavigationBarItem(icon: Icon(Icons.school), label: "school"),
       ],
       currentIndex: _selectedIndex,
       //fixedColor: Colors.blue,
