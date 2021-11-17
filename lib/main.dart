@@ -100,7 +100,6 @@ class MyApp extends StatelessWidget {
         "page_view_route": (context) => PageViewPage(),
         "tabbar_view_route": (context) => TabBarViewPage(),
         "custom_scroll_view_route": (context) => CustomScrollViewPage(),
-        "nested_scroll_view_route": (context) => NestedScrollViewPage(),
         //手势组件
         "gesture_detector_type_page": (context) => GestureDetectorTypePage()
       },
