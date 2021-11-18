@@ -8,13 +8,14 @@ import 'package:myflutter/container/decorated_box_route.dart';
 import 'package:myflutter/container/fitted_box_route.dart';
 import 'package:myflutter/container/padding_route.dart';
 import 'package:myflutter/container/transform_route.dart';
+import 'package:myflutter/dialog/dialog_type_route.dart';
 import 'package:myflutter/layout/align__route.dart';
 import 'package:myflutter/layout/center_route.dart';
 import 'package:myflutter/layout/constraint_route.dart';
 import 'package:myflutter/layout/flex_route.dart';
 import 'package:myflutter/layout/linear_route.dart';
 import 'package:myflutter/layout/wrap_flow_route.dart';
-import 'package:myflutter/other/other_type_route.dart';
+import 'package:myflutter/datetime/date_time_type_route.dart';
 import 'package:myflutter/sample/banner.dart';
 import 'package:myflutter/scroll/animated_list_route.dart';
 import 'package:myflutter/scroll/custom_scroll_view_route.dart';
@@ -115,8 +116,6 @@ class MyApp extends StatelessWidget {
         "custom_scroll_view_route": (context) => CustomScrollViewPage(),
         //手势组件
         "gesture_detector_type_page": (context) => GestureDetectorTypePage(),
-        //功能组件
-        "other_type_page": (context) => OtherTypePage(),
       },
       initialRoute: "/",
     );
@@ -286,9 +285,19 @@ class MyBody extends StatelessWidget {
             },
           ),
           ElevatedButton(
-            child: Text("功能组件"),
+            child: Text("弹窗组件"),
             onPressed: () {
-              Navigator.pushNamed(context, "other_type_page");
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return DialogTypePage();
+              }));
+            },
+          ),
+          ElevatedButton(
+            child: Text("日期时间组件"),
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return DateTimeTypePage();
+              }));
             },
           ),
         ],
