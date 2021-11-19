@@ -27,6 +27,7 @@ import 'package:myflutter/scroll/page_view_route.dart';
 import 'package:myflutter/scroll/scroll_type_route.dart';
 import 'package:myflutter/scroll/scroll_view_route.dart';
 import 'package:myflutter/scroll/tabbar_view_route.dart';
+import 'package:myflutter/shape/shape_type_route.dart';
 import 'package:myflutter/simple/button_route.dart';
 import 'package:myflutter/simple/form_route.dart';
 import 'package:myflutter/simple/image_route.dart';
@@ -297,6 +298,14 @@ class MyBody extends StatelessWidget {
             onPressed: () {
               Navigator.push(context, MaterialPageRoute(builder: (context) {
                 return DateTimeTypePage();
+              }));
+            },
+          ),
+          ElevatedButton(
+            child: Text("shape组件"),
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return ShapePage();
               }));
             },
           ),
