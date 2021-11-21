@@ -1,32 +1,41 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:myflutter/container/aspect_ratio_route.dart';
 import 'package:myflutter/container/clipe_route.dart';
 import 'package:myflutter/container/container_route.dart';
 import 'package:myflutter/container/container_type_route.dart';
 import 'package:myflutter/container/decorated_box_route.dart';
 import 'package:myflutter/container/fitted_box_route.dart';
+import 'package:myflutter/container/fractionally_sized_box_route.dart';
 import 'package:myflutter/container/padding_route.dart';
+import 'package:myflutter/container/sized_box_route.dart';
 import 'package:myflutter/container/transform_route.dart';
 import 'package:myflutter/dialog/dialog_type_route.dart';
+import 'package:myflutter/drag/drag_route.dart';
+import 'package:myflutter/gesture_detector/gesture_detector_type_route.dart';
 import 'package:myflutter/layout/align__route.dart';
 import 'package:myflutter/layout/center_route.dart';
 import 'package:myflutter/layout/constraint_route.dart';
 import 'package:myflutter/layout/flex_route.dart';
+import 'package:myflutter/layout/layout_builder_route.dart';
+import 'package:myflutter/layout/layout_type_route.dart';
 import 'package:myflutter/layout/linear_route.dart';
+import 'package:myflutter/layout/stack_positioned__route.dart';
 import 'package:myflutter/layout/wrap_flow_route.dart';
 import 'package:myflutter/datetime/date_time_type_route.dart';
+import 'package:myflutter/others/other_type_route.dart';
 import 'package:myflutter/sample/banner.dart';
 import 'package:myflutter/scroll/animated_list_route.dart';
 import 'package:myflutter/scroll/custom_scroll_view_route.dart';
 import 'package:myflutter/scroll/grid_view_route.dart';
 import 'package:myflutter/scroll/list_view_route.dart';
-import 'package:myflutter/scroll/nested_scroll_view_route.dart';
 import 'package:myflutter/scroll/notification_listener_route.dart';
 import 'package:myflutter/scroll/page_view_route.dart';
 import 'package:myflutter/scroll/scroll_type_route.dart';
 import 'package:myflutter/scroll/scroll_view_route.dart';
 import 'package:myflutter/scroll/tabbar_view_route.dart';
+import 'package:myflutter/second.dart';
 import 'package:myflutter/shape/shape_type_route.dart';
 import 'package:myflutter/simple/button_route.dart';
 import 'package:myflutter/simple/form_route.dart';
@@ -36,15 +45,7 @@ import 'package:myflutter/simple/progress_route.dart';
 import 'package:myflutter/simple/simple_type_route.dart';
 import 'package:myflutter/simple/switch_checkbox_route.dart';
 import 'package:myflutter/simple/text_route.dart';
-
-import 'container/aspect_ratio_route.dart';
-import 'container/fractionally_sized_box_route.dart';
-import 'container/sized_box_route.dart';
-import 'gesture_detector/gesture_detector_type_route.dart';
-import 'second.dart';
-import 'layout/layout_builder_route.dart';
-import 'layout/layout_type_route.dart';
-import 'layout/stack_positioned__route.dart';
+import 'package:myflutter/storage/storage_route.dart';
 
 void main() {
   runApp(const MyApp());
@@ -60,7 +61,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       //国际化
-      localizationsDelegates: [
+      localizationsDelegates: const [
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
@@ -309,6 +310,30 @@ class MyBody extends StatelessWidget {
               }));
             },
           ),
+          ElevatedButton(
+            child: Text("功能型组件"),
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return OtherTypePage();
+              }));
+            },
+          ),
+          ElevatedButton(
+            child: Text("拖拽组件"),
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return DragPage();
+              }));
+            },
+          ),
+          ElevatedButton(
+            child: Text("数据存储组件"),
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return StoragePage();
+              }));
+            },
+          )
         ],
       ),
     );
