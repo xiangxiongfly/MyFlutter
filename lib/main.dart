@@ -254,87 +254,89 @@ class MyBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Column(
-        children: <Widget>[
-          ElevatedButton(
-            child: Text("基本组件"),
-            onPressed: () {
-              Navigator.pushNamed(context, "simple_route");
-            },
-          ),
-          ElevatedButton(
-            child: Text("布局组件"),
-            onPressed: () {
-              Navigator.pushNamed(context, "layout_route");
-            },
-          ),
-          ElevatedButton(
-            child: Text("容器类组件"),
-            onPressed: () {
-              Navigator.pushNamed(context, "container_type_route");
-            },
-          ),
-          ElevatedButton(
-            child: Text("滚动组件"),
-            onPressed: () {
-              Navigator.pushNamed(context, "scroll_type_route");
-            },
-          ),
-          ElevatedButton(
-            child: Text("手势组件"),
-            onPressed: () {
-              Navigator.pushNamed(context, "gesture_detector_type_page");
-            },
-          ),
-          ElevatedButton(
-            child: Text("弹窗组件"),
-            onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return DialogTypePage();
-              }));
-            },
-          ),
-          ElevatedButton(
-            child: Text("日期时间组件"),
-            onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return DateTimeTypePage();
-              }));
-            },
-          ),
-          ElevatedButton(
-            child: Text("shape组件"),
-            onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return ShapePage();
-              }));
-            },
-          ),
-          ElevatedButton(
-            child: Text("功能型组件"),
-            onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return OtherTypePage();
-              }));
-            },
-          ),
-          ElevatedButton(
-            child: Text("拖拽组件"),
-            onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return DragPage();
-              }));
-            },
-          ),
-          ElevatedButton(
-            child: Text("数据存储组件"),
-            onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return StoragePage();
-              }));
-            },
-          )
-        ],
+      child: SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
+            ElevatedButton(
+              child: Text("基本组件"),
+              onPressed: () {
+                Navigator.pushNamed(context, "simple_route");
+              },
+            ),
+            ElevatedButton(
+              child: Text("布局组件"),
+              onPressed: () {
+                Navigator.pushNamed(context, "layout_route");
+              },
+            ),
+            ElevatedButton(
+              child: Text("容器类组件"),
+              onPressed: () {
+                Navigator.pushNamed(context, "container_type_route");
+              },
+            ),
+            ElevatedButton(
+              child: Text("滚动组件"),
+              onPressed: () {
+                Navigator.pushNamed(context, "scroll_type_route");
+              },
+            ),
+            ElevatedButton(
+              child: Text("手势组件"),
+              onPressed: () {
+                Navigator.pushNamed(context, "gesture_detector_type_page");
+              },
+            ),
+            ElevatedButton(
+              child: Text("弹窗组件"),
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return DialogTypePage();
+                }));
+              },
+            ),
+            ElevatedButton(
+              child: Text("日期时间组件"),
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return DateTimeTypePage();
+                }));
+              },
+            ),
+            ElevatedButton(
+              child: Text("shape组件"),
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return ShapePage();
+                }));
+              },
+            ),
+            ElevatedButton(
+              child: Text("功能型组件"),
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return OtherTypePage();
+                }));
+              },
+            ),
+            ElevatedButton(
+              child: Text("拖拽组件"),
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return DragPage();
+                }));
+              },
+            ),
+            ElevatedButton(
+              child: Text("数据存储组件"),
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return StoragePage();
+                }));
+              },
+            )
+          ],
+        ),
       ),
     );
   }
