@@ -11,6 +11,8 @@ import 'package:myflutter/container/fractionally_sized_box_route.dart';
 import 'package:myflutter/container/padding_route.dart';
 import 'package:myflutter/container/sized_box_route.dart';
 import 'package:myflutter/container/transform_route.dart';
+import 'package:myflutter/datetime/date_time_type_route.dart';
+import 'package:myflutter/demo_widget.dart';
 import 'package:myflutter/dialog/dialog_type_route.dart';
 import 'package:myflutter/drag/drag_route.dart';
 import 'package:myflutter/gesture_detector/gesture_detector_type_route.dart';
@@ -23,9 +25,9 @@ import 'package:myflutter/layout/layout_type_route.dart';
 import 'package:myflutter/layout/linear_route.dart';
 import 'package:myflutter/layout/stack_positioned__route.dart';
 import 'package:myflutter/layout/wrap_flow_route.dart';
-import 'package:myflutter/datetime/date_time_type_route.dart';
 import 'package:myflutter/others/other_type_route.dart';
 import 'package:myflutter/sample/banner.dart';
+import 'package:myflutter/sample/comment_list.dart';
 import 'package:myflutter/scroll/animated_list_route.dart';
 import 'package:myflutter/scroll/custom_scroll_view_route.dart';
 import 'package:myflutter/scroll/grid_view_route.dart';
@@ -234,6 +236,18 @@ class MyDrawer extends StatelessWidget {
                     },
                   ),
                   ListTile(
+                    leading: Icon(Icons.comment),
+                    title: Text("评论列表效果"),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (BuildContext context) {
+                          return CommentListPage();
+                        }),
+                      );
+                    },
+                  ),
+                  ListTile(
                     leading: Icon(Icons.close),
                     title: Text("关闭抽屉菜单"),
                     onTap: () {
@@ -257,6 +271,20 @@ class MyBody extends StatelessWidget {
       child: SingleChildScrollView(
         child: Column(
           children: <Widget>[
+            ElevatedButton(
+              child: Text("测试组件"),
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return DemoWidget("hello world");
+                }));
+
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => DemoWidget("hello world")),
+                );
+              },
+            ),
             ElevatedButton(
               child: Text("基本组件"),
               onPressed: () {
