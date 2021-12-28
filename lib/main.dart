@@ -1,6 +1,9 @@
+import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:myflutter/animation/animation_type_page.dart';
 import 'package:myflutter/container/aspect_ratio_route.dart';
 import 'package:myflutter/container/clipe_route.dart';
 import 'package:myflutter/container/container_route.dart';
@@ -120,6 +123,8 @@ class MyApp extends StatelessWidget {
         "custom_scroll_view_route": (context) => CustomScrollViewPage(),
         //手势组件
         "gesture_detector_type_page": (context) => GestureDetectorTypePage(),
+        //动画组件
+        "animation_type_page": (context) => AnimationTypePage(),
       },
       initialRoute: "/",
     );
@@ -142,8 +147,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async {
-        if (lastTime == null ||
-            DateTime.now().difference(lastTime!) > const Duration(seconds: 1)) {
+        if (lastTime == null || DateTime.now().difference(lastTime!) > const Duration(seconds: 1)) {
           lastTime = DateTime.now();
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(content: Text("再按一次退出程序")),
@@ -272,51 +276,46 @@ class MyBody extends StatelessWidget {
         child: Column(
           children: <Widget>[
             ElevatedButton(
-              child: Text("测试组件"),
+              child: const Text("测试组件"),
               onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return DemoWidget("hello world");
-                }));
-
                 Navigator.push(
                   context,
-                  MaterialPageRoute(
-                      builder: (context) => DemoWidget("hello world")),
+                  MaterialPageRoute(builder: (context) => DemoWidget("hello world")),
                 );
               },
             ),
             ElevatedButton(
-              child: Text("基本组件"),
+              child: const Text("基本组件"),
               onPressed: () {
                 Navigator.pushNamed(context, "simple_route");
               },
             ),
             ElevatedButton(
-              child: Text("布局组件"),
+              child: const Text("布局组件"),
               onPressed: () {
                 Navigator.pushNamed(context, "layout_route");
               },
             ),
             ElevatedButton(
-              child: Text("容器类组件"),
+              child: const Text("容器类组件"),
               onPressed: () {
                 Navigator.pushNamed(context, "container_type_route");
               },
             ),
             ElevatedButton(
-              child: Text("滚动组件"),
+              child: const Text("滚动组件"),
               onPressed: () {
                 Navigator.pushNamed(context, "scroll_type_route");
               },
             ),
             ElevatedButton(
-              child: Text("手势组件"),
+              child: const Text("手势组件"),
               onPressed: () {
                 Navigator.pushNamed(context, "gesture_detector_type_page");
               },
             ),
             ElevatedButton(
-              child: Text("弹窗组件"),
+              child: const Text("弹窗组件"),
               onPressed: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
                   return DialogTypePage();
@@ -324,7 +323,7 @@ class MyBody extends StatelessWidget {
               },
             ),
             ElevatedButton(
-              child: Text("日期时间组件"),
+              child: const Text("日期时间组件"),
               onPressed: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
                   return DateTimeTypePage();
@@ -332,7 +331,7 @@ class MyBody extends StatelessWidget {
               },
             ),
             ElevatedButton(
-              child: Text("shape组件"),
+              child: const Text("shape组件"),
               onPressed: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
                   return ShapePage();
@@ -340,7 +339,7 @@ class MyBody extends StatelessWidget {
               },
             ),
             ElevatedButton(
-              child: Text("功能型组件"),
+              child: const Text("功能型组件"),
               onPressed: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
                   return OtherTypePage();
@@ -348,7 +347,7 @@ class MyBody extends StatelessWidget {
               },
             ),
             ElevatedButton(
-              child: Text("拖拽组件"),
+              child: const Text("拖拽组件"),
               onPressed: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
                   return DragPage();
@@ -356,13 +355,19 @@ class MyBody extends StatelessWidget {
               },
             ),
             ElevatedButton(
-              child: Text("数据存储组件"),
+              child: const Text("数据存储组件"),
               onPressed: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
                   return StoragePage();
                 }));
               },
-            )
+            ),
+            ElevatedButton(
+              child: const Text("动画组件"),
+              onPressed: () {
+                Navigator.pushNamed(context, "animation_type_page");
+              },
+            ),
           ],
         ),
       ),
