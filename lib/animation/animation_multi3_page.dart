@@ -1,32 +1,37 @@
 import 'package:flutter/animation.dart';
 import 'package:flutter/material.dart';
 
-/// 过渡
-class AnimationCurvePage extends StatefulWidget {
+/// 多动画混合使用
+class AnimationMulti3Page extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() => _AnimationCurvePageState();
+  State<StatefulWidget> createState() {
+    return _AnimationMulti3PageState();
+  }
 }
 
-class _AnimationCurvePageState extends State<AnimationCurvePage> with SingleTickerProviderStateMixin {
+class _AnimationMulti3PageState extends State<AnimationMulti3Page> with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation _animation;
 
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(vsync: this, duration: const Duration(milliseconds: 3000))
+    _controller = AnimationController(vsync: this, duration: Duration(seconds: 2))
       ..addListener(() {
         setState(() {});
       });
-    // _animation = Tween(begin: 100.0, end: 200.0).chain(CurveTween(curve: Curves.bounceInOut)).animate(_controller);
-    _animation = Tween(begin: 100.0, end: 200.0).chain(CurveTween(curve: _MyCurve(5))).animate(_controller);
+    _animation = TweenSequence([
+      TweenSequenceItem(tween: Tween(begin: 100.0, end: 200.0).chain(CurveTween(curve: Curves.easeIn)), weight: 40),
+      TweenSequenceItem(tween: ConstantTween<double>(200.0), weight: 20),
+      TweenSequenceItem(tween: Tween(begin: 200.0, end: 300.0), weight: 40),
+    ]).animate(_controller);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Curve"),
+        title: const Text("先变大暂停一段再变大"),
       ),
       body: Center(
         child: GestureDetector(
@@ -39,7 +44,7 @@ class _AnimationCurvePageState extends State<AnimationCurvePage> with SingleTick
             color: Colors.red,
             alignment: Alignment.center,
             child: const Text(
-              "变大",
+              "先变大暂停一段再变大",
               style: TextStyle(color: Colors.white, fontSize: 18),
             ),
           ),
@@ -52,16 +57,5 @@ class _AnimationCurvePageState extends State<AnimationCurvePage> with SingleTick
   void dispose() {
     _controller.dispose();
     super.dispose();
-  }
-}
-
-class _MyCurve extends Curve {
-  late final int num;
-
-  _MyCurve(this.num);
-
-  @override
-  double transformInternal(double t) {
-    return t * num;
   }
 }
