@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:myflutter/animation/animation_type_page.dart';
 import 'package:myflutter/container/aspect_ratio_route.dart';
-import 'package:myflutter/container/clipe_route.dart';
+import 'package:myflutter/container/clip_route.dart';
 import 'package:myflutter/container/container_route.dart';
 import 'package:myflutter/container/container_type_route.dart';
 import 'package:myflutter/container/decorated_box_route.dart';
@@ -335,6 +335,14 @@ class MyBody extends StatelessWidget {
               onPressed: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
                   return ShapePage();
+                }));
+              },
+            ),
+            ElevatedButton(
+              child: const Text("clip组件"),
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return ClipPage();
                 }));
               },
             ),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:myflutter/container/clipe_route.dart';
+import 'package:myflutter/container/clip_route.dart';
 import 'package:myflutter/others/menu_route.dart';
 
 class OtherTypePage extends StatelessWidget {
