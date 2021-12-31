@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -14,8 +12,8 @@ import 'package:myflutter/container/fractionally_sized_box_route.dart';
 import 'package:myflutter/container/padding_route.dart';
 import 'package:myflutter/container/sized_box_route.dart';
 import 'package:myflutter/container/transform_route.dart';
+import 'package:myflutter/data/data_route.dart';
 import 'package:myflutter/datetime/date_time_type_route.dart';
-import 'package:myflutter/demo_widget.dart';
 import 'package:myflutter/dialog/dialog_type_route.dart';
 import 'package:myflutter/drag/drag_route.dart';
 import 'package:myflutter/gesture_detector/gesture_detector_type_route.dart';
@@ -28,6 +26,7 @@ import 'package:myflutter/layout/layout_type_route.dart';
 import 'package:myflutter/layout/linear_route.dart';
 import 'package:myflutter/layout/stack_positioned__route.dart';
 import 'package:myflutter/layout/wrap_flow_route.dart';
+import 'package:myflutter/net/net_route.dart';
 import 'package:myflutter/others/other_type_route.dart';
 import 'package:myflutter/sample/banner.dart';
 import 'package:myflutter/sample/comment_list.dart';
@@ -50,7 +49,7 @@ import 'package:myflutter/simple/progress_route.dart';
 import 'package:myflutter/simple/simple_type_route.dart';
 import 'package:myflutter/simple/switch_checkbox_route.dart';
 import 'package:myflutter/simple/text_route.dart';
-import 'package:myflutter/storage/storage_route.dart';
+import 'package:myflutter/test_widget.dart';
 
 void main() {
   runApp(const MyApp());
@@ -81,6 +80,11 @@ class MyApp extends StatelessWidget {
       ),
       routes: {
         "/": (context) => const MyHomePage(title: '首页'),
+        //测试组件
+        "/first_page": (context) => FirstPage(),
+        "/second_page": (context) => SecondPage(),
+        "/third_page": (context) => ThirdPage(),
+        "/fourth_page": (context) => FourthPage(),
         //基本组件
         "simple_route": (context) => SimplePage(),
         "text_route": (context) => TextPage(),
@@ -278,10 +282,10 @@ class MyBody extends StatelessWidget {
             ElevatedButton(
               child: const Text("测试组件"),
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => DemoWidget("hello world")),
-                );
+                // Navigator.pushNamed(context, "/first_page");
+                Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
+                  return FirstPage();
+                }));
               },
             ),
             ElevatedButton(
@@ -363,17 +367,25 @@ class MyBody extends StatelessWidget {
               },
             ),
             ElevatedButton(
-              child: const Text("数据存储组件"),
+              child: const Text("动画组件"),
+              onPressed: () {
+                Navigator.pushNamed(context, "animation_type_page");
+              },
+            ),
+            ElevatedButton(
+              child: const Text("数据存储"),
               onPressed: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return StoragePage();
+                  return DataPage();
                 }));
               },
             ),
             ElevatedButton(
-              child: const Text("动画组件"),
+              child: const Text("网络请求"),
               onPressed: () {
-                Navigator.pushNamed(context, "animation_type_page");
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return NetPage();
+                }));
               },
             ),
           ],
