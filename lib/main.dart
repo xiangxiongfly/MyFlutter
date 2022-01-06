@@ -17,6 +17,7 @@ import 'package:myflutter/datetime/date_time_type_route.dart';
 import 'package:myflutter/dialog/dialog_type_route.dart';
 import 'package:myflutter/drag/drag_route.dart';
 import 'package:myflutter/gesture_detector/gesture_detector_type_route.dart';
+import 'package:myflutter/json/json_route.dart';
 import 'package:myflutter/layout/align__route.dart';
 import 'package:myflutter/layout/center_route.dart';
 import 'package:myflutter/layout/constraint_route.dart';
@@ -28,6 +29,7 @@ import 'package:myflutter/layout/stack_positioned__route.dart';
 import 'package:myflutter/layout/wrap_flow_route.dart';
 import 'package:myflutter/net/net_route.dart';
 import 'package:myflutter/others/other_type_route.dart';
+import 'package:myflutter/platform_view_demo.dart';
 import 'package:myflutter/sample/banner.dart';
 import 'package:myflutter/sample/comment_list.dart';
 import 'package:myflutter/scroll/animated_list_route.dart';
@@ -385,6 +387,22 @@ class MyBody extends StatelessWidget {
               onPressed: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
                   return NetPage();
+                }));
+              },
+            ),
+            ElevatedButton(
+              child: const Text("JSON解析"),
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return JsonPage();
+                }));
+              },
+            ),
+            ElevatedButton(
+              child: const Text("嵌入原生 Android View"),
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return PlatformViewDemo();
                 }));
               },
             ),

@@ -43,6 +43,8 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  json_serializable: ^3.0.0
+  build_runner: ^1.6.1
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
@@ -69,6 +71,8 @@ flutter:
     - images/user.png
     - images/avatar.jpg
     - images/bird.jpg
+    - assets/student.json
+    - assets/students.json
 
     # An image asset can refer to one or more resolution-specific "variants", see
     # https://flutter.dev/assets-and-images/#resolution-aware.

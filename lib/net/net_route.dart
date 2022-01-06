@@ -121,10 +121,11 @@ class _NetPageState extends State<NetPage> {
     });
   }
 
-  var token = dio.CancelToken();
+  CancelToken? token;
 
   /// dio get请求
   getByDio() async {
+    token = dio.CancelToken();
     String _result = "";
     const url = "https://www.wanandroid.com/article/list/0/json";
     var client = dio.Dio()..interceptors.add(MyInterceptor());
@@ -145,11 +146,32 @@ class _NetPageState extends State<NetPage> {
     setState(() {
       _data = _result;
     });
+  }
 
-    /// 取消请求
-    // Timer(Duration(milliseconds: 500), () {
-    //   token.cancel("cancelled");
-    // });
+  cancelRequest() {
+    token?.cancel("cancelled");
+  }
+
+  /// 简单封装使用
+  get2() async {
+    String _result = "";
+    const url = "https://www.wanandroid.com/article/list/0/json";
+    try {
+      dio.Response response = await HttpManager().client.get(url);
+      _result = response.data.toString();
+    } on dio.DioError catch (e) {
+      if (e.response != null) {
+        _result = "失败错误码：${e.response!.statusCode}";
+      } else {
+        _result = "其他异常：$e";
+      }
+    }
+    print("dio get请求=====================");
+    print(_result);
+    print("dio get请求=====================");
+    setState(() {
+      _data = _result;
+    });
   }
 
   /// dio post请求
@@ -244,6 +266,12 @@ class _NetPageState extends State<NetPage> {
               ),
               OutlinedButton(
                 onPressed: () {
+                  cancelRequest();
+                },
+                child: Text("dio 取消get请求"),
+              ),
+              OutlinedButton(
+                onPressed: () {
                   postByDio();
                 },
                 child: Text("dio post请求"),
@@ -254,7 +282,13 @@ class _NetPageState extends State<NetPage> {
                 },
                 child: Text("dio FormData提交"),
               ),
-              Divider(),
+              OutlinedButton(
+                onPressed: () {
+                  get2();
+                },
+                child: Text("dio 简单封装使用"),
+              ),
+              const Divider(),
               Text(_data),
             ],
           ),
@@ -281,5 +315,31 @@ class MyInterceptor extends dio.Interceptor {
   void onError(dio.DioError err, dio.ErrorInterceptorHandler handler) {
     print("发生异常时调用");
     super.onError(err, handler);
+  }
+}
+
+class HttpManager {
+  static const CONNECT_TIMEOUT = 50000;
+  static const RECEIVE_TIMEOUT = 30000;
+
+  static HttpManager? _instance;
+
+  late dio.Dio _client;
+
+  dio.Dio get client => _client; // dio.Dio? get getClient => _client;
+
+  factory HttpManager() => _getInstance();
+
+  static _getInstance() {
+    _instance ??= HttpManager._create();
+    return _instance;
+  }
+
+  HttpManager._create() {
+    var options = BaseOptions(
+      connectTimeout: CONNECT_TIMEOUT,
+      receiveTimeout: RECEIVE_TIMEOUT,
+    );
+    _client = dio.Dio(options)..interceptors.add(dio.LogInterceptor());
   }
 }
