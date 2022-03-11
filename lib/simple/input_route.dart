@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:myflutter/simple/custom_input.dart';
 
 class InputPage extends StatefulWidget {
