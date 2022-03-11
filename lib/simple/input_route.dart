@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:myflutter/simple/custom_input.dart';
 
 class InputPage extends StatefulWidget {
@@ -23,8 +24,7 @@ class _InputPageState extends State<InputPage> {
     //设置默认值
     _usernameController.text = "你好";
     //设置选择文本
-    _usernameController.selection = TextSelection(
-        baseOffset: 0, extentOffset: _usernameController.text.length);
+    _usernameController.selection = TextSelection(baseOffset: 0, extentOffset: _usernameController.text.length);
 
     //监听内容变化
     _inputController.addListener(() {
@@ -51,7 +51,7 @@ class _InputPageState extends State<InputPage> {
               focusNode: focusNode1,
               maxLength: 6,
               inputFormatters: [
-                WhitelistingTextInputFormatter(RegExp("[a-zA-Z]")),
+                FilteringTextInputFormatter.allow(RegExp("[a-zA-Z]")),
               ],
               decoration: const InputDecoration(
                 labelText: "用户名",
