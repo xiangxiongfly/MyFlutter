@@ -100,10 +100,15 @@ Widget getListView04(controller) {
   return ListView.builder(
     itemCount: null,
     itemExtent: 50,
-    physics: BouncingScrollPhysics(),
+    physics: const BouncingScrollPhysics(),
     controller: controller,
     itemBuilder: (BuildContext context, int index) {
-      return ListTile(title: Center(child: Text("$index")));
+      return GestureDetector(
+        onTap: () => {},
+        child: ListTile(
+          title: Center(child: Text("$index")),
+        ),
+      );
     },
   );
 }
