@@ -146,8 +146,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async {
-        if (lastTime == null ||
-            DateTime.now().difference(lastTime!) > const Duration(seconds: 1)) {
+        if (lastTime == null || DateTime.now().difference(lastTime!) > const Duration(seconds: 1)) {
           lastTime = DateTime.now();
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(content: Text("再按一次退出程序")),
@@ -289,8 +288,7 @@ class MyBody extends StatelessWidget {
               child: const Text("测试组件"),
               onPressed: () {
                 // Navigator.pushNamed(context, "/first_page");
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (BuildContext context) {
+                Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
                   return FirstPage();
                 }));
               },
@@ -303,11 +301,7 @@ class MyBody extends StatelessWidget {
                   MaterialPageRoute(
                     builder: (context) => const TextPage(),
                     settings: const RouteSettings(
-                      arguments: {
-                        "name": "小明",
-                        "age": 18,
-                        "address": "beijing"
-                      },
+                      arguments: {"name": "小明", "age": 18, "address": "beijing"},
                     ),
                   ),
                 );
@@ -336,8 +330,7 @@ class MyBody extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(
-                      builder: (context) => const SwitchRadioCheckBoxPage()),
+                  MaterialPageRoute(builder: (context) => const SwitchRadioCheckBoxPage()),
                 );
               },
             ),
@@ -381,8 +374,7 @@ class MyBody extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(
-                      builder: (context) => const SegmentedControlPage()),
+                  MaterialPageRoute(builder: (context) => const SegmentedControlPage()),
                 );
               },
               child: const Text("分段控制组件"),

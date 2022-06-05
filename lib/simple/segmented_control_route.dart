@@ -21,8 +21,9 @@ class _SegmentedControlPageState extends State<SegmentedControlPage> {
       appBar: AppBar(
         title: const Text("分段控制组件"),
       ),
-      body: SizedBox(
+      body: Container(
         width: double.infinity,
+        color: Colors.transparent,
         child: Padding(
           padding: const EdgeInsets.all(10.0),
           child: Column(
