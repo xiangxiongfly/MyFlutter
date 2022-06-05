@@ -7,7 +7,7 @@ class ButtonPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text("文本组件"),
+          title: const Text("Button组件"),
         ),
         body: Column(
           children: [

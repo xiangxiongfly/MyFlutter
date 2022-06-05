@@ -47,9 +47,10 @@ import 'package:myflutter/simple/form_route.dart';
 import 'package:myflutter/simple/image_route.dart';
 import 'package:myflutter/simple/input_route.dart';
 import 'package:myflutter/simple/progress_route.dart';
-import 'package:myflutter/simple/simple_type_route.dart';
-import 'package:myflutter/simple/switch_checkbox_route.dart';
+import 'package:myflutter/simple/slider_route.dart';
+import 'package:myflutter/simple/switch_radio_checkbox_route.dart';
 import 'package:myflutter/simple/text_route.dart';
+import 'simple/segmented_control_route.dart';
 import 'package:myflutter/test_widget.dart';
 
 void main() {
@@ -64,21 +65,23 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       //隐藏debug角标
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      //Android任务栏名称
+      title: 'Flutter学习',
       //国际化
       localizationsDelegates: const [
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
-      supportedLocales: [
-        const Locale('zh'),
-        const Locale('en'),
+      supportedLocales: const [
+        Locale('zh'),
+        Locale('en'),
       ],
-
+      //App主题颜色
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
+      //路由
       routes: {
         "/": (context) => const MyHomePage(title: '首页'),
         //测试组件
@@ -86,15 +89,6 @@ class MyApp extends StatelessWidget {
         "/second_page": (context) => SecondPage(),
         "/third_page": (context) => ThirdPage(),
         "/fourth_page": (context) => FourthPage(),
-        //基本组件
-        "simple_route": (context) => SimplePage(),
-        "text_route": (context) => TextPage(),
-        "button_route": (context) => ButtonPage(),
-        "image_route": (context) => ImagePage(),
-        "switch_checkbox_route": (context) => SwitchCheckBoxPage(),
-        "input_route": (context) => InputPage(),
-        "form_route": (context) => FormPage(),
-        "progress_route": (context) => ProgressPage(),
         //布局组件
         "layout_route": (context) => LayoutPage(),
         "constraint_route": (context) => ConstraintPage(),
@@ -152,10 +146,11 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async {
-        if (lastTime == null || DateTime.now().difference(lastTime!) > const Duration(seconds: 1)) {
+        if (lastTime == null ||
+            DateTime.now().difference(lastTime!) > const Duration(seconds: 1)) {
           lastTime = DateTime.now();
           ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text("再按一次退出程序")),
+            const SnackBar(content: Text("再按一次退出程序")),
           );
           return false;
         } else {
@@ -165,22 +160,29 @@ class _MyHomePageState extends State<MyHomePage> {
       child: Scaffold(
         //顶部导航栏
         appBar: AppBar(
+          //页面标题
           title: Text(widget.title),
+          //标题居中
+          centerTitle: true,
           actions: [
             IconButton(icon: const Icon(Icons.share), onPressed: () {}),
           ],
         ),
         //抽屉菜单
         drawer: MyDrawer(),
-        //页面主题部分
-        body: MyBody(),
+        //页面主体部分
+        body: const MyBody(),
         //底部Tab导航栏
         bottomNavigationBar: MyBottomNavigationBar(),
         //悬浮按钮
         floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
         floatingActionButton: FloatingActionButton(
           child: const Icon(Icons.add),
-          onPressed: () {},
+          onPressed: () {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(content: Text("点击了悬浮按钮")),
+            );
+          },
         ),
       ),
     );
@@ -274,26 +276,116 @@ class MyDrawer extends StatelessWidget {
 }
 
 class MyBody extends StatelessWidget {
+  const MyBody({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Center(
       child: SingleChildScrollView(
-        child: Column(
+        child: Wrap(
+          spacing: 8,
           children: <Widget>[
             ElevatedButton(
               child: const Text("测试组件"),
               onPressed: () {
                 // Navigator.pushNamed(context, "/first_page");
-                Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (BuildContext context) {
                   return FirstPage();
                 }));
               },
             ),
             ElevatedButton(
-              child: const Text("基本组件"),
+              child: const Text("Text组件"),
               onPressed: () {
-                Navigator.pushNamed(context, "simple_route");
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const TextPage(),
+                    settings: const RouteSettings(
+                      arguments: {
+                        "name": "小明",
+                        "age": 18,
+                        "address": "beijing"
+                      },
+                    ),
+                  ),
+                );
               },
+            ),
+            ElevatedButton(
+              child: const Text("Button组件"),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const ButtonPage()),
+                );
+              },
+            ),
+            ElevatedButton(
+              child: const Text("图片组件"),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const ImagePage()),
+                );
+              },
+            ),
+            ElevatedButton(
+              child: const Text("开关单选复选组件"),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const SwitchRadioCheckBoxPage()),
+                );
+              },
+            ),
+            ElevatedButton(
+              child: const Text("进度条组件"),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const ProgressPage()),
+                );
+              },
+            ),
+            ElevatedButton(
+              child: const Text("Form组件"),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const FormPage()),
+                );
+              },
+            ),
+            ElevatedButton(
+              child: const Text("输入框组件"),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const InputPage()),
+                );
+              },
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const SliderPage()),
+                );
+              },
+              child: const Text("Slider组件"),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const SegmentedControlPage()),
+                );
+              },
+              child: const Text("分段控制组件"),
             ),
             ElevatedButton(
               child: const Text("布局组件"),

@@ -17,23 +17,12 @@ class GestureDetectorTypePage extends StatelessWidget {
         child: Column(
           children: [
             ElevatedButton(
-              child: Text("手势监听"),
+              child: Text("手势监听组件"),
               onPressed: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (BuildContext context) {
                     return GestureDetectorPage();
-                  }),
-                );
-              },
-            ),
-            ElevatedButton(
-              child: Text("InkWell水波纹效果"),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (BuildContext context) {
-                    return InkWellPage();
                   }),
                 );
               },
@@ -45,6 +34,17 @@ class GestureDetectorTypePage extends StatelessWidget {
                   context,
                   MaterialPageRoute(builder: (BuildContext context) {
                     return ListenerPage();
+                  }),
+                );
+              },
+            ),
+            ElevatedButton(
+              child: Text("InkWell水波纹效果"),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (BuildContext context) {
+                    return InkWellPage();
                   }),
                 );
               },

@@ -19,32 +19,32 @@ class ImagePage extends StatelessWidget {
           padding: EdgeInsets.all(20),
           child: Column(
             children: [
-              const Text("加载资源图片"),
+              const Text("加载本地图片1："),
               const Image(
                 color: Colors.black,
                 image: AssetImage("images/pub.png"),
                 width: 100,
                 repeat: ImageRepeat.repeat,
               ),
-              const Text("加载资源图片"),
+              const Text("加载本地图片2："),
               Image.asset(
                 "images/logo.png",
                 width: 100,
               ),
               const SizedBox(height: 20),
-              const Text("加载网络图片"),
+              const Text("加载网络图片1："),
               const Image(
                 image: NetworkImage(
                     "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png"),
                 width: 100,
               ),
-              const Text("加载网络图片"),
+              const Text("加载网络图片2："),
               Image.network(
                 "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
                 width: 100,
               ),
               const SizedBox(height: 20),
-              const Text("淡入淡出效果"),
+              const Text("淡入淡出动画效果"),
               Image.network(
                 "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
                 width: 100,

@@ -38,33 +38,35 @@ class _ProgressPageState extends State<ProgressPage>
         title: const Text("进度条组件"),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(10),
+        padding: const EdgeInsets.all(20),
         child: Column(
           children: [
             const Text("模糊进度条"),
             const LinearProgressIndicator(
-              value: 0.5,
-              backgroundColor: Colors.grey,
               valueColor: AlwaysStoppedAnimation(Colors.blue),
+              backgroundColor: Colors.grey,
             ),
+            const SizedBox(height: 20),
             const Text("具体进度条"),
             const LinearProgressIndicator(
+              value: 0.5,
+              minHeight: 10,
               backgroundColor: Colors.grey,
               valueColor: AlwaysStoppedAnimation(Colors.blue),
             ),
             const SizedBox(height: 20),
             const Text("模糊进度条"),
             const CircularProgressIndicator(
-              backgroundColor: Colors.grey,
               valueColor: AlwaysStoppedAnimation(Colors.red),
+              backgroundColor: Colors.grey,
             ),
+            const SizedBox(height: 20),
             const Text("具体进度条"),
             const CircularProgressIndicator(
-              //边框宽度
-              strokeWidth: 2.0,
-              backgroundColor: Colors.grey,
               valueColor: AlwaysStoppedAnimation(Colors.red),
               value: 0.5,
+              strokeWidth: 4.0,
+              backgroundColor: Colors.grey,
             ),
             const SizedBox(height: 20),
             const Text("条形进度条设置宽高"),
@@ -96,7 +98,8 @@ class _ProgressPageState extends State<ProgressPage>
                   .animate(_animationController),
               value: _animationController.value,
             ),
-            const Text("ios风格"),
+            const SizedBox(height: 20),
+            const Text("iOS风格"),
             const CupertinoActivityIndicator(
               radius: 10,
               animating: true,

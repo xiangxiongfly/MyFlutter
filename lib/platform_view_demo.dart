@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class PlatformViewDemo extends StatefulWidget {
+  const PlatformViewDemo({Key? key}) : super(key: key);
+
   @override
   State<StatefulWidget> createState() {
     return _PlatformViewDemoState();

@@ -7,24 +7,24 @@ class GestureDetectorPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("手势监听"),
+        title: const Text("点击组件"),
       ),
       body: GestureDetector(
-        // onTapDown: (TapDownDetails details) {
-        //   print("按下");
-        // },
-        // onTapUp: (TapUpDetails details) {
-        //   print("抬起");
-        // },
-        // onTapCancel: () {
-        //   print("点击取消");
-        // },
-        // onTap: () {
-        //   print("点击");
-        // },
-        // onDoubleTap: () {
-        //   print("双击");
-        // },
+        onTapDown: (TapDownDetails details) {
+          print("按下");
+        },
+        onTapUp: (TapUpDetails details) {
+          print("抬起");
+        },
+        onTapCancel: () {
+          print("点击取消");
+        },
+        onTap: () {
+          print("点击");
+        },
+        onDoubleTap: () {
+          print("双击");
+        },
 
         // onLongPressStart: (LongPressStartDetails details) {
         //   print("长按开始");

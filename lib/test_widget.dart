@@ -1,8 +1,5 @@
 import 'dart:io';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:path_provider/path_provider.dart';
 
 class FirstPage extends StatefulWidget {
@@ -21,17 +18,22 @@ class _FirstPageState extends State<FirstPage> {
         children: [
           Text("getTemporaryDirectory(): ${getTemporaryDirectory()}"),
           Divider(),
-          Text("getApplicationSupportDirectory(): ${getApplicationSupportDirectory()}"),
+          Text(
+              "getApplicationSupportDirectory(): ${getApplicationSupportDirectory()}"),
           Divider(),
           Text("getLibraryDirectory(): ${getLibraryDirectory()}"),
           Divider(),
-          Text("getApplicationDocumentsDirectory(): ${getApplicationDocumentsDirectory()}"),
+          Text(
+              "getApplicationDocumentsDirectory(): ${getApplicationDocumentsDirectory()}"),
           Divider(),
-          Text("getExternalStorageDirectory(): ${getExternalStorageDirectory()}"),
+          Text(
+              "getExternalStorageDirectory(): ${getExternalStorageDirectory()}"),
           Divider(),
-          Text("getExternalCacheDirectories(): ${getExternalCacheDirectories()}"),
+          Text(
+              "getExternalCacheDirectories(): ${getExternalCacheDirectories()}"),
           Divider(),
-          Text("getExternalStorageDirectories(): ${getExternalStorageDirectories()}"),
+          Text(
+              "getExternalStorageDirectories(): ${getExternalStorageDirectories()}"),
           Divider(),
           Text("getDownloadsDirectory(): ${getDownloadsDirectory()}"),
         ],
@@ -40,19 +42,22 @@ class _FirstPageState extends State<FirstPage> {
   }
 }
 
-Widget _buildDirectories(BuildContext context, AsyncSnapshot<List<Directory>> snapshot) {
+Widget _buildDirectories(
+    BuildContext context, AsyncSnapshot<List<Directory>> snapshot) {
   Text text = const Text('');
   if (snapshot.connectionState == ConnectionState.done) {
     if (snapshot.hasError) {
       text = Text('Error: ${snapshot.error}');
     } else if (snapshot.hasData) {
-      final String combined = snapshot.data!.map((Directory d) => d.path).join(', ');
+      final String combined =
+          snapshot.data!.map((Directory d) => d.path).join(', ');
       text = Text('paths: $combined');
     } else {
       text = const Text('path unavailable');
     }
   }
-  return Padding(padding: const EdgeInsets.symmetric(horizontal: 16), child: text);
+  return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16), child: text);
 }
 
 class SecondPage extends StatelessWidget {
