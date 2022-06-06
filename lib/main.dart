@@ -23,7 +23,7 @@ import 'package:myflutter/layout/constraint_route.dart';
 import 'package:myflutter/layout/flex_route.dart';
 import 'package:myflutter/layout/layout_builder_route.dart';
 import 'package:myflutter/layout/layout_type_route.dart';
-import 'package:myflutter/layout/linear_route.dart';
+import 'package:myflutter/layout/row_column_route.dart';
 import 'package:myflutter/layout/stack_positioned__route.dart';
 import 'package:myflutter/layout/wrap_flow_route.dart';
 import 'package:myflutter/net/net_route.dart';
@@ -92,9 +92,6 @@ class MyApp extends StatelessWidget {
         //布局组件
         "layout_route": (context) => LayoutPage(),
         "constraint_route": (context) => ConstraintPage(),
-        "linear_route": (context) => LinearLayoutPage(),
-        "flex_route": (context) => FlexPage(),
-        "wrap_flow_route": (context) => WrapFlowPage(),
         "stack_positioned_route": (context) => StackPositionedPage(),
         "align_route": (context) => AlignPage(),
         "center_route": (context) => CenterPage(),
@@ -168,7 +165,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
         //抽屉菜单
-        drawer: MyDrawer(),
+        drawer: const MyDrawer(),
         //页面主体部分
         body: const MyBody(),
         //底部Tab导航栏
@@ -189,6 +186,8 @@ class _MyHomePageState extends State<MyHomePage> {
 }
 
 class MyDrawer extends StatelessWidget {
+  const MyDrawer({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -203,7 +202,7 @@ class MyDrawer extends StatelessWidget {
               child: Row(
                 children: [
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 16),
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
                     child: ClipOval(
                       child: Image.asset(
                         "images/avatar.jpg",
@@ -211,7 +210,7 @@ class MyDrawer extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Text(
+                  const Text(
                     "hello world",
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
@@ -222,8 +221,8 @@ class MyDrawer extends StatelessWidget {
               child: ListView(
                 children: [
                   ListTile(
-                    leading: Icon(Icons.looks_two),
-                    title: Text("跳转第二页"),
+                    leading: const Icon(Icons.looks_two),
+                    title: const Text("跳转第二页"),
                     onTap: () {
                       Navigator.push(
                         context,
@@ -378,6 +377,42 @@ class MyBody extends StatelessWidget {
                 );
               },
               child: const Text("分段控制组件"),
+            ),
+            ElevatedButton(
+              child: const Text("Row组件"),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const RowPage()),
+                );
+              },
+            ),
+            ElevatedButton(
+              child: const Text("Column组件"),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const ColumnPage()),
+                );
+              },
+            ),
+            ElevatedButton(
+              child: const Text("弹性布局组件"),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const FlexPage()),
+                );
+              },
+            ),
+            ElevatedButton(
+              child: const Text("流式布局组件"),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const WrapFlowPage()),
+                );
+              },
             ),
             ElevatedButton(
               child: const Text("布局组件"),

@@ -1,138 +1,125 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class FlexPage extends StatelessWidget {
+  const FlexPage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("弹性布局组件"),
+        title: const Text("弹性布局组件"),
       ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.all(10),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text("Flexible"),
-              SizedBox(height: 10),
-              Row(
-                children: [
-                  Container(
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          children: [
+            const Text("Flexible fit属性"),
+            Row(
+              children: [
+                Container(
+                  width: 50,
+                  height: 50,
+                  color: Colors.red,
+                ),
+                Flexible(
+                  child: Container(
                     width: 50,
                     height: 50,
-                    color: Colors.red,
+                    color: Colors.green,
                   ),
-                  Flexible(
-                    // fit: FlexFit.loose,
-                    child: Container(
-                      width: 50,
-                      height: 50,
-                      color: Colors.green,
-                    ),
-                  ),
-                  Container(
+                ),
+                Container(
+                  width: 50,
+                  height: 50,
+                  color: Colors.blue,
+                ),
+              ],
+            ),
+            const SizedBox(height: 10),
+            Row(
+              children: [
+                Container(
+                  width: 50,
+                  height: 50,
+                  color: Colors.red,
+                ),
+                Flexible(
+                  fit: FlexFit.tight,
+                  child: Container(
                     width: 50,
                     height: 50,
-                    color: Colors.blue,
+                    color: Colors.green,
                   ),
-                ],
-              ),
-              SizedBox(height: 10),
-              Row(
-                children: [
-                  Container(
-                    width: 50,
-                    height: 50,
-                    color: Colors.red,
-                  ),
-                  Flexible(
-                    fit: FlexFit.tight,
-                    child: Container(
-                      width: 50,
-                      height: 50,
-                      color: Colors.green,
-                    ),
-                  ),
-                  Container(
-                    width: 50,
-                    height: 50,
-                    color: Colors.blue,
-                  ),
-                ],
-              ),
-              SizedBox(height: 10),
-              Row(
-                children: [
-                  Flexible(
-                    flex: 1,
-                    fit: FlexFit.loose,
-                    child: Container(height: 50, color: Colors.red),
-                  ),
-                  Flexible(
-                    flex: 2,
-                    fit: FlexFit.loose,
-                    child: Container(height: 50, color: Colors.green),
-                  ),
-                  Flexible(
-                    flex: 3,
-                    fit: FlexFit.loose,
-                    child: Container(height: 50, color: Colors.blue),
-                  ),
-                ],
-              ),
-              SizedBox(height: 10),
-              Text("Expanded"),
-              SizedBox(height: 10),
-              Row(
-                children: [
-                  Expanded(
-                    child: Container(height: 50, color: Colors.red),
-                  ),
-                  Expanded(
-                    child: Container(height: 50, color: Colors.green),
-                  ),
-                  Expanded(
-                    child: Container(height: 50, color: Colors.blue),
-                  ),
-                ],
-              ),
-              SizedBox(height: 10),
-              Text("Spacer"),
-              SizedBox(height: 10),
-              Row(
-                children: [
-                  Container(width: 50, height: 50, color: Colors.red),
-                  Spacer(),
-                  Container(width: 50, height: 50, color: Colors.green),
-                  Spacer(),
-                  Container(width: 50, height: 50, color: Colors.blue),
-                ],
-              ),
-              SizedBox(height: 10),
-              Text("Flex & Expanded"),
-              SizedBox(height: 10),
-              Flex(
-                direction: Axis.horizontal,
-                children: [
-                  Container(width: 50, height: 50, color: Colors.grey),
-                  Expanded(
-                    flex: 1,
-                    child: Container(height: 50, color: Colors.red),
-                  ),
-                  Expanded(
-                    flex: 2,
-                    child: Container(height: 50, color: Colors.green),
-                  ),
-                  Expanded(
-                    flex: 3,
-                    child: Container(height: 50, color: Colors.blue),
-                  ),
-                  Container(width: 50, height: 50, color: Colors.black12),
-                ],
-              ),
-            ],
-          ),
+                ),
+                Container(
+                  width: 50,
+                  height: 50,
+                  color: Colors.blue,
+                ),
+              ],
+            ),
+            const SizedBox(height: 10),
+            const Text("Flexible flex属性"),
+            Row(
+              children: [
+                Flexible(
+                  flex: 1,
+                  child: Container(height: 50, color: Colors.red),
+                ),
+                Flexible(
+                  flex: 2,
+                  child: Container(height: 50, color: Colors.green),
+                ),
+                Flexible(
+                  flex: 3,
+                  child: Container(height: 50, color: Colors.blue),
+                ),
+              ],
+            ),
+            const SizedBox(height: 10),
+            const Text("Expanded"),
+            Row(
+              children: [
+                Container(width: 50, height: 50, color: Colors.red),
+                Container(width: 50, height: 50, color: Colors.green),
+                Expanded(
+                  child: Container(height: 50, color: Colors.blue),
+                ),
+              ],
+            ),
+            const SizedBox(height: 10),
+            const Text("Spacer"),
+            Row(
+              children: [
+                Container(width: 50, height: 50, color: Colors.red),
+                const Spacer(),
+                Container(width: 50, height: 50, color: Colors.green),
+                const Spacer(),
+                Container(width: 50, height: 50, color: Colors.blue),
+              ],
+            ),
+            const SizedBox(height: 10),
+            const Text("Flex & Expanded"),
+            Flex(
+              direction: Axis.horizontal,
+              children: [
+                Container(width: 50, height: 50, color: Colors.grey),
+                Expanded(
+                  flex: 1,
+                  child: Container(height: 50, color: Colors.red),
+                ),
+                Expanded(
+                  flex: 2,
+                  child: Container(height: 50, color: Colors.green),
+                ),
+                Expanded(
+                  flex: 3,
+                  child: Container(height: 50, color: Colors.blue),
+                ),
+                Container(width: 50, height: 50, color: Colors.black12),
+              ],
+            ),
+          ],
         ),
       ),
     );

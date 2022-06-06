@@ -20,24 +20,6 @@ class LayoutPage extends StatelessWidget {
               },
             ),
             RaisedButton(
-              child: const Text("Row&Column组件"),
-              onPressed: () {
-                Navigator.pushNamed(context, "linear_route");
-              },
-            ),
-            RaisedButton(
-              child: const Text("弹性布局组件"),
-              onPressed: () {
-                Navigator.pushNamed(context, "flex_route");
-              },
-            ),
-            RaisedButton(
-              child: const Text("流式布局组件"),
-              onPressed: () {
-                Navigator.pushNamed(context, "wrap_flow_route");
-              },
-            ),
-            RaisedButton(
               child: const Text("层叠布局组件"),
               onPressed: () {
                 Navigator.pushNamed(context, "stack_positioned_route");
