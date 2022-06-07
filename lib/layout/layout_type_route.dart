@@ -20,12 +20,6 @@ class LayoutPage extends StatelessWidget {
               },
             ),
             RaisedButton(
-              child: const Text("层叠布局组件"),
-              onPressed: () {
-                Navigator.pushNamed(context, "stack_positioned_route");
-              },
-            ),
-            RaisedButton(
               child: const Text("对齐相对布局组件"),
               onPressed: () {
                 Navigator.pushNamed(context, "align_route");

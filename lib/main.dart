@@ -24,7 +24,7 @@ import 'package:myflutter/layout/flex_route.dart';
 import 'package:myflutter/layout/layout_builder_route.dart';
 import 'package:myflutter/layout/layout_type_route.dart';
 import 'package:myflutter/layout/row_column_route.dart';
-import 'package:myflutter/layout/stack_positioned__route.dart';
+import 'package:myflutter/layout/stack_route.dart';
 import 'package:myflutter/layout/wrap_flow_route.dart';
 import 'package:myflutter/net/net_route.dart';
 import 'package:myflutter/others/other_type_route.dart';
@@ -92,7 +92,6 @@ class MyApp extends StatelessWidget {
         //布局组件
         "layout_route": (context) => LayoutPage(),
         "constraint_route": (context) => ConstraintPage(),
-        "stack_positioned_route": (context) => StackPositionedPage(),
         "align_route": (context) => AlignPage(),
         "center_route": (context) => CenterPage(),
         "layout_builder_route": (context) => LayoutBuilderPage(),
@@ -411,6 +410,15 @@ class MyBody extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => const WrapFlowPage()),
+                );
+              },
+            ),
+            ElevatedButton(
+              child: const Text("层叠布局组件"),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const StackPage()),
                 );
               },
             ),
