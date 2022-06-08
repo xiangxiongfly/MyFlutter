@@ -20,18 +20,6 @@ class LayoutPage extends StatelessWidget {
               },
             ),
             RaisedButton(
-              child: const Text("对齐相对布局组件"),
-              onPressed: () {
-                Navigator.pushNamed(context, "align_route");
-              },
-            ),
-            RaisedButton(
-              child: const Text("Center组件"),
-              onPressed: () {
-                Navigator.pushNamed(context, "center_route");
-              },
-            ),
-            RaisedButton(
               child: const Text("LayoutBuilder组件"),
               onPressed: () {
                 Navigator.pushNamed(context, "layout_builder_route");

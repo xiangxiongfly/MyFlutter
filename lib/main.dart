@@ -18,7 +18,6 @@ import 'package:myflutter/drag/drag_route.dart';
 import 'package:myflutter/gesture_detector/gesture_detector_type_route.dart';
 import 'package:myflutter/json/json_route.dart';
 import 'package:myflutter/layout/align__route.dart';
-import 'package:myflutter/layout/center_route.dart';
 import 'package:myflutter/layout/constraint_route.dart';
 import 'package:myflutter/layout/flex_route.dart';
 import 'package:myflutter/layout/layout_builder_route.dart';
@@ -47,10 +46,10 @@ import 'package:myflutter/simple/form_route.dart';
 import 'package:myflutter/simple/image_route.dart';
 import 'package:myflutter/simple/input_route.dart';
 import 'package:myflutter/simple/progress_route.dart';
+import 'package:myflutter/simple/segmented_control_route.dart';
 import 'package:myflutter/simple/slider_route.dart';
 import 'package:myflutter/simple/switch_radio_checkbox_route.dart';
 import 'package:myflutter/simple/text_route.dart';
-import 'simple/segmented_control_route.dart';
 import 'package:myflutter/test_widget.dart';
 
 void main() {
@@ -92,8 +91,6 @@ class MyApp extends StatelessWidget {
         //布局组件
         "layout_route": (context) => LayoutPage(),
         "constraint_route": (context) => ConstraintPage(),
-        "align_route": (context) => AlignPage(),
-        "center_route": (context) => CenterPage(),
         "layout_builder_route": (context) => LayoutBuilderPage(),
         //容器类组件
         "container_type_route": (context) => ContainerTypePage(),
@@ -419,6 +416,15 @@ class MyBody extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => const StackPage()),
+                );
+              },
+            ),
+            ElevatedButton(
+              child: const Text("相对定位布局组件"),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const AlignPage()),
                 );
               },
             ),
