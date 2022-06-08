@@ -22,6 +22,7 @@ import 'package:myflutter/layout/constraint_route.dart';
 import 'package:myflutter/layout/flex_route.dart';
 import 'package:myflutter/layout/layout_builder_route.dart';
 import 'package:myflutter/layout/layout_type_route.dart';
+import 'package:myflutter/layout/padding_margin_route.dart';
 import 'package:myflutter/layout/row_column_route.dart';
 import 'package:myflutter/layout/stack_route.dart';
 import 'package:myflutter/layout/wrap_flow_route.dart';
@@ -425,6 +426,15 @@ class MyBody extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => const AlignPage()),
+                );
+              },
+            ),
+            ElevatedButton(
+              child: const Text("内外边距局组件"),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const PaddingMarginPage()),
                 );
               },
             ),
