@@ -3,6 +3,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:myflutter/animation/animation_type_page.dart';
 import 'package:myflutter/container/aspect_ratio_route.dart';
 import 'package:myflutter/container/clip_route.dart';
+import 'package:myflutter/container/constraint_route.dart';
 import 'package:myflutter/container/container_route.dart';
 import 'package:myflutter/container/container_type_route.dart';
 import 'package:myflutter/container/decorated_box_route.dart';
@@ -18,7 +19,6 @@ import 'package:myflutter/drag/drag_route.dart';
 import 'package:myflutter/gesture_detector/gesture_detector_type_route.dart';
 import 'package:myflutter/json/json_route.dart';
 import 'package:myflutter/layout/align__route.dart';
-import 'package:myflutter/container/constraint_route.dart';
 import 'package:myflutter/layout/flex_route.dart';
 import 'package:myflutter/layout/layout_builder_route.dart';
 import 'package:myflutter/layout/layout_type_route.dart';
@@ -132,8 +132,12 @@ class MyHomePage extends StatefulWidget {
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
+int _index = 0;
+
 class _MyHomePageState extends State<MyHomePage> {
   DateTime? lastTime;
+
+  List<Widget> list = [HomePage(), MessagePage(), SettingPage()];
 
   @override
   Widget build(BuildContext context) {
@@ -163,9 +167,10 @@ class _MyHomePageState extends State<MyHomePage> {
         //抽屉菜单
         drawer: const MyDrawer(),
         //页面主体部分
-        body: const MyBody(),
+        // body: const HomePage(),
+        body: list[_index],
         //底部Tab导航栏
-        bottomNavigationBar: MyBottomNavigationBar(),
+        bottomNavigationBar: const MyBottomNavigationBar(),
         //悬浮按钮
         floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
         floatingActionButton: FloatingActionButton(
@@ -269,8 +274,8 @@ class MyDrawer extends StatelessWidget {
   }
 }
 
-class MyBody extends StatelessWidget {
-  const MyBody({Key? key}) : super(key: key);
+class HomePage extends StatelessWidget {
+  const HomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -572,7 +577,27 @@ class MyBody extends StatelessWidget {
   }
 }
 
+class MessagePage extends StatelessWidget {
+  const MessagePage({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return const Text("message");
+  }
+}
+
+class SettingPage extends StatelessWidget {
+  const SettingPage({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return const Text("setting");
+  }
+}
+
 class MyBottomNavigationBar extends StatefulWidget {
+  const MyBottomNavigationBar({Key? key}) : super(key: key);
+
   @override
   State<StatefulWidget> createState() {
     return _MyBottomNavigationBarState();
@@ -580,23 +605,20 @@ class MyBottomNavigationBar extends StatefulWidget {
 }
 
 class _MyBottomNavigationBarState extends State<MyBottomNavigationBar> {
-  int _selectedIndex = 0;
-
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
       items: const [
         BottomNavigationBarItem(icon: Icon(Icons.home), label: "home"),
-        BottomNavigationBarItem(icon: Icon(Icons.business), label: "business"),
-        BottomNavigationBarItem(icon: Icon(Icons.school), label: "school"),
+        BottomNavigationBarItem(icon: Icon(Icons.message), label: "message"),
+        BottomNavigationBarItem(icon: Icon(Icons.settings), label: "settings"),
       ],
-      currentIndex: _selectedIndex,
-      //fixedColor: Colors.blue,
+      currentIndex: _index,
       selectedItemColor: Colors.red,
       unselectedItemColor: Colors.grey,
       onTap: (index) {
         setState(() {
-          _selectedIndex = index;
+          _index = index;
         });
       },
     );

@@ -7,8 +7,7 @@ class TabBarViewPage extends StatefulWidget {
   }
 }
 
-class _TabBarViewPageState extends State<TabBarViewPage>
-    with SingleTickerProviderStateMixin {
+class _TabBarViewPageState extends State<TabBarViewPage> with SingleTickerProviderStateMixin {
   final List tabs = ["One", "Two", "Three", "Four", "Five", "Six", "Seven"];
   late TabController _controller;
 
@@ -42,10 +41,7 @@ class _TabBarViewPageState extends State<TabBarViewPage>
         children: tabs.map((e) {
           return Container(
             alignment: Alignment.center,
-            child: Text(
-              e,
-              textScaleFactor: 3,
-            ),
+            child: Text(e, textScaleFactor: 3),
           );
         }).toList(),
       ),
