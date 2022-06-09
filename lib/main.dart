@@ -18,7 +18,7 @@ import 'package:myflutter/drag/drag_route.dart';
 import 'package:myflutter/gesture_detector/gesture_detector_type_route.dart';
 import 'package:myflutter/json/json_route.dart';
 import 'package:myflutter/layout/align__route.dart';
-import 'package:myflutter/layout/constraint_route.dart';
+import 'package:myflutter/container/constraint_route.dart';
 import 'package:myflutter/layout/flex_route.dart';
 import 'package:myflutter/layout/layout_builder_route.dart';
 import 'package:myflutter/layout/layout_type_route.dart';
@@ -91,7 +91,6 @@ class MyApp extends StatelessWidget {
         "/fourth_page": (context) => FourthPage(),
         //布局组件
         "layout_route": (context) => LayoutPage(),
-        "constraint_route": (context) => ConstraintPage(),
         "layout_builder_route": (context) => LayoutBuilderPage(),
         //容器类组件
         "container_type_route": (context) => ContainerTypePage(),
@@ -430,11 +429,29 @@ class MyBody extends StatelessWidget {
               },
             ),
             ElevatedButton(
-              child: const Text("内外边距局组件"),
+              child: const Text("内外边距组件"),
               onPressed: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => const PaddingMarginPage()),
+                );
+              },
+            ),
+            ElevatedButton(
+              child: const Text("Container组件"),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const ContainerPage()),
+                );
+              },
+            ),
+            ElevatedButton(
+              child: const Text("约束容器组件"),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const ConstraintPage()),
                 );
               },
             ),

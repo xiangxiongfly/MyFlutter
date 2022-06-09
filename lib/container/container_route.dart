@@ -7,31 +7,30 @@ class ContainerPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Container"),
+        title: const Text("Container组件"),
       ),
       body: Center(
         child: SingleChildScrollView(
           child: Column(
-            mainAxisSize: MainAxisSize.min,
             children: [
               Container(
                 width: 100,
                 height: 50,
                 color: Colors.blue,
-                margin: EdgeInsets.all(10),
-                padding: EdgeInsets.all(10),
+                margin: const EdgeInsets.all(10),
+                padding: const EdgeInsets.all(10),
                 alignment: Alignment.center,
-                child: Text("hello world"),
+                child: const Text("hello world"),
               ),
               Container(
-                child: Text("hello Container"),
-                margin: EdgeInsets.all(10),
-                padding: EdgeInsets.all(10),
+                child: const Text("hello Container"),
+                margin: const EdgeInsets.all(10),
+                padding: const EdgeInsets.all(10),
                 clipBehavior: Clip.antiAlias,
                 //设置边框背景装饰
                 decoration: BoxDecoration(
                   shape: BoxShape.rectangle,
-                  borderRadius: BorderRadius.all(Radius.circular(20)),
+                  borderRadius: const BorderRadius.all(Radius.circular(20)),
                   color: Colors.red.shade50,
                   border: Border.all(
                     color: Colors.red.shade900,
@@ -40,13 +39,11 @@ class ContainerPage extends StatelessWidget {
                 ),
               ),
               Container(
-                width: 200,
-                height: 200,
+                width: 150,
+                height: 150,
                 decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage(
-                      "images/avatar.jpg",
-                    ),
+                  image: const DecorationImage(
+                    image: AssetImage("images/avatar.jpg"),
                     fit: BoxFit.cover,
                   ),
                   shape: BoxShape.circle,
@@ -57,8 +54,8 @@ class ContainerPage extends StatelessWidget {
                 ),
               ),
               Container(
-                margin: EdgeInsets.all(50),
-                constraints: BoxConstraints.tightFor(width: 200, height: 150),
+                margin: const EdgeInsets.all(50),
+                constraints: const BoxConstraints.tightFor(width: 200, height: 150),
                 decoration: BoxDecoration(
                   gradient: RadialGradient(
                     colors: [Colors.blue.shade800, Colors.blue.shade200],
@@ -76,7 +73,7 @@ class ContainerPage extends StatelessWidget {
                 transform: Matrix4.rotationZ(0.2),
                 transformAlignment: Alignment.center,
                 alignment: Alignment.center,
-                child: Text("hello world"),
+                child: const Text("hello world"),
               ),
             ],
           ),
