@@ -21,7 +21,6 @@ import 'package:myflutter/json/json_route.dart';
 import 'package:myflutter/layout/align__route.dart';
 import 'package:myflutter/layout/flex_route.dart';
 import 'package:myflutter/layout/layout_builder_route.dart';
-import 'package:myflutter/layout/layout_type_route.dart';
 import 'package:myflutter/layout/padding_margin_route.dart';
 import 'package:myflutter/layout/row_column_route.dart';
 import 'package:myflutter/layout/stack_route.dart';
@@ -90,9 +89,6 @@ class MyApp extends StatelessWidget {
         "second_page": (context) => const SecondPage(),
         "third_page": (context) => const ThirdPage(),
         "fourth_page": (context) => const FourthPage(),
-        //布局组件
-        "layout_route": (context) => LayoutPage(),
-        "layout_builder_route": (context) => LayoutBuilderPage(),
         //容器类组件
         "container_type_route": (context) => ContainerTypePage(),
         "container_route": (context) => ContainerPage(),
@@ -323,6 +319,7 @@ class HomePage extends StatelessWidget {
       child: SingleChildScrollView(
         child: Wrap(
           spacing: 8,
+          runSpacing: 4,
           children: <Widget>[
             ElevatedButton(
               child: const Text("测试路由"),
@@ -498,9 +495,12 @@ class HomePage extends StatelessWidget {
               },
             ),
             ElevatedButton(
-              child: const Text("布局组件"),
+              child: const Text("LayoutBuilder组件"),
               onPressed: () {
-                Navigator.pushNamed(context, "layout_route");
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const LayoutBuilderPage()),
+                );
               },
             ),
             ElevatedButton(
