@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 
-class TwoPage extends StatelessWidget {
+class NextPage extends StatelessWidget {
+  const NextPage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       //顶部导航栏
       appBar: AppBar(
-        title: Text("第二页"),
+        title: const Text("第二页"),
         centerTitle: true,
         actions: [
           IconButton(icon: const Icon(Icons.add), onPressed: () {}),
@@ -15,12 +17,11 @@ class TwoPage extends StatelessWidget {
       ),
       bottomNavigationBar: BottomAppBar(
         color: Colors.white,
-        shape: CircularNotchedRectangle(),
+        shape: const CircularNotchedRectangle(),
         child: Row(
           children: [
-            IconButton(icon: Icon(Icons.home), onPressed: () {}),
-            SizedBox(),
-            IconButton(icon: Icon(Icons.business), onPressed: () {}),
+            IconButton(icon: const Icon(Icons.home), onPressed: () {}),
+            IconButton(icon: const Icon(Icons.business), onPressed: () {}),
           ],
           mainAxisAlignment: MainAxisAlignment.spaceAround,
         ),

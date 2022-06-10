@@ -26,6 +26,7 @@ import 'package:myflutter/layout/padding_margin_route.dart';
 import 'package:myflutter/layout/row_column_route.dart';
 import 'package:myflutter/layout/stack_route.dart';
 import 'package:myflutter/layout/wrap_flow_route.dart';
+import 'package:myflutter/navigation_page_route.dart';
 import 'package:myflutter/net/net_route.dart';
 import 'package:myflutter/others/other_type_route.dart';
 import 'package:myflutter/platform_view_demo.dart';
@@ -83,7 +84,7 @@ class MyApp extends StatelessWidget {
       ),
       //路由
       routes: {
-        "/": (context) => const MyHomePage(title: '首页'),
+        "/": (context) => const MyBody(title: '首页'),
         //测试组件
         "/first_page": (context) => FirstPage(),
         "/second_page": (context) => SecondPage(),
@@ -123,21 +124,23 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class MyHomePage extends StatefulWidget {
+const List<Widget> pages = [HomePage(), MessagePage(), SettingPage()];
+
+int _selectedIndex = 0;
+
+Widget _currentPage = pages[_selectedIndex];
+
+class MyBody extends StatefulWidget {
   final String title;
 
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
+  const MyBody({Key? key, required this.title}) : super(key: key);
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<MyBody> createState() => _MyBodyState();
 }
 
-int _index = 0;
-
-class _MyHomePageState extends State<MyHomePage> {
+class _MyBodyState extends State<MyBody> {
   DateTime? lastTime;
-
-  List<Widget> list = [HomePage(), MessagePage(), SettingPage()];
 
   @override
   Widget build(BuildContext context) {
@@ -155,42 +158,35 @@ class _MyHomePageState extends State<MyHomePage> {
       },
       child: Scaffold(
         //顶部导航栏
-        appBar: AppBar(
-          //页面标题
-          title: Text(widget.title),
-          //标题居中
-          centerTitle: true,
-          actions: [
-            IconButton(icon: const Icon(Icons.share), onPressed: () {}),
-          ],
-        ),
+        appBar: buildAppBar(),
         //抽屉菜单
-        drawer: const MyDrawer(),
+        drawer: buildDrawer(),
         //页面主体部分
-        // body: const HomePage(),
-        body: list[_index],
+        body: _currentPage,
         //底部Tab导航栏
-        bottomNavigationBar: const MyBottomNavigationBar(),
+        bottomNavigationBar: buildBottomNavigationBar(),
         //悬浮按钮
         floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
-        floatingActionButton: FloatingActionButton(
-          child: const Icon(Icons.add),
-          onPressed: () {
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(content: Text("点击了悬浮按钮")),
-            );
-          },
-        ),
+        floatingActionButton: buildFloatingActionButton(),
       ),
     );
   }
-}
 
-class MyDrawer extends StatelessWidget {
-  const MyDrawer({Key? key}) : super(key: key);
+  /// 创建AppBar
+  buildAppBar() {
+    return AppBar(
+      //页面标题
+      title: Text(widget.title),
+      //标题居中
+      centerTitle: true,
+      actions: [
+        IconButton(icon: const Icon(Icons.share), onPressed: () {}),
+      ],
+    );
+  }
 
-  @override
-  Widget build(BuildContext context) {
+  /// 创建左侧滑抽屉
+  buildDrawer() {
     return Drawer(
       child: MediaQuery.removePadding(
         context: context,
@@ -228,26 +224,26 @@ class MyDrawer extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(builder: (context) {
-                          return TwoPage();
+                          return const NextPage();
                         }),
                       );
                     },
                   ),
                   ListTile(
-                    leading: Icon(Icons.slideshow),
-                    title: Text("轮播图"),
+                    leading: const Icon(Icons.slideshow),
+                    title: const Text("轮播图"),
                     onTap: () {
                       Navigator.push(
                         context,
                         MaterialPageRoute(builder: (BuildContext context) {
-                          return BannerPage();
+                          return const BannerPage();
                         }),
                       );
                     },
                   ),
                   ListTile(
-                    leading: Icon(Icons.comment),
-                    title: Text("评论列表效果"),
+                    leading: const Icon(Icons.comment),
+                    title: const Text("评论列表效果"),
                     onTap: () {
                       Navigator.push(
                         context,
@@ -258,8 +254,20 @@ class MyDrawer extends StatelessWidget {
                     },
                   ),
                   ListTile(
-                    leading: Icon(Icons.close),
-                    title: Text("关闭抽屉菜单"),
+                    leading: const Icon(Icons.navigation_sharp),
+                    title: const Text("BottomNavigationBar"),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (BuildContext context) {
+                          return const BottomNavigationBarPage();
+                        }),
+                      );
+                    },
+                  ),
+                  ListTile(
+                    leading: const Icon(Icons.close),
+                    title: const Text("关闭抽屉菜单"),
                     onTap: () {
                       Scaffold.of(context).openEndDrawer();
                     },
@@ -270,6 +278,38 @@ class MyDrawer extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+
+  /// 创建底部导航栏
+  buildBottomNavigationBar() {
+    return BottomNavigationBar(
+      items: const [
+        BottomNavigationBarItem(icon: Icon(Icons.home), label: "home"),
+        BottomNavigationBarItem(icon: Icon(Icons.message), label: "message"),
+        BottomNavigationBarItem(icon: Icon(Icons.settings), label: "settings"),
+      ],
+      currentIndex: _selectedIndex,
+      selectedItemColor: Colors.red,
+      unselectedItemColor: Colors.grey,
+      onTap: (index) {
+        setState(() {
+          _selectedIndex = index;
+          _currentPage = pages[_selectedIndex];
+        });
+      },
+    );
+  }
+
+  /// 创建悬浮按钮
+  buildFloatingActionButton() {
+    return FloatingActionButton(
+      child: const Icon(Icons.add),
+      onPressed: () {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text("点击了悬浮按钮")),
+        );
+      },
     );
   }
 }
@@ -582,7 +622,7 @@ class MessagePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Text("message");
+    return const Center(child: Text("message"));
   }
 }
 
@@ -591,36 +631,6 @@ class SettingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Text("setting");
-  }
-}
-
-class MyBottomNavigationBar extends StatefulWidget {
-  const MyBottomNavigationBar({Key? key}) : super(key: key);
-
-  @override
-  State<StatefulWidget> createState() {
-    return _MyBottomNavigationBarState();
-  }
-}
-
-class _MyBottomNavigationBarState extends State<MyBottomNavigationBar> {
-  @override
-  Widget build(BuildContext context) {
-    return BottomNavigationBar(
-      items: const [
-        BottomNavigationBarItem(icon: Icon(Icons.home), label: "home"),
-        BottomNavigationBarItem(icon: Icon(Icons.message), label: "message"),
-        BottomNavigationBarItem(icon: Icon(Icons.settings), label: "settings"),
-      ],
-      currentIndex: _index,
-      selectedItemColor: Colors.red,
-      unselectedItemColor: Colors.grey,
-      onTap: (index) {
-        setState(() {
-          _index = index;
-        });
-      },
-    );
+    return const Center(child: Text("setting"));
   }
 }
