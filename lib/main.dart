@@ -52,7 +52,7 @@ import 'package:myflutter/simple/segmented_control_route.dart';
 import 'package:myflutter/simple/slider_route.dart';
 import 'package:myflutter/simple/switch_radio_checkbox_route.dart';
 import 'package:myflutter/simple/text_route.dart';
-import 'package:myflutter/test_widget.dart';
+import 'package:myflutter/test_route_widget.dart';
 
 void main() {
   runApp(const MyApp());
@@ -86,10 +86,10 @@ class MyApp extends StatelessWidget {
       routes: {
         "/": (context) => const MyBody(title: '首页'),
         //测试组件
-        "/first_page": (context) => FirstPage(),
-        "/second_page": (context) => SecondPage(),
-        "/third_page": (context) => ThirdPage(),
-        "/fourth_page": (context) => FourthPage(),
+        "first_page": (context) => const FirstPage(),
+        "second_page": (context) => const SecondPage(),
+        "third_page": (context) => const ThirdPage(),
+        "fourth_page": (context) => const FourthPage(),
         //布局组件
         "layout_route": (context) => LayoutPage(),
         "layout_builder_route": (context) => LayoutBuilderPage(),
@@ -325,12 +325,9 @@ class HomePage extends StatelessWidget {
           spacing: 8,
           children: <Widget>[
             ElevatedButton(
-              child: const Text("测试组件"),
+              child: const Text("测试路由"),
               onPressed: () {
-                // Navigator.pushNamed(context, "/first_page");
-                Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
-                  return FirstPage();
-                }));
+                Navigator.pushNamed(context, "first_page");
               },
             ),
             ElevatedButton(
