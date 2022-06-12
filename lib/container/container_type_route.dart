@@ -11,27 +11,9 @@ class ContainerTypePage extends StatelessWidget {
         child: Column(
           children: [
             OutlinedButton(
-              child: Text("Container"),
-              onPressed: () {
-                Navigator.pushNamed(context, "container_route");
-              },
-            ),
-            OutlinedButton(
-              child: Text("SizedBox"),
-              onPressed: () {
-                Navigator.pushNamed(context, "sized_box_route");
-              },
-            ),
-            OutlinedButton(
               child: Text("FractionallySizedBox"),
               onPressed: () {
                 Navigator.pushNamed(context, "fractionally_sized_box_route");
-              },
-            ),
-            OutlinedButton(
-              child: Text("Padding"),
-              onPressed: () {
-                Navigator.pushNamed(context, "padding_route");
               },
             ),
             OutlinedButton(
@@ -41,21 +23,9 @@ class ContainerTypePage extends StatelessWidget {
               },
             ),
             OutlinedButton(
-              child: Text("DecoratedBox"),
-              onPressed: () {
-                Navigator.pushNamed(context, "DecoratedBox_route");
-              },
-            ),
-            OutlinedButton(
               child: Text("Transform"),
               onPressed: () {
                 Navigator.pushNamed(context, "transform_route");
-              },
-            ),
-            OutlinedButton(
-              child: Text("Container"),
-              onPressed: () {
-                Navigator.pushNamed(context, "container_route");
               },
             ),
             OutlinedButton(

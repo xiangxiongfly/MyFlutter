@@ -6,11 +6,8 @@ import 'package:myflutter/container/clip_route.dart';
 import 'package:myflutter/container/constraint_route.dart';
 import 'package:myflutter/container/container_route.dart';
 import 'package:myflutter/container/container_type_route.dart';
-import 'package:myflutter/container/decorated_box_route.dart';
 import 'package:myflutter/container/fitted_box_route.dart';
 import 'package:myflutter/container/fractionally_sized_box_route.dart';
-import 'package:myflutter/container/padding_route.dart';
-import 'package:myflutter/container/sized_box_route.dart';
 import 'package:myflutter/container/transform_route.dart';
 import 'package:myflutter/data/data_route.dart';
 import 'package:myflutter/datetime/date_time_type_route.dart';
@@ -91,12 +88,8 @@ class MyApp extends StatelessWidget {
         "fourth_page": (context) => const FourthPage(),
         //容器类组件
         "container_type_route": (context) => ContainerTypePage(),
-        "container_route": (context) => ContainerPage(),
-        "sized_box_route": (context) => SizedBoxPage(),
         "fractionally_sized_box_route": (context) => FractionallySizedBoxPage(),
-        "padding_route": (context) => PaddingPage(),
         "aspect_ratio_route": (context) => AspectRatioPage(),
-        "DecoratedBox_route": (context) => DecoratedBoxPage(),
         "transform_route": (context) => TransformPage(),
         "clip_route": (context) => ClipPage(),
         "fitted_box_route": (context) => FittedBoxPage(),
