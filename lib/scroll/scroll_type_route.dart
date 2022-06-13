@@ -25,12 +25,6 @@ class ScrollTypePage extends StatelessWidget {
               ),
               TextButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, "list_view_route");
-                },
-                child: Text("ListView"),
-              ),
-              TextButton(
-                onPressed: () {
                   Navigator.pushNamed(context, "notification_listener_route");
                 },
                 child: Text("滚动监听"),
@@ -40,12 +34,6 @@ class ScrollTypePage extends StatelessWidget {
                   Navigator.pushNamed(context, "animated_list_route");
                 },
                 child: Text("AnimatedList"),
-              ),
-              TextButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, "grid_view_route");
-                },
-                child: Text("GridView"),
               ),
               TextButton(
                 onPressed: () {

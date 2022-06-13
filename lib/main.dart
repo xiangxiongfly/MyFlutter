@@ -11,7 +11,7 @@ import 'package:myflutter/container/fractionally_sized_box_route.dart';
 import 'package:myflutter/container/transform_route.dart';
 import 'package:myflutter/data/data_route.dart';
 import 'package:myflutter/datetime/date_time_type_route.dart';
-import 'package:myflutter/dialog/dialog_type_route.dart';
+import 'package:myflutter/dialog/dialog_route.dart';
 import 'package:myflutter/drag/drag_route.dart';
 import 'package:myflutter/gesture_detector/gesture_detector_type_route.dart';
 import 'package:myflutter/json/json_route.dart';
@@ -96,10 +96,8 @@ class MyApp extends StatelessWidget {
         //滚动组件
         "scroll_type_route": (context) => ScrollTypePage(),
         "scroll_view_route": (context) => SingleChildScrollViewPage(),
-        "list_view_route": (context) => ListViewPage(),
         "notification_listener_route": (context) => NotificationListenerPage(),
         "animated_list_route": (context) => AnimatedListPage(),
-        "grid_view_route": (context) => GridViewPage(),
         "page_view_route": (context) => PageViewPage(),
         "tabbar_view_route": (context) => TabBarViewPage(),
         "custom_scroll_view_route": (context) => CustomScrollViewPage(),
@@ -152,7 +150,7 @@ class _MyBodyState extends State<MyBody> {
         drawer: buildDrawer(),
         //页面主体部分
         body: _currentPage,
-        //底部Tab导航栏
+        //底部导航栏
         bottomNavigationBar: buildBottomNavigationBar(),
         //悬浮按钮
         floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
@@ -497,6 +495,33 @@ class HomePage extends StatelessWidget {
               },
             ),
             ElevatedButton(
+              child: const Text("ListView组件"),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const ListViewPage()),
+                );
+              },
+            ),
+            ElevatedButton(
+              child: const Text("GridView组件"),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const GridViewPage()),
+                );
+              },
+            ),
+            ElevatedButton(
+              child: const Text("Dialog弹窗组件"),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const DialogPage()),
+                );
+              },
+            ),
+            ElevatedButton(
               child: const Text("容器类组件"),
               onPressed: () {
                 Navigator.pushNamed(context, "container_type_route");
@@ -512,14 +537,6 @@ class HomePage extends StatelessWidget {
               child: const Text("手势组件"),
               onPressed: () {
                 Navigator.pushNamed(context, "gesture_detector_type_page");
-              },
-            ),
-            ElevatedButton(
-              child: const Text("弹窗组件"),
-              onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return DialogTypePage();
-                }));
               },
             ),
             ElevatedButton(

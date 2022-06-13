@@ -7,133 +7,183 @@ class GridViewPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("GridView"),
+        title: const Text("GridView组件"),
       ),
-      body: buildGridView3(),
+      body: Center(
+        child: Column(
+          children: [
+            TextButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const SimpleGridViewPage()),
+                );
+              },
+              child: const Text("简单使用"),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const DataGridViewPage()),
+                );
+              },
+              child: const Text("动态创建"),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const GridViewCountPage()),
+                );
+              },
+              child: const Text("GridView.count"),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const GridViewExtentPage()),
+                );
+              },
+              child: const Text("GridView.extent"),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const GridViewCustomPage()),
+                );
+              },
+              child: const Text("GridView.custom"),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
 
-GridView buildGridView1() {
-  return GridView(
-    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-      crossAxisCount: 3,
-      childAspectRatio: 1,
-    ),
-    children: const [
-      Icon(Icons.home),
-      Icon(Icons.add),
-      Icon(Icons.delete),
-      Icon(Icons.update),
-      Icon(Icons.close),
-      Icon(Icons.lock),
-      Icon(Icons.home),
-      Icon(Icons.add),
-      Icon(Icons.delete),
-      Icon(Icons.update),
-      Icon(Icons.close),
-      Icon(Icons.lock),
-      Icon(Icons.home),
-      Icon(Icons.add),
-      Icon(Icons.delete),
-      Icon(Icons.update),
-      Icon(Icons.close),
-      Icon(Icons.lock),
-    ],
+createItem(Color color) {
+  return Container(
+    color: color,
   );
 }
 
-GridView buildGridView2() {
-  return GridView.count(
-    crossAxisCount: 3,
-    childAspectRatio: 1,
-    children: const [
-      Icon(Icons.home),
-      Icon(Icons.add),
-      Icon(Icons.delete),
-      Icon(Icons.update),
-      Icon(Icons.close),
-      Icon(Icons.lock),
-      Icon(Icons.home),
-    ],
-  );
+class SimpleGridViewPage extends StatelessWidget {
+  const SimpleGridViewPage({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("简单使用"),
+      ),
+      body: GridView(
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 3,
+          mainAxisSpacing: 2,
+          crossAxisSpacing: 2,
+          childAspectRatio: 2,
+        ),
+        children: [
+          createItem(Colors.red.shade300),
+          createItem(Colors.red.shade200),
+          createItem(Colors.red.shade100),
+          createItem(Colors.green.shade300),
+          createItem(Colors.green.shade200),
+          createItem(Colors.green.shade100),
+          createItem(Colors.blue.shade300),
+          createItem(Colors.blue.shade200),
+          createItem(Colors.blue.shade100),
+        ],
+      ),
+    );
+  }
 }
 
-GridView buildGridView3() {
-  return GridView(
-    gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-      maxCrossAxisExtent: 100,
-    ),
-    children: [
-      Container(
-        height: 50,
-        width: 50,
-        color: Colors.red,
+class DataGridViewPage extends StatelessWidget {
+  const DataGridViewPage({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("动态创建"),
       ),
-      Container(
-        height: 50,
-        width: 50,
-        color: Colors.green,
+      body: GridView.builder(
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 3,
+        ),
+        itemBuilder: (BuildContext context, int index) {
+          return createItem(Colors.primaries[index % Colors.primaries.length]);
+        },
+        itemCount: 50,
       ),
-      Container(
-        height: 50,
-        width: 50,
-        color: Colors.blue,
-      ),
-      Container(
-        height: 50,
-        width: 50,
-        color: Colors.green,
-      ),
-      Container(
-        height: 50,
-        width: 50,
-        color: Colors.indigo,
-      ),
-    ],
-  );
+    );
+  }
 }
 
-GridView buildGridView4() {
-  return GridView.extent(
-    maxCrossAxisExtent: 120,
-    children: const [
-      Icon(Icons.delete),
-      Icon(Icons.update),
-      Icon(Icons.close),
-      Icon(Icons.lock),
-      Icon(Icons.home),
-      Icon(Icons.add),
-    ],
-  );
+class GridViewCountPage extends StatelessWidget {
+  const GridViewCountPage({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("GridView.count"),
+      ),
+      body: GridView.count(
+        crossAxisCount: 3,
+        children: List.generate(
+          50,
+          (index) => createItem(Colors.primaries[index % Colors.primaries.length]),
+        ),
+      ),
+    );
+  }
 }
 
-GridView buildGridView5() {
-  return GridView.builder(
-    itemCount: 50,
-    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-      crossAxisCount: 3,
-      childAspectRatio: 1,
-    ),
-    itemBuilder: (BuildContext context, int index) {
-      return index % 2 == 0 ? Icon(Icons.delete) : Icon(Icons.add);
-    },
-  );
+class GridViewExtentPage extends StatelessWidget {
+  const GridViewExtentPage({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("GridView.extent"),
+      ),
+      body: GridView.extent(
+        maxCrossAxisExtent: 300,
+        children: List.generate(
+          50,
+          (index) => createItem(Colors.primaries[index % Colors.primaries.length]),
+        ),
+      ),
+    );
+  }
 }
 
-GridView buildGridView6() {
-  return GridView.custom(
-    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-      crossAxisCount: 3,
-    ),
-    childrenDelegate: SliverChildBuilderDelegate(
-      (context, index) {
-        return Container(
-          height: 80,
-          color: Colors.primaries[index % Colors.primaries.length],
-        );
-      },
-      childCount: 50,
-    ),
-  );
+class GridViewCustomPage extends StatelessWidget {
+  const GridViewCustomPage({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("GridView.custom"),
+      ),
+      body: GridView.custom(
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 3,
+        ),
+        childrenDelegate: SliverChildBuilderDelegate(
+          (BuildContext context, int index) {
+            return createItem(Colors.primaries[index % Colors.primaries.length]);
+          },
+          childCount: 50,
+        ),
+      ),
+    );
+  }
 }

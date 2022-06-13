@@ -1,15 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
 
-class DialogTypePage extends StatelessWidget {
-  const DialogTypePage({Key? key}) : super(key: key);
+class DialogPage extends StatelessWidget {
+  const DialogPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("弹窗组件"),
+        title: const Text("弹窗组件"),
       ),
       body: SingleChildScrollView(
         child: Center(
@@ -20,31 +19,31 @@ class DialogTypePage extends StatelessWidget {
                 onPressed: () {
                   showAlertDialog(context);
                 },
-                child: Text("AlertDialog弹窗"),
+                child: const Text("AlertDialog弹窗"),
               ),
               OutlinedButton(
                 onPressed: () {
-                  showAlertDialog2(context);
+                  showCustomAlertDialog(context);
                 },
-                child: Text("AlertDialog弹窗 样式二"),
+                child: const Text("AlertDialog自定义样式"),
               ),
               OutlinedButton(
                 onPressed: () {
                   showCupertinoAlertDialog(context);
                 },
-                child: Text("CupertinoAlertDialog"),
+                child: const Text("CupertinoAlertDialog"),
               ),
               OutlinedButton(
                 onPressed: () {
                   showSimpleDialog(context);
                 },
-                child: Text("SimpleDialog"),
+                child: const Text("SimpleDialog"),
               ),
               OutlinedButton(
                 onPressed: () {
                   showCustomDialog(context);
                 },
-                child: Text("自定义Dialog"),
+                child: const Text("自定义Dialog"),
               ),
             ],
           ),
@@ -54,37 +53,47 @@ class DialogTypePage extends StatelessWidget {
   }
 }
 
-//AlertDialog
+/// AlertDialog
 showAlertDialog(context) {
   showDialog(
     context: context,
     builder: (BuildContext context) {
       return AlertDialog(
-        title: Text("提示"),
-        content: Text("确定删除吗？"),
+        title: const Text("提示"),
+        content: const Text("确定删除吗？"),
         actions: [
-          FlatButton(onPressed: () {}, child: Text("取消")),
-          FlatButton(onPressed: () {}, child: Text("确定")),
+          FlatButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            child: const Text("取消"),
+          ),
+          FlatButton(onPressed: () {}, child: const Text("确定")),
         ],
       );
     },
   );
 }
 
-//AlertDialog自定义样式
-showAlertDialog2(context) async {
+/// AlertDialog自定义样式
+showCustomAlertDialog(context) async {
   var result = await showDialog(
     context: context,
     builder: (BuildContext context) {
       return AlertDialog(
-        title: Center(child: Text("提示")),
-        titleTextStyle: TextStyle(
+        //标题
+        title: const Center(child: Text("提示")),
+        //标题样式
+        titleTextStyle: const TextStyle(
           fontWeight: FontWeight.bold,
           color: Colors.black,
           fontSize: 30,
         ),
-        content: Center(heightFactor: 1, child: Text("确定删除吗？")),
+        //内容区
+        content: const Center(heightFactor: 1, child: Text("确定删除吗？")),
+        //背景颜色
         backgroundColor: Colors.yellowAccent,
+        //弹窗形状
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
         actionsAlignment: MainAxisAlignment.center,
         actions: [
@@ -92,39 +101,40 @@ showAlertDialog2(context) async {
             onPressed: () {
               Navigator.of(context).pop("no");
             },
-            child: Text("取消"),
+            child: const Text("取消"),
           ),
           FlatButton(
             onPressed: () {
               Navigator.of(context).pop("yes");
             },
-            child: Text("确定"),
+            child: const Text("确定"),
           ),
         ],
       );
     },
   );
-  print("结果：$result");
+  print("返回结果：$result");
 }
 
+/// iOS风格
 showCupertinoAlertDialog(context) {
   showCupertinoDialog(
-    //点击空白处取消
-    barrierDismissible: true,
+    //点击空白处不取消
+    barrierDismissible: false,
     context: context,
     builder: (context) {
       return CupertinoAlertDialog(
-        title: Text("提示"),
-        content: Text("确认删除吗？"),
+        title: const Text("提示"),
+        content: const Text("确认删除吗？"),
         actions: [
           CupertinoDialogAction(
-            child: Text("取消"),
+            child: const Text("取消"),
             onPressed: () {
               Navigator.of(context).pop();
             },
           ),
           CupertinoDialogAction(
-            child: Text("确定"),
+            child: const Text("确定"),
             onPressed: () {},
           ),
         ],
@@ -133,30 +143,42 @@ showCupertinoAlertDialog(context) {
   );
 }
 
-//SimpleAlertDialog
+/// SimpleDialog
 showSimpleDialog(context) {
   showDialog(
     context: context,
     builder: (BuildContext context) {
       return SimpleDialog(
-        title: Text("提示"),
+        title: const Center(child: Text("提示")),
+        contentPadding: EdgeInsets.all(0),
         children: [
           Container(
             height: 80,
             alignment: Alignment.center,
-            child: Text("确定删除吗？"),
+            child: const Text("确定删除吗？"),
           ),
-          Divider(height: 1),
-          TextButton(
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-            child: Text("取消"),
-          ),
-          Divider(height: 1),
-          TextButton(
-            onPressed: () {},
-            child: Text("确定"),
+          Container(width: double.infinity, height: 1, color: Colors.black),
+          Center(
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Expanded(
+                  child: TextButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: const Text("取消"),
+                  ),
+                ),
+                Container(width: 1, height: 50, color: Colors.black),
+                Expanded(
+                  child: TextButton(
+                    onPressed: () {},
+                    child: const Text("确定"),
+                  ),
+                ),
+              ],
+            ),
           ),
         ],
       );
@@ -164,13 +186,14 @@ showSimpleDialog(context) {
   );
 }
 
+/// 自定义Dialog
 showCustomDialog(context) {
   showDialog(
     context: context,
     builder: (BuildContext context) {
-      return Dialog(
+      return const Dialog(
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: EdgeInsets.all(8.0),
           child: Text(
             "hello world",
             textAlign: TextAlign.center,
