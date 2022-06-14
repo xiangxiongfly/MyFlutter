@@ -30,6 +30,15 @@ class TablePage extends StatelessWidget {
               },
               child: const Text("DataTable"),
             ),
+            TextButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const DataTable2Page()),
+                );
+              },
+              child: const Text("DataTable 处理排序问题"),
+            ),
           ],
         ),
       ),
@@ -144,4 +153,73 @@ class DataTablePage extends StatelessWidget {
       ),
     );
   }
+}
+
+class DataTable2Page extends StatefulWidget {
+  const DataTable2Page({Key? key}) : super(key: key);
+
+  @override
+  State<StatefulWidget> createState() {
+    return _DataTable2PageState();
+  }
+}
+
+class _DataTable2PageState extends State<DataTable2Page> {
+  late List<User> _userList;
+  var _sortAsc = true;
+
+  @override
+  void initState() {
+    _userList = [
+      User("小明", 18),
+      User("小花", 19),
+      User("小白", 20),
+      User("小黑", 21),
+    ];
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("DataTable 处理排序问题"),
+      ),
+      body: Center(
+        child: DataTable(
+          sortColumnIndex: 1,
+          sortAscending: _sortAsc,
+          columns: [
+            const DataColumn(label: Text("姓名")),
+            DataColumn(
+              label: const Text("年龄"),
+              onSort: (int columnIndex, bool ascending) {
+                setState(() {
+                  _sortAsc = ascending;
+                  if (_sortAsc) {
+                    _userList.sort((a, b) => a.age.compareTo(b.age));
+                  } else {
+                    _userList.sort((a, b) => b.age.compareTo(a.age));
+                  }
+                });
+              },
+            ),
+          ],
+          rows: _userList.map((e) {
+            return DataRow(cells: [
+              DataCell(Text(e.name)),
+              DataCell(Text(e.age.toString())),
+            ]);
+          }).toList(),
+        ),
+      ),
+    );
+  }
+}
+
+class User {
+  final String name;
+  final int age;
+
+  User(this.name, this.age);
 }
