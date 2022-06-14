@@ -149,36 +149,24 @@ showSimpleDialog(context) {
     context: context,
     builder: (BuildContext context) {
       return SimpleDialog(
-        title: const Center(child: Text("提示")),
-        contentPadding: EdgeInsets.all(0),
+        title: const Text("提示"),
         children: [
           Container(
             height: 80,
             alignment: Alignment.center,
-            child: const Text("确定删除吗？"),
+            child: const Text("确认删除吗？"),
           ),
-          Container(width: double.infinity, height: 1, color: Colors.black),
-          Center(
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Expanded(
-                  child: TextButton(
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
-                    child: const Text("取消"),
-                  ),
-                ),
-                Container(width: 1, height: 50, color: Colors.black),
-                Expanded(
-                  child: TextButton(
-                    onPressed: () {},
-                    child: const Text("确定"),
-                  ),
-                ),
-              ],
-            ),
+          const Divider(height: 1),
+          TextButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            child: const Text("取消"),
+          ),
+          const Divider(height: 1),
+          TextButton(
+            onPressed: () {},
+            child: const Text("确认"),
           ),
         ],
       );
@@ -187,19 +175,68 @@ showSimpleDialog(context) {
 }
 
 /// 自定义Dialog
-showCustomDialog(context) {
-  showDialog(
+showCustomDialog(context) async {
+  var result = await showDialog(
     context: context,
     builder: (BuildContext context) {
-      return const Dialog(
-        child: Padding(
-          padding: EdgeInsets.all(8.0),
-          child: Text(
-            "hello world",
-            textAlign: TextAlign.center,
-          ),
+      return Dialog(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const Text(
+              "提示",
+              style: TextStyle(fontSize: 30),
+            ),
+            const SizedBox(
+              height: 80,
+              child: Center(child: Text("确认删除吗？")),
+            ),
+            const Divider(
+              height: 1,
+              color: Colors.grey,
+            ),
+            SizedBox(
+              height: 50,
+              child: Row(
+                children: [
+                  Expanded(
+                    child: GestureDetector(
+                      behavior: HitTestBehavior.opaque,
+                      child: const SizedBox(
+                        height: double.infinity,
+                        width: double.infinity,
+                        child: Center(child: Text("取消")),
+                      ),
+                      onTap: () {
+                        Navigator.pop(context, "no");
+                      },
+                    ),
+                  ),
+                  Container(
+                    width: 1,
+                    height: double.infinity,
+                    color: Colors.grey,
+                  ),
+                  Expanded(
+                    child: GestureDetector(
+                      behavior: HitTestBehavior.opaque,
+                      child: const SizedBox(
+                        height: double.infinity,
+                        width: double.infinity,
+                        child: Center(child: Text("确定")),
+                      ),
+                      onTap: () {
+                        Navigator.pop(context, "yes");
+                      },
+                    ),
+                  )
+                ],
+              ),
+            )
+          ],
         ),
       );
     },
   );
+  print("result: $result");
 }
