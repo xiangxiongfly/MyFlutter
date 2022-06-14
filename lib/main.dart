@@ -40,6 +40,7 @@ import 'package:myflutter/scroll/tabbar_view_route.dart';
 import 'package:myflutter/second.dart';
 import 'package:myflutter/shape/shape_type_route.dart';
 import 'package:myflutter/simple/button_route.dart';
+import 'package:myflutter/simple/card_route.dart';
 import 'package:myflutter/simple/form_route.dart';
 import 'package:myflutter/simple/image_route.dart';
 import 'package:myflutter/simple/input_route.dart';
@@ -47,6 +48,7 @@ import 'package:myflutter/simple/progress_route.dart';
 import 'package:myflutter/simple/segmented_control_route.dart';
 import 'package:myflutter/simple/slider_route.dart';
 import 'package:myflutter/simple/switch_radio_checkbox_route.dart';
+import 'package:myflutter/simple/table_route.dart';
 import 'package:myflutter/simple/text_route.dart';
 import 'package:myflutter/test_route_widget.dart';
 
@@ -309,8 +311,8 @@ class HomePage extends StatelessWidget {
     return Center(
       child: SingleChildScrollView(
         child: Wrap(
-          spacing: 8,
-          runSpacing: 4,
+          spacing: 2,
+          runSpacing: 1,
           children: <Widget>[
             ElevatedButton(
               child: const Text("测试路由"),
@@ -518,6 +520,24 @@ class HomePage extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => const DialogPage()),
+                );
+              },
+            ),
+            ElevatedButton(
+              child: const Text("表格组件"),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const TablePage()),
+                );
+              },
+            ),
+            ElevatedButton(
+              child: const Text("Card组件"),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const CardPage()),
                 );
               },
             ),
