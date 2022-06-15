@@ -26,6 +26,7 @@ import 'package:myflutter/navigation_page_route.dart';
 import 'package:myflutter/net/net_route.dart';
 import 'package:myflutter/others/other_type_route.dart';
 import 'package:myflutter/platform_view_demo.dart';
+import 'package:myflutter/provider/provider_route.dart';
 import 'package:myflutter/sample/banner.dart';
 import 'package:myflutter/sample/comment_list.dart';
 import 'package:myflutter/scroll/animated_list_route.dart';
@@ -51,9 +52,23 @@ import 'package:myflutter/simple/switch_radio_checkbox_route.dart';
 import 'package:myflutter/simple/table_route.dart';
 import 'package:myflutter/simple/text_route.dart';
 import 'package:myflutter/test_route_widget.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  // runApp(
+  //   ChangeNotifierProvider(
+  //     create: (context) => CounterModel(0),
+  //     child: const MyApp(),
+  //   ),
+  // );
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => CounterModel(0)),
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -538,6 +553,15 @@ class HomePage extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => const CardPage()),
+                );
+              },
+            ),
+            ElevatedButton(
+              child: const Text("Provider状态管理"),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const ProviderFirstPage()),
                 );
               },
             ),
