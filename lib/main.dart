@@ -78,8 +78,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       //隐藏debug角标
-      debugShowCheckedModeBanner: false,
-      //Android任务栏名称
+      debugShowCheckedModeBanner: true,
+      //Android任务栏中的名称
       title: 'Flutter学习',
       //国际化
       localizationsDelegates: const [
@@ -97,7 +97,7 @@ class MyApp extends StatelessWidget {
       ),
       //路由
       routes: {
-        "/": (context) => const MyBody(title: '首页'),
+        "/": (context) => const MyBody(title: '我的Flutter'),
         //测试组件
         "first_page": (context) => const FirstPage(),
         "second_page": (context) => const SecondPage(),
@@ -132,8 +132,6 @@ const List<Widget> pages = [HomePage(), MessagePage(), SettingPage()];
 
 int _selectedIndex = 0;
 
-Widget _currentPage = pages[_selectedIndex];
-
 class MyBody extends StatefulWidget {
   final String title;
 
@@ -145,6 +143,15 @@ class MyBody extends StatefulWidget {
 
 class _MyBodyState extends State<MyBody> {
   DateTime? lastTime;
+  final PageController _controller = PageController(
+    initialPage: _selectedIndex,
+  );
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -166,7 +173,15 @@ class _MyBodyState extends State<MyBody> {
         //抽屉菜单
         drawer: buildDrawer(),
         //页面主体部分
-        body: _currentPage,
+        body: PageView(
+          children: pages,
+          controller: _controller,
+          onPageChanged: (index) {
+            setState(() {
+              _selectedIndex = index;
+            });
+          },
+        ),
         //底部导航栏
         bottomNavigationBar: buildBottomNavigationBar(),
         //悬浮按钮
@@ -299,7 +314,7 @@ class _MyBodyState extends State<MyBody> {
       onTap: (index) {
         setState(() {
           _selectedIndex = index;
-          _currentPage = pages[_selectedIndex];
+          _controller.jumpToPage(_selectedIndex);
         });
       },
     );
@@ -557,15 +572,6 @@ class HomePage extends StatelessWidget {
               },
             ),
             ElevatedButton(
-              child: const Text("Provider状态管理"),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const ProviderFirstPage()),
-                );
-              },
-            ),
-            ElevatedButton(
               child: const Text("容器类组件"),
               onPressed: () {
                 Navigator.pushNamed(context, "container_type_route");
@@ -637,30 +643,6 @@ class HomePage extends StatelessWidget {
                 }));
               },
             ),
-            ElevatedButton(
-              child: const Text("网络请求"),
-              onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return const NetPage();
-                }));
-              },
-            ),
-            ElevatedButton(
-              child: const Text("JSON解析"),
-              onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return JsonPage();
-                }));
-              },
-            ),
-            ElevatedButton(
-              child: const Text("嵌入原生 Android View"),
-              onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return PlatformViewDemo();
-                }));
-              },
-            ),
           ],
         ),
       ),
@@ -673,7 +655,46 @@ class MessagePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(child: Text("message"));
+    return SingleChildScrollView(
+      child: Wrap(
+        spacing: 2,
+        children: [
+          ElevatedButton(
+            child: const Text("Provider状态管理"),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const ProviderFirstPage()),
+              );
+            },
+          ),
+          ElevatedButton(
+            child: const Text("网络请求"),
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return const NetPage();
+              }));
+            },
+          ),
+          ElevatedButton(
+            child: const Text("JSON解析"),
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return const JsonPage();
+              }));
+            },
+          ),
+          ElevatedButton(
+            child: const Text("嵌入原生 Android View"),
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return const PlatformViewDemo();
+              }));
+            },
+          ),
+        ],
+      ),
+    );
   }
 }
 
@@ -682,6 +703,21 @@ class SettingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(child: Text("setting"));
+    return SingleChildScrollView(
+      child: Wrap(
+        spacing: 2,
+        children: [
+          ElevatedButton(
+            child: const Text("MVVM设计模式"),
+            onPressed: () {
+              // Navigator.push(
+              //   context,
+              //   MaterialPageRoute(builder: (context) => const ProviderFirstPage()),
+              // );
+            },
+          ),
+        ],
+      ),
+    );
   }
 }

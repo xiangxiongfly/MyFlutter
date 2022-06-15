@@ -15,6 +15,17 @@ class BottomNavigationBarPage extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (BuildContext context) {
+                    return const NavigationBarPage3();
+                  }),
+                );
+              },
+              child: const Text("NavigationBar"),
+            ),
+            OutlinedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (BuildContext context) {
                     return const NavigationBarPage1();
                   }),
                 );
@@ -31,17 +42,6 @@ class BottomNavigationBarPage extends StatelessWidget {
                 );
               },
               child: const Text("NavigationBar & IndexedStack"),
-            ),
-            OutlinedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (BuildContext context) {
-                    return const NavigationBarPage3();
-                  }),
-                );
-              },
-              child: const Text("NavigationBar"),
             ),
           ],
         ),
