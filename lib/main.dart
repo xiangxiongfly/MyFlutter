@@ -641,7 +641,7 @@ class HomePage extends StatelessWidget {
               child: const Text("网络请求"),
               onPressed: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return NetPage();
+                  return const NetPage();
                 }));
               },
             ),

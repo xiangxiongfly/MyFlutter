@@ -1,18 +1,91 @@
-import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
-
-import 'package:dio/dio.dart' as dio;
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class NetPage extends StatefulWidget {
+  const NetPage({Key? key}) : super(key: key);
+
   @override
   State<StatefulWidget> createState() => _NetPageState();
 }
 
 class _NetPageState extends State<NetPage> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("网络请求"),
+      ),
+      body: Center(
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              OutlinedButton(
+                onPressed: () {
+                  getByHttpClient();
+                },
+                child: const Text("HttpClient Get请求"),
+              ),
+              OutlinedButton(
+                onPressed: () {
+                  postByHttpClient();
+                },
+                child: const Text("HttpClient Post请求"),
+              ),
+              OutlinedButton(
+                onPressed: () {
+                  getByHttp();
+                },
+                child: const Text("http get请求"),
+              ),
+              OutlinedButton(
+                onPressed: () {
+                  postByHttp();
+                },
+                child: const Text("http post请求"),
+              ),
+              OutlinedButton(
+                onPressed: () {
+                  getByDio();
+                },
+                child: const Text("Dio Get请求"),
+              ),
+              OutlinedButton(
+                onPressed: () {
+                  cancelRequest();
+                },
+                child: const Text("Dio 取消Get请求"),
+              ),
+              OutlinedButton(
+                onPressed: () {
+                  postByDio();
+                },
+                child: const Text("Dio Post请求"),
+              ),
+              OutlinedButton(
+                onPressed: () {
+                  postFormByDio();
+                },
+                child: const Text("Dio FormData提交"),
+              ),
+              OutlinedButton(
+                onPressed: () {
+                  getByHttpManager();
+                },
+                child: const Text("Dio 简单封装使用"),
+              ),
+              const Divider(),
+              Text(_data),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
   String _data = "";
 
   /// HttpClient get请求
@@ -31,17 +104,17 @@ class _NetPageState extends State<NetPage> {
         String responseBody = await response.transform(utf8.decoder).join();
         _result = responseBody;
       } else {
-        _result = "失败：${response.statusCode}";
+        _result = "请求失败：${response.statusCode}";
       }
     } catch (exception) {
-      _result = "异常：$exception";
+      _result = "请求失败：$exception";
     }
-    print("HttpClient get请求=====================");
-    print(_result);
-    print("HttpClient get请求=====================");
     setState(() {
       _data = _result;
     });
+    if (kDebugMode) {
+      print(_result);
+    }
   }
 
   /// HttpClient post请求
@@ -60,17 +133,17 @@ class _NetPageState extends State<NetPage> {
         String responseBody = await response.transform(utf8.decoder).join();
         _result = responseBody;
       } else {
-        _result = "失败：${response.statusCode}";
+        _result = "请求失败：${response.statusCode}";
       }
     } catch (exception) {
-      _result = "异常：$exception";
+      _result = "请求失败：$exception";
     }
-    print("HttpClient post请求=====================");
-    print(_result);
-    print("HttpClient post请求=====================");
     setState(() {
       _data = _result;
     });
+    if (kDebugMode) {
+      print(_result);
+    }
   }
 
   /// http get请求
@@ -83,18 +156,17 @@ class _NetPageState extends State<NetPage> {
       if (response.statusCode == 200) {
         _result = response.body;
       } else {
-        _result = "失败：${response.statusCode}";
+        _result = "请求失败：${response.statusCode}";
       }
     } catch (exception) {
-      _result = "异常：$exception";
+      _result = "请求失败：$exception";
     }
-
-    print("http get请求=====================");
-    print(_result);
-    print("http get请求=====================");
     setState(() {
       _data = _result;
     });
+    if (kDebugMode) {
+      print(_result);
+    }
   }
 
   /// http post请求
@@ -112,207 +184,130 @@ class _NetPageState extends State<NetPage> {
     } catch (exception) {
       _result = "异常：$exception";
     }
-
-    print("http post请求=====================");
-    print(_result);
-    print("http post请求=====================");
     setState(() {
       _data = _result;
     });
+    if (kDebugMode) {
+      print(_result);
+    }
   }
 
   CancelToken? token;
 
-  /// dio get请求
+  /// Dio get请求
   getByDio() async {
-    token = dio.CancelToken();
+    token = CancelToken();
     String _result = "";
     const url = "https://www.wanandroid.com/article/list/0/json";
-    var client = dio.Dio()..interceptors.add(MyInterceptor());
+    var client = Dio()..interceptors.add(MyInterceptor());
     try {
-      dio.Response response = await client.get(url, cancelToken: token);
+      Response response = await client.get(url, cancelToken: token);
       _result = response.data.toString();
-    } on dio.DioError catch (e) {
+    } on DioError catch (e) {
       if (e.response != null) {
-        _result = "失败错误码：${e.response!.statusCode}";
+        _result = "请求失败：${e.response!.statusCode}";
       } else {
-        _result = "其他异常：$e";
+        _result = "请求失败：$e";
       }
     }
-
-    print("dio get请求=====================");
-    print(_result);
-    print("dio get请求=====================");
     setState(() {
       _data = _result;
     });
+    if (kDebugMode) {
+      print(_result);
+    }
   }
 
+  /// Dio取消请求
   cancelRequest() {
     token?.cancel("cancelled");
-  }
-
-  /// 简单封装使用
-  get2() async {
-    String _result = "";
-    const url = "https://www.wanandroid.com/article/list/0/json";
-    try {
-      dio.Response response = await HttpManager().client.get(url);
-      _result = response.data.toString();
-    } on dio.DioError catch (e) {
-      if (e.response != null) {
-        _result = "失败错误码：${e.response!.statusCode}";
-      } else {
-        _result = "其他异常：$e";
-      }
-    }
-    print("dio get请求=====================");
-    print(_result);
-    print("dio get请求=====================");
-    setState(() {
-      _data = _result;
-    });
   }
 
   /// dio post请求
   postByDio() async {
     String _result = "";
     const url = "https://www.wanandroid.com/user/login";
-    var client = dio.Dio();
+    var client = Dio();
     try {
-      dio.Response response =
-          await client.post<String>(url, queryParameters: {"username": "Tom", "password": "123456"});
+      Response response = await client.post<String>(url, queryParameters: {"username": "Tom", "password": "123456"});
       _result = response.data;
-    } on dio.DioError catch (e) {
+    } on DioError catch (e) {
       if (e.response != null) {
         _result = "失败错误码：${e.response!.statusCode}";
       } else {
         _result = "其他异常：$e";
       }
     }
-
-    print("dio post请求=====================");
-    print(_result);
-    print("dio post请求=====================");
     setState(() {
       _data = _result;
     });
+    if (kDebugMode) {
+      print(_result);
+    }
   }
 
-  /// FormData
-  postByDio2() async {
+  /// Dio FormData提交
+  postFormByDio() async {
     String _result = "";
     const url = "https://www.wanandroid.com/user/login";
-    var client = dio.Dio();
-    var formData = dio.FormData.fromMap({"username": "Tom", "password": "123456"});
+    var client = Dio();
+    var formData = FormData.fromMap({"username": "Tom", "password": "123456"});
     try {
-      dio.Response response = await client.post<String>(url, data: formData);
+      Response response = await client.post<String>(url, data: formData);
       _result = response.data;
-    } on dio.DioError catch (e) {
+    } on DioError catch (e) {
       if (e.response != null) {
         _result = "失败错误码：${e.response!.statusCode}";
       } else {
         _result = "其他异常：$e";
       }
     }
-
-    print("dio FormData=====================");
-    print(_result);
-    print("dio FormData=====================");
     setState(() {
       _data = _result;
     });
+    if (kDebugMode) {
+      print(_result);
+    }
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("网络请求"),
-      ),
-      body: Center(
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              OutlinedButton(
-                onPressed: () {
-                  getByHttpClient();
-                },
-                child: Text("HttpClient get请求"),
-              ),
-              OutlinedButton(
-                onPressed: () {
-                  postByHttpClient();
-                },
-                child: Text("HttpClient post请求"),
-              ),
-              OutlinedButton(
-                onPressed: () {
-                  getByHttp();
-                },
-                child: Text("http get请求"),
-              ),
-              OutlinedButton(
-                onPressed: () {
-                  postByHttp();
-                },
-                child: Text("http post请求"),
-              ),
-              OutlinedButton(
-                onPressed: () {
-                  getByDio();
-                },
-                child: Text("dio get请求"),
-              ),
-              OutlinedButton(
-                onPressed: () {
-                  cancelRequest();
-                },
-                child: Text("dio 取消get请求"),
-              ),
-              OutlinedButton(
-                onPressed: () {
-                  postByDio();
-                },
-                child: Text("dio post请求"),
-              ),
-              OutlinedButton(
-                onPressed: () {
-                  postByDio2();
-                },
-                child: Text("dio FormData提交"),
-              ),
-              OutlinedButton(
-                onPressed: () {
-                  get2();
-                },
-                child: Text("dio 简单封装使用"),
-              ),
-              const Divider(),
-              Text(_data),
-            ],
-          ),
-        ),
-      ),
-    );
+  /// Dio简单封装使用
+  getByHttpManager() async {
+    String _result = "";
+    const url = "https://www.wanandroid.com/article/list/0/json";
+    try {
+      Response response = await HttpManager().client.get(url);
+      _result = response.data.toString();
+    } on DioError catch (e) {
+      if (e.response != null) {
+        _result = "失败错误码：${e.response!.statusCode}";
+      } else {
+        _result = "其他异常：$e";
+      }
+    }
+    setState(() {
+      _data = _result;
+    });
+    if (kDebugMode) {
+      print(_result);
+    }
   }
 }
 
-class MyInterceptor extends dio.Interceptor {
+class MyInterceptor extends Interceptor {
   @override
-  void onRequest(dio.RequestOptions options, dio.RequestInterceptorHandler handler) {
+  void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
     print("请求前调用");
     super.onRequest(options, handler);
   }
 
   @override
-  void onResponse(dio.Response response, dio.ResponseInterceptorHandler handler) {
+  void onResponse(Response response, ResponseInterceptorHandler handler) {
     print("响应后调用");
     super.onResponse(response, handler);
   }
 
   @override
-  void onError(dio.DioError err, dio.ErrorInterceptorHandler handler) {
+  void onError(DioError err, ErrorInterceptorHandler handler) {
     print("发生异常时调用");
     super.onError(err, handler);
   }
@@ -324,9 +319,9 @@ class HttpManager {
 
   static HttpManager? _instance;
 
-  late dio.Dio _client;
+  late Dio _client;
 
-  dio.Dio get client => _client; // dio.Dio? get getClient => _client;
+  Dio get client => _client;
 
   factory HttpManager() => _getInstance();
 
@@ -340,6 +335,6 @@ class HttpManager {
       connectTimeout: CONNECT_TIMEOUT,
       receiveTimeout: RECEIVE_TIMEOUT,
     );
-    _client = dio.Dio(options)..interceptors.add(dio.LogInterceptor());
+    _client = Dio(options)..interceptors.add(LogInterceptor());
   }
 }

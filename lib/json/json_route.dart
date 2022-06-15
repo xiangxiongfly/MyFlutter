@@ -7,6 +7,8 @@ import 'package:myflutter/json/student.dart' as student;
 import 'package:myflutter/json/student_list.dart' as student_list;
 
 class JsonPage extends StatefulWidget {
+  const JsonPage({Key? key}) : super(key: key);
+
   @override
   State<StatefulWidget> createState() {
     return _JsonPageState();
@@ -22,7 +24,7 @@ class _JsonPageState extends State<JsonPage> {
     _parseArrayJson2();
     return Scaffold(
       appBar: AppBar(
-        title: Text("JSON解析"),
+        title: const Text("JSON解析"),
       ),
     );
   }
