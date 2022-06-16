@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class CounterModel with ChangeNotifier {
+class CounterModel extends ChangeNotifier {
   int _count = 0;
 
   CounterModel(this._count);
 
-  get count => _count;
+  int get count => _count;
 
   void add() {
     _count++;
@@ -31,8 +31,8 @@ class _ProviderFirstPageState extends State<ProviderFirstPage> {
       body: Center(
         child: Column(
           children: [
-            //监听数据源
-            Text("${Provider.of<CounterModel>(context).count}"),
+            //监听数据变化
+            Text("${context.watch<CounterModel>().count}"),
             ElevatedButton(
               onPressed: () {
                 Navigator.push(
@@ -50,7 +50,7 @@ class _ProviderFirstPageState extends State<ProviderFirstPage> {
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
         onPressed: () {
-          //操作数据
+          //修改数据
           context.read<CounterModel>().add();
         },
       ),
@@ -75,7 +75,8 @@ class _ProviderSecondPageState extends State<ProviderSecondPage> {
       body: Center(
         child: Column(
           children: [
-            Text("${Provider.of<CounterModel>(context).count}"),
+            //监听数据变化
+            Text("${context.watch<CounterModel>().count}"),
             ElevatedButton(
               onPressed: () {
                 Navigator.pop(context);
@@ -88,6 +89,7 @@ class _ProviderSecondPageState extends State<ProviderSecondPage> {
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
         onPressed: () {
+          //修改数据
           context.read<CounterModel>().add();
         },
       ),
