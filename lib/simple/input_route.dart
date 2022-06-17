@@ -58,9 +58,9 @@ class _SimpleTextFieldPageState extends State<SimpleTextFieldPage> {
   void initState() {
     super.initState();
     //设置默认值
-    _usernameController.text = "你好";
+    // _usernameController.text = "你好";
     //设置选择文本
-    _usernameController.selection = TextSelection(baseOffset: 0, extentOffset: _usernameController.text.length);
+    // _usernameController.selection = TextSelection(baseOffset: 0, extentOffset: _usernameController.text.length);
 
     //监听内容变化
     _emailController.addListener(() {
@@ -87,83 +87,83 @@ class _SimpleTextFieldPageState extends State<SimpleTextFieldPage> {
       appBar: AppBar(
         title: const Text("TextField简单使用"),
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            TextField(
-              autofocus: true,
-              focusNode: focusNode1,
-              maxLength: 6,
-              inputFormatters: [
-                FilteringTextInputFormatter.allow(RegExp("[a-zA-Z]")),
-              ],
-              decoration: const InputDecoration(
-                labelText: "用户名",
-                hintText: "请输入用户名(仅允许输入英文字符)",
-                prefixIcon: Icon(Icons.person),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              TextField(
+                focusNode: focusNode1,
+                inputFormatters: [
+                  FilteringTextInputFormatter.allow(RegExp("[a-zA-Z]")),
+                ],
+                decoration: const InputDecoration(
+                  // labelText: "用户名",
+                  // hintText: "请输入用户名(仅允许输入英文字符)",
+                  // prefixIcon: Icon(Icons.person),
+                ),
+                onChanged: (value) {
+                  print("内容变化1：$value");
+                },
+                controller: _usernameController,
+                textInputAction: TextInputAction.search,
               ),
-              onChanged: (value) {
-                print("内容变化1：$value");
-              },
-              controller: _usernameController,
-              textInputAction: TextInputAction.search,
-            ),
-            TextField(
-              autofocus: true,
-              focusNode: focusNode2,
-              inputFormatters: [
-                FilteringTextInputFormatter.allow(RegExp("[a-zA-Z0-9.]")),
-              ],
-              decoration: const InputDecoration(
-                labelText: "邮箱",
-                hintText: "请输入邮箱账号",
-                prefixIcon: Icon(Icons.mail),
+              TextField(
+                focusNode: focusNode2,
+                inputFormatters: [
+                  FilteringTextInputFormatter.allow(RegExp("[a-zA-Z0-9.]")),
+                ],
+                decoration: const InputDecoration(
+                  labelText: "邮箱",
+                  hintText: "请输入邮箱账号",
+                  prefixIcon: Icon(Icons.mail),
+                ),
+                keyboardType: TextInputType.emailAddress,
+                controller: _emailController,
               ),
-              keyboardType: TextInputType.emailAddress,
-              controller: _emailController,
-            ),
-            TextField(
-              inputFormatters: [
-                FilteringTextInputFormatter.digitsOnly,
-              ],
-              decoration: const InputDecoration(
-                labelText: "密码",
-                hintText: "请输入密码（仅允许输入6位即以上的数字）",
-                prefixIcon: Icon(Icons.lock),
+              TextField(
+                inputFormatters: [
+                  FilteringTextInputFormatter.digitsOnly,
+                ],
+                decoration: const InputDecoration(
+                  labelText: "密码",
+                  hintText: "请输入密码（仅允许输入6位即以上的数字）",
+                  prefixIcon: Icon(Icons.lock),
+                ),
+                keyboardType: TextInputType.number,
+                obscureText: true,
               ),
-              keyboardType: TextInputType.number,
-              obscureText: true,
-            ),
-            const TextField(
-              decoration: InputDecoration(
-                labelText: "其他",
-                hintText: "请输入其他信息",
-                prefixIcon: Icon(Icons.lock),
+              const TextField(
+                decoration: InputDecoration(
+                  labelText: "其他",
+                  hintText: "请输入其他信息",
+                  prefixIcon: Icon(Icons.lock),
+                ),
+                keyboardType: TextInputType.number,
+                obscureText: true,
               ),
-              keyboardType: TextInputType.number,
-              obscureText: true,
-            ),
-            RaisedButton(
-              child: const Text("移动焦点"),
-              onPressed: () {
-                if (focusScopeNode == null) {
-                  focusScopeNode = FocusScope.of(context);
-                  focusScopeNode!.requestFocus(focusNode1);
-                } else {
-                  // focusScopeNode!.requestFocus(focusNode2);
-                  focusScopeNode!.nextFocus();
-                }
-              },
-            ),
-            RaisedButton(
-              child: const Text("隐藏键盘"),
-              onPressed: () {
-                //所有编辑框失去焦点，就会收起键盘
-                focusNode1.unfocus();
-                focusNode2.unfocus();
-              },
-            ),
-          ],
+              RaisedButton(
+                child: const Text("移动焦点"),
+                onPressed: () {
+                  if (focusScopeNode == null) {
+                    focusScopeNode = FocusScope.of(context);
+                    focusScopeNode!.requestFocus(focusNode1);
+                  } else {
+                    // focusScopeNode!.requestFocus(focusNode2);
+                    focusScopeNode!.nextFocus();
+                  }
+                },
+              ),
+              RaisedButton(
+                child: const Text("隐藏键盘"),
+                onPressed: () {
+                  //所有编辑框失去焦点，就会收起键盘
+                  focusNode1.unfocus();
+                  focusNode2.unfocus();
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );
