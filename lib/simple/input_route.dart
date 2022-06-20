@@ -26,6 +26,15 @@ class InputPage extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
+                  MaterialPageRoute(builder: (context) => const FocusPage()),
+                );
+              },
+              child: const Text("焦点控制"),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
                   MaterialPageRoute(builder: (context) => const CustomTextFieldPage()),
                 );
               },
@@ -48,36 +57,31 @@ class SimpleTextFieldPage extends StatefulWidget {
 }
 
 class _SimpleTextFieldPageState extends State<SimpleTextFieldPage> {
-  final TextEditingController _emailController = TextEditingController();
   final TextEditingController _usernameController = TextEditingController();
-  final FocusNode focusNode1 = FocusNode();
-  final FocusNode focusNode2 = FocusNode();
-  FocusScopeNode? focusScopeNode;
+  final TextEditingController _descController = TextEditingController();
+  var descriptionCount = "";
 
   @override
   void initState() {
-    super.initState();
-    //设置默认值
-    // _usernameController.text = "你好";
-    //设置选择文本
-    // _usernameController.selection = TextSelection(baseOffset: 0, extentOffset: _usernameController.text.length);
-
     //监听内容变化
-    _emailController.addListener(() {
-      print("内容变化2：${_emailController.text}");
+    _usernameController.addListener(() {
+      print("内容监听1：${_usernameController.text}");
     });
 
-    //监听焦点变化
-    focusNode1.addListener(() {
-      print("焦点变化：${focusNode1.hasFocus}");
-    });
+    //设置默认值
+    _descController.text = "helloworld";
+    //设置选择文本
+    _descController.selection = TextSelection(
+      baseOffset: 0,
+      extentOffset: _descController.text.length,
+    );
+    super.initState();
   }
 
   @override
   void dispose() {
     _usernameController.dispose();
-    _emailController.dispose();
-    focusNode1.dispose();
+    _descController.dispose();
     super.dispose();
   }
 
@@ -93,23 +97,20 @@ class _SimpleTextFieldPageState extends State<SimpleTextFieldPage> {
           child: Column(
             children: [
               TextField(
-                focusNode: focusNode1,
+                controller: _usernameController,
                 inputFormatters: [
                   FilteringTextInputFormatter.allow(RegExp("[a-zA-Z]")),
                 ],
                 decoration: const InputDecoration(
-                  // labelText: "用户名",
-                  // hintText: "请输入用户名(仅允许输入英文字符)",
-                  // prefixIcon: Icon(Icons.person),
+                  labelText: "用户名",
+                  hintText: "请输入用户名(仅允许输入英文字符)",
+                  prefixIcon: Icon(Icons.person),
                 ),
                 onChanged: (value) {
-                  print("内容变化1：$value");
+                  print("内容监听2：$value");
                 },
-                controller: _usernameController,
-                textInputAction: TextInputAction.search,
               ),
               TextField(
-                focusNode: focusNode2,
                 inputFormatters: [
                   FilteringTextInputFormatter.allow(RegExp("[a-zA-Z0-9.]")),
                 ],
@@ -119,7 +120,6 @@ class _SimpleTextFieldPageState extends State<SimpleTextFieldPage> {
                   prefixIcon: Icon(Icons.mail),
                 ),
                 keyboardType: TextInputType.emailAddress,
-                controller: _emailController,
               ),
               TextField(
                 inputFormatters: [
@@ -133,37 +133,107 @@ class _SimpleTextFieldPageState extends State<SimpleTextFieldPage> {
                 keyboardType: TextInputType.number,
                 obscureText: true,
               ),
-              const TextField(
+              TextField(
+                autofocus: true,
+                maxLines: 3,
+                maxLength: 32,
+                controller: _descController,
+                onChanged: (value) {
+                  setState(() {
+                    descriptionCount = value;
+                  });
+                },
                 decoration: InputDecoration(
-                  labelText: "其他",
-                  hintText: "请输入其他信息",
-                  prefixIcon: Icon(Icons.lock),
+                  labelText: "描述",
+                  hintText: "请输入描述",
+                  prefixIcon: const Icon(Icons.description),
+                  counterText: "${descriptionCount.length}/32",
                 ),
-                keyboardType: TextInputType.number,
-                obscureText: true,
+                keyboardType: TextInputType.multiline,
               ),
-              RaisedButton(
-                child: const Text("移动焦点"),
-                onPressed: () {
-                  if (focusScopeNode == null) {
-                    focusScopeNode = FocusScope.of(context);
-                    focusScopeNode!.requestFocus(focusNode1);
-                  } else {
-                    // focusScopeNode!.requestFocus(focusNode2);
-                    focusScopeNode!.nextFocus();
-                  }
-                },
-              ),
-              RaisedButton(
-                child: const Text("隐藏键盘"),
-                onPressed: () {
-                  //所有编辑框失去焦点，就会收起键盘
-                  focusNode1.unfocus();
-                  focusNode2.unfocus();
-                },
+              const SizedBox(
+                height: 10,
               ),
             ],
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class FocusPage extends StatefulWidget {
+  const FocusPage({Key? key}) : super(key: key);
+
+  @override
+  State<StatefulWidget> createState() {
+    return _FocusPageState();
+  }
+}
+
+class _FocusPageState extends State<FocusPage> {
+  FocusNode focusNode1 = FocusNode();
+  FocusNode focusNode2 = FocusNode();
+  FocusScopeNode? focusScopeNode;
+
+  @override
+  void dispose() {
+    focusNode1.dispose();
+    focusNode2.dispose();
+    focusScopeNode?.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("焦点控制"),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          children: [
+            TextField(
+              autofocus: true,
+              focusNode: focusNode1,
+              decoration: const InputDecoration(
+                labelText: "input1",
+              ),
+            ),
+            TextField(
+              autofocus: true,
+              focusNode: focusNode2,
+              decoration: const InputDecoration(
+                labelText: "input2",
+              ),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                //方式一
+                FocusScope.of(context).requestFocus(focusNode1);
+              },
+              child: const Text("input1获取焦点"),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                //方式二
+                focusScopeNode ??= FocusScope.of(context);
+                focusScopeNode?.requestFocus(focusNode2);
+              },
+              child: const Text("input2获取焦点"),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                //方式一
+                focusNode1.unfocus();
+                focusNode2.unfocus();
+                //方式二
+                // focusScopeNode?.unfocus();
+              },
+              child: const Text("隐藏键盘"),
+            ),
+          ],
         ),
       ),
     );
@@ -188,7 +258,6 @@ class _CustomTextFieldPageState extends State<CustomTextFieldPage> {
   @override
   void initState() {
     super.initState();
-
     focusNode1.addListener(() {
       if (_hasFocus1 != focusNode1.hasFocus) {
         setState(() {
@@ -316,7 +385,7 @@ class _CustomTextFieldPageState extends State<CustomTextFieldPage> {
               child: TextField(
                 textAlign: TextAlign.center,
                 decoration: InputDecoration(
-                  fillColor: Color(0x30cccccc),
+                  fillColor:Colors.grey,
                   filled: true,
                   hintText: "QQ/邮箱/手机号",
                   enabledBorder: OutlineInputBorder(
