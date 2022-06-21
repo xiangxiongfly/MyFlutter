@@ -6,6 +6,8 @@ import 'package:myflutter/scroll/sliverappbar_route.dart';
 import 'package:myflutter/scroll/sliverlist_slivergrid_route.dart';
 
 class ScrollTypePage extends StatelessWidget {
+  const ScrollTypePage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,18 +35,6 @@ class ScrollTypePage extends StatelessWidget {
                   Navigator.pushNamed(context, "animated_list_route");
                 },
                 child: Text("AnimatedList"),
-              ),
-              TextButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, "page_view_route");
-                },
-                child: Text("PageView"),
-              ),
-              TextButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, "tabbar_view_route");
-                },
-                child: Text("TabBarView"),
               ),
               TextButton(
                 onPressed: () {

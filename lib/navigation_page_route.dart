@@ -26,7 +26,7 @@ class BottomNavigationBarPage extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (BuildContext context) {
-                    return const NavigationBarPage1();
+                    return const PageViewNavigationBarPage();
                   }),
                 );
               },
@@ -53,16 +53,16 @@ class BottomNavigationBarPage extends StatelessWidget {
 int _index = 1;
 List<Widget> pages = const [OnePage(), TwoPage(), ThreePage()];
 
-class NavigationBarPage1 extends StatefulWidget {
-  const NavigationBarPage1({Key? key}) : super(key: key);
+class PageViewNavigationBarPage extends StatefulWidget {
+  const PageViewNavigationBarPage({Key? key}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
-    return _NavigationBarPage1State();
+    return _PageViewNavigationBarPageState();
   }
 }
 
-class _NavigationBarPage1State extends State<NavigationBarPage1> {
+class _PageViewNavigationBarPageState extends State<PageViewNavigationBarPage> {
   final PageController _controller = PageController(
     initialPage: _index,
   );

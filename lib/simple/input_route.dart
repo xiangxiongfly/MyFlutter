@@ -276,6 +276,13 @@ class _CustomTextFieldPageState extends State<CustomTextFieldPage> {
   }
 
   @override
+  void dispose() {
+    focusNode1.dispose();
+    focusNode2.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -284,40 +291,25 @@ class _CustomTextFieldPageState extends State<CustomTextFieldPage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            //使用主题
-            Padding(
-              padding: const EdgeInsets.all(10),
-              child: Theme(
-                data: Theme.of(context).copyWith(
-                  hintColor: Colors.green,
-                  inputDecorationTheme: const InputDecorationTheme(
-                    labelStyle: TextStyle(color: Colors.black),
-                    hintStyle: TextStyle(color: Colors.grey),
+            const Padding(
+              padding: EdgeInsets.all(10),
+              child: TextField(
+                textAlign: TextAlign.center,
+                decoration: InputDecoration(
+                  fillColor: Color(0x30cccccc),
+                  filled: true,
+                  hintText: "QQ/邮箱/手机号",
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(100)),
+                    borderSide: BorderSide(color: Colors.grey),
                   ),
-                ),
-                child: Column(
-                  children: const [
-                    TextField(
-                      decoration: InputDecoration(
-                        labelText: "姓名：",
-                        hintText: "请输入姓名",
-                        prefixIcon: Icon(Icons.people),
-                      ),
-                    ),
-                    TextField(
-                      decoration: InputDecoration(
-                        labelText: "密码：",
-                        hintText: "请输入密码",
-                        prefixIcon: Icon(Icons.lock),
-                      ),
-                      obscureText: true,
-                    ),
-                  ],
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(100)),
+                    borderSide: BorderSide(color: Colors.black),
+                  ),
                 ),
               ),
             ),
-
-            //组合
             Padding(
               padding: const EdgeInsets.all(10),
               child: Column(
@@ -327,11 +319,11 @@ class _CustomTextFieldPageState extends State<CustomTextFieldPage> {
                       focusNode: focusNode1,
                       cursorColor: Colors.black,
                       decoration: InputDecoration(
-                        labelText: "姓名",
+                        labelText: "用户名",
                         labelStyle: TextStyle(
                           color: _hasFocus1 ? Colors.black : Colors.grey,
                         ),
-                        hintText: "请输入姓名",
+                        hintText: "请输入用户名",
                         prefixIcon: Icon(
                           Icons.people,
                           color: _hasFocus1 ? Colors.red : Colors.grey,
@@ -377,26 +369,6 @@ class _CustomTextFieldPageState extends State<CustomTextFieldPage> {
                     ),
                   ),
                 ],
-              ),
-            ),
-
-            const Padding(
-              padding: EdgeInsets.all(10),
-              child: TextField(
-                textAlign: TextAlign.center,
-                decoration: InputDecoration(
-                  fillColor:Colors.grey,
-                  filled: true,
-                  hintText: "QQ/邮箱/手机号",
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(100)),
-                    borderSide: BorderSide(color: Colors.grey),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(100)),
-                    borderSide: BorderSide(color: Colors.red),
-                  ),
-                ),
               ),
             ),
           ],

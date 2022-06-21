@@ -37,7 +37,7 @@ import 'package:myflutter/scroll/notification_listener_route.dart';
 import 'package:myflutter/scroll/page_view_route.dart';
 import 'package:myflutter/scroll/scroll_type_route.dart';
 import 'package:myflutter/scroll/scroll_view_route.dart';
-import 'package:myflutter/scroll/tabbar_view_route.dart';
+import 'package:myflutter/scroll/tabbarview_route.dart';
 import 'package:myflutter/second.dart';
 import 'package:myflutter/shape/shape_type_route.dart';
 import 'package:myflutter/simple/button_route.dart';
@@ -105,8 +105,8 @@ class MyApp extends StatelessWidget {
         "fourth_page": (context) => const FourthPage(),
         //容器类组件
         "container_type_route": (context) => ContainerTypePage(),
-        "fractionally_sized_box_route": (context) => FractionallySizedBoxPage(),
-        "aspect_ratio_route": (context) => AspectRatioPage(),
+        "fractionally_sized_box_route": (context) => const FractionallySizedBoxPage(),
+        "aspect_ratio_route": (context) => const AspectRatioPage(),
         "transform_route": (context) => TransformPage(),
         "clip_route": (context) => ClipPage(),
         "fitted_box_route": (context) => FittedBoxPage(),
@@ -115,8 +115,6 @@ class MyApp extends StatelessWidget {
         "scroll_view_route": (context) => SingleChildScrollViewPage(),
         "notification_listener_route": (context) => NotificationListenerPage(),
         "animated_list_route": (context) => AnimatedListPage(),
-        "page_view_route": (context) => PageViewPage(),
-        "tabbar_view_route": (context) => TabBarViewPage(),
         "custom_scroll_view_route": (context) => CustomScrollViewPage(),
         //手势组件
         "gesture_detector_type_page": (context) => GestureDetectorTypePage(),
@@ -244,18 +242,6 @@ class _MyBodyState extends State<MyBody> {
                         context,
                         MaterialPageRoute(builder: (context) {
                           return const NextPage();
-                        }),
-                      );
-                    },
-                  ),
-                  ListTile(
-                    leading: const Icon(Icons.slideshow),
-                    title: const Text("轮播图"),
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (BuildContext context) {
-                          return const BannerPage();
                         }),
                       );
                     },
@@ -568,6 +554,24 @@ class HomePage extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => const CardPage()),
+                );
+              },
+            ),
+            ElevatedButton(
+              child: const Text("PageView组件"),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const PageViewPage()),
+                );
+              },
+            ),
+            ElevatedButton(
+              child: const Text("TabBarView组件"),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const TabBarViewPage()),
                 );
               },
             ),
