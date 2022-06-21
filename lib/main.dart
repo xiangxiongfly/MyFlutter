@@ -45,6 +45,7 @@ import 'package:myflutter/simple/card_route.dart';
 import 'package:myflutter/simple/form_route.dart';
 import 'package:myflutter/simple/image_route.dart';
 import 'package:myflutter/simple/input_route.dart';
+import 'package:myflutter/simple/keep_alive_route.dart';
 import 'package:myflutter/simple/progress_route.dart';
 import 'package:myflutter/simple/segmented_control_route.dart';
 import 'package:myflutter/simple/slider_route.dart';
@@ -531,7 +532,25 @@ class HomePage extends StatelessWidget {
               },
             ),
             ElevatedButton(
-              child: const Text("Dialog弹窗组件"),
+              child: const Text("PageView组件"),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const PageViewPage()),
+                );
+              },
+            ),
+            ElevatedButton(
+              child: const Text("TabBarView组件"),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const TabBarViewPage()),
+                );
+              },
+            ),
+            ElevatedButton(
+              child: const Text("弹窗组件"),
               onPressed: () {
                 Navigator.push(
                   context,
@@ -558,20 +577,11 @@ class HomePage extends StatelessWidget {
               },
             ),
             ElevatedButton(
-              child: const Text("PageView组件"),
+              child: const Text("AutomaticKeepAlive缓存组件"),
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const PageViewPage()),
-                );
-              },
-            ),
-            ElevatedButton(
-              child: const Text("TabBarView组件"),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const TabBarViewPage()),
+                  MaterialPageRoute(builder: (context) => const KeepAlivePage()),
                 );
               },
             ),
