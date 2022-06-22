@@ -27,7 +27,6 @@ import 'package:myflutter/net/net_route.dart';
 import 'package:myflutter/others/other_type_route.dart';
 import 'package:myflutter/platform_view_demo.dart';
 import 'package:myflutter/provider/provider_route.dart';
-import 'package:myflutter/sample/banner.dart';
 import 'package:myflutter/sample/comment_list.dart';
 import 'package:myflutter/scroll/animated_list_route.dart';
 import 'package:myflutter/scroll/custom_scroll_view_route.dart';
@@ -109,7 +108,6 @@ class MyApp extends StatelessWidget {
         "fractionally_sized_box_route": (context) => const FractionallySizedBoxPage(),
         "aspect_ratio_route": (context) => const AspectRatioPage(),
         "transform_route": (context) => TransformPage(),
-        "clip_route": (context) => ClipPage(),
         "fitted_box_route": (context) => FittedBoxPage(),
         //滚动组件
         "scroll_type_route": (context) => ScrollTypePage(),
@@ -582,6 +580,15 @@ class HomePage extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => const KeepAlivePage()),
+                );
+              },
+            ),
+            ElevatedButton(
+              child: const Text("Clip剪裁组件"),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const ClipPage()),
                 );
               },
             ),

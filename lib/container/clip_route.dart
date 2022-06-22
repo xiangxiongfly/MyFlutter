@@ -1,66 +1,75 @@
 import 'package:flutter/material.dart';
 
 class ClipPage extends StatelessWidget {
+  const ClipPage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    Widget avatar = Image.asset("images/avatar.jpg", width: 60, height: 60);
+    Widget avatar = Image.asset("images/avatar.jpg", width: 100, height: 100);
     return Scaffold(
       appBar: AppBar(
-        title: Text("Clip系列组件"),
+        title: const Text("Clip剪裁组件"),
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: SingleChildScrollView(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text("原图"),
-              avatar,
-              SizedBox(height: 10),
-              Text("ClipOval"),
-              ClipOval(
-                child: avatar,
-              ),
-              SizedBox(height: 10),
-              Text("ClipRect"),
-              ClipRect(
-                child: avatar,
-              ),
-              SizedBox(height: 10),
-              Text("ClipRRect"),
-              ClipRRect(
-                child: avatar,
-                borderRadius: BorderRadius.circular(10),
-              ),
-              SizedBox(height: 10),
-              Text("ClipPath"),
-              ClipPath.shape(
-                shape: StadiumBorder(),
-                child: Container(
-                  width: 100,
-                  height: 60,
-                  child: Image.asset("images/avatar.jpg", fit: BoxFit.cover),
+          child: Center(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const Text("原图"),
+                avatar,
+                const SizedBox(height: 10),
+                const Text("ClipRect"),
+                ClipRect(
+                  child: Align(
+                    child: avatar,
+                    alignment: Alignment.topCenter,
+                    heightFactor: 0.5,
+                  ),
                 ),
-              ),
-              SizedBox(height: 10),
-              Text("自定义1"),
-              DecoratedBox(
-                decoration: BoxDecoration(color: Colors.red),
-                child: ClipRect(
-                  clipper: MyClipper1(),
+                const SizedBox(height: 10),
+                const Text("ClipOval"),
+                ClipOval(
                   child: avatar,
+                  clipBehavior: Clip.antiAlias, //抗锯齿，通常用于处理圆形和弧形
                 ),
-              ),
-              SizedBox(height: 10),
-              Text("自定义2"),
-              DecoratedBox(
-                decoration: BoxDecoration(color: Colors.green),
-                child: ClipPath(
-                  clipper: TrianglePath(),
+                const SizedBox(height: 10),
+                const Text("ClipRRect"),
+                ClipRRect(
                   child: avatar,
+                  borderRadius: BorderRadius.circular(10),
                 ),
-              ),
-            ],
+                const SizedBox(height: 10),
+                const Text("ClipPath"),
+                ClipPath.shape(
+                  shape: const StadiumBorder(),
+                  child: SizedBox(
+                    width: 100,
+                    height: 60,
+                    child: Image.asset("images/avatar.jpg", fit: BoxFit.cover),
+                  ),
+                ),
+                const SizedBox(height: 10),
+                const Text("自定义剪裁1"),
+                Container(
+                  color: Colors.red,
+                  child: ClipRect(
+                    clipper: MyClipper1(),
+                    child: avatar,
+                  ),
+                ),
+                const SizedBox(height: 10),
+                const Text("自定义剪裁2"),
+                Container(
+                  color: Colors.green,
+                  child: ClipPath(
+                    clipper: TrianglePath(),
+                    child: avatar,
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -71,7 +80,7 @@ class ClipPage extends StatelessWidget {
 class MyClipper1 extends CustomClipper<Rect> {
   @override
   Rect getClip(Size size) {
-    return Rect.fromLTWH(0, 0, 30, 30);
+    return const Rect.fromLTWH(0, 0, 30, 30);
   }
 
   @override
