@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:myflutter/animation/animation_type_page.dart';
-import 'package:myflutter/container/aspect_ratio_route.dart';
 import 'package:myflutter/container/clip_route.dart';
 import 'package:myflutter/container/constraint_route.dart';
 import 'package:myflutter/container/container_route.dart';
@@ -38,7 +37,7 @@ import 'package:myflutter/scroll/scroll_type_route.dart';
 import 'package:myflutter/scroll/scroll_view_route.dart';
 import 'package:myflutter/scroll/tabbarview_route.dart';
 import 'package:myflutter/second.dart';
-import 'package:myflutter/shape/shape_type_route.dart';
+import 'package:myflutter/shape/shape_route.dart';
 import 'package:myflutter/simple/button_route.dart';
 import 'package:myflutter/simple/card_route.dart';
 import 'package:myflutter/simple/form_route.dart';
@@ -105,8 +104,6 @@ class MyApp extends StatelessWidget {
         "fourth_page": (context) => const FourthPage(),
         //容器类组件
         "container_type_route": (context) => ContainerTypePage(),
-        "fractionally_sized_box_route": (context) => const FractionallySizedBoxPage(),
-        "aspect_ratio_route": (context) => const AspectRatioPage(),
         "transform_route": (context) => TransformPage(),
         "fitted_box_route": (context) => FittedBoxPage(),
         //滚动组件
@@ -494,7 +491,7 @@ class HomePage extends StatelessWidget {
               },
             ),
             ElevatedButton(
-              child: const Text("约束容器组件"),
+              child: const Text("尺寸限制类容器组件"),
               onPressed: () {
                 Navigator.push(
                   context,
@@ -593,6 +590,14 @@ class HomePage extends StatelessWidget {
               },
             ),
             ElevatedButton(
+              child: const Text("shape组件"),
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return const ShapePage();
+                }));
+              },
+            ),
+            ElevatedButton(
               child: const Text("容器类组件"),
               onPressed: () {
                 Navigator.pushNamed(context, "container_type_route");
@@ -614,23 +619,7 @@ class HomePage extends StatelessWidget {
               child: const Text("日期时间组件"),
               onPressed: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return DateTimeTypePage();
-                }));
-              },
-            ),
-            ElevatedButton(
-              child: const Text("shape组件"),
-              onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return ShapePage();
-                }));
-              },
-            ),
-            ElevatedButton(
-              child: const Text("clip组件"),
-              onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return ClipPage();
+                  return const DateTimeTypePage();
                 }));
               },
             ),

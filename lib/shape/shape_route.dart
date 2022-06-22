@@ -7,7 +7,7 @@ class ShapePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("shape系列组件"),
+        title: const Text("shape系列组件"),
       ),
       body: SingleChildScrollView(
         child: Center(
@@ -17,9 +17,9 @@ class ShapePage extends StatelessWidget {
                 padding: const EdgeInsets.all(8.0),
                 child: RaisedButton(
                   onPressed: () {},
-                  child: Text("BeveledRectangleBorder"),
+                  child: const Text("BeveledRectangleBorder"),
                   shape: BeveledRectangleBorder(
-                    side: BorderSide(width: 1, color: Colors.red),
+                    side: const BorderSide(width: 1, color: Colors.red),
                     borderRadius: BorderRadius.circular(0),
                   ),
                 ),
@@ -28,9 +28,9 @@ class ShapePage extends StatelessWidget {
                 padding: const EdgeInsets.all(8.0),
                 child: RaisedButton(
                   onPressed: () {},
-                  child: Text("BeveledRectangleBorder"),
+                  child: const Text("BeveledRectangleBorder"),
                   shape: BeveledRectangleBorder(
-                    side: BorderSide(width: 1, color: Colors.red),
+                    side: const BorderSide(width: 1, color: Colors.red),
                     borderRadius: BorderRadius.circular(10),
                   ),
                 ),
@@ -39,9 +39,9 @@ class ShapePage extends StatelessWidget {
                 padding: const EdgeInsets.all(8.0),
                 child: RaisedButton(
                   onPressed: () {},
-                  child: Text("BeveledRectangleBorder"),
+                  child: const Text("BeveledRectangleBorder"),
                   shape: BeveledRectangleBorder(
-                    side: BorderSide(width: 1, color: Colors.red),
+                    side: const BorderSide(width: 1, color: Colors.red),
                     borderRadius: BorderRadius.circular(100),
                   ),
                 ),
@@ -50,19 +50,19 @@ class ShapePage extends StatelessWidget {
                 padding: const EdgeInsets.all(8.0),
                 child: RaisedButton(
                   onPressed: () {},
-                  child: Text("Border"),
-                  shape: Border(
+                  child: const Text("Border"),
+                  shape: const Border(
                     top: BorderSide(color: Colors.red, width: 2),
                     bottom: BorderSide(color: Colors.blue, width: 2),
                   ),
                 ),
               ),
-              Container(
+              SizedBox(
                 width: 120,
                 height: 120,
                 child: RaisedButton(
                   onPressed: () {},
-                  child: Text("CircleBorder"),
+                  child: const Text("CircleBorder"),
                   shape: const CircleBorder(
                     side: BorderSide(
                       color: Colors.red,
@@ -75,9 +75,9 @@ class ShapePage extends StatelessWidget {
                 padding: const EdgeInsets.all(8.0),
                 child: RaisedButton(
                   onPressed: () {},
-                  child: Text("ContinuousRectangleBorder"),
+                  child: const Text("ContinuousRectangleBorder"),
                   shape: ContinuousRectangleBorder(
-                    side: BorderSide(color: Colors.red),
+                    side: const BorderSide(color: Colors.red),
                     borderRadius: BorderRadius.circular(20),
                   ),
                 ),
@@ -86,9 +86,9 @@ class ShapePage extends StatelessWidget {
                 padding: const EdgeInsets.all(8.0),
                 child: RaisedButton(
                   onPressed: () {},
-                  child: Text("RoundedRectangleBorder"),
+                  child: const Text("RoundedRectangleBorder"),
                   shape: RoundedRectangleBorder(
-                    side: BorderSide(color: Colors.red),
+                    side: const BorderSide(color: Colors.red),
                     borderRadius: BorderRadius.circular(10),
                   ),
                 ),
@@ -97,8 +97,8 @@ class ShapePage extends StatelessWidget {
                 padding: const EdgeInsets.all(8.0),
                 child: RaisedButton(
                   onPressed: () {},
-                  child: Text("StadiumBorder"),
-                  shape: StadiumBorder(
+                  child: const Text("StadiumBorder"),
+                  shape: const StadiumBorder(
                     side: BorderSide(color: Colors.red),
                   ),
                 ),
@@ -107,8 +107,8 @@ class ShapePage extends StatelessWidget {
                 padding: const EdgeInsets.all(8.0),
                 child: RaisedButton(
                   onPressed: () {},
-                  child: Text("OutlineInputBorder"),
-                  shape: OutlineInputBorder(
+                  child: const Text("OutlineInputBorder"),
+                  shape: const OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.red),
                   ),
                 ),
@@ -117,8 +117,8 @@ class ShapePage extends StatelessWidget {
                 padding: const EdgeInsets.all(8.0),
                 child: RaisedButton(
                   onPressed: () {},
-                  child: Text("UnderlineInputBorder"),
-                  shape: UnderlineInputBorder(
+                  child: const Text("UnderlineInputBorder"),
+                  shape: const UnderlineInputBorder(
                     borderSide: BorderSide(color: Colors.red),
                   ),
                 ),
