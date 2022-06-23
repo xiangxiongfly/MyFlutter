@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:myflutter/animation/animation_type_page.dart';
+import 'package:myflutter/builder/builder_route.dart';
+import 'package:myflutter/builder/future_builder_route.dart';
 import 'package:myflutter/container/clip_route.dart';
 import 'package:myflutter/container/constraint_route.dart';
 import 'package:myflutter/container/container_route.dart';
 import 'package:myflutter/container/container_type_route.dart';
 import 'package:myflutter/container/fitted_box_route.dart';
-import 'package:myflutter/container/fractionally_sized_box_route.dart';
 import 'package:myflutter/container/transform_route.dart';
 import 'package:myflutter/data/data_route.dart';
 import 'package:myflutter/datetime/date_time_type_route.dart';
@@ -594,6 +595,22 @@ class HomePage extends StatelessWidget {
               onPressed: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
                   return const ShapePage();
+                }));
+              },
+            ),
+            ElevatedButton(
+              child: const Text("Builder组件"),
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return const BuilderPage();
+                }));
+              },
+            ),
+            ElevatedButton(
+              child: const Text("FutureBuilder组件"),
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return const FutureBuilderPage();
                 }));
               },
             ),
