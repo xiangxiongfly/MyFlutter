@@ -1,58 +1,58 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:myflutter/animation/animation_page.dart';
-import 'package:myflutter/builder/builder_route.dart';
-import 'package:myflutter/builder/future_builder_route.dart';
-import 'package:myflutter/container/clip_route.dart';
-import 'package:myflutter/container/constraint_route.dart';
-import 'package:myflutter/container/container_route.dart';
-import 'package:myflutter/container/container_type_route.dart';
-import 'package:myflutter/container/fitted_box_route.dart';
-import 'package:myflutter/container/transform_route.dart';
-import 'package:myflutter/data/data_route.dart';
-import 'package:myflutter/datetime/date_time_type_route.dart';
-import 'package:myflutter/dialog/dialog_route.dart';
-import 'package:myflutter/drag/drag_route.dart';
-import 'package:myflutter/gesture_detector/gesture_detector_type_route.dart';
-import 'package:myflutter/json/json_route.dart';
-import 'package:myflutter/layout/align__route.dart';
-import 'package:myflutter/layout/flex_route.dart';
-import 'package:myflutter/layout/layout_builder_route.dart';
-import 'package:myflutter/layout/padding_margin_route.dart';
-import 'package:myflutter/layout/row_column_route.dart';
-import 'package:myflutter/layout/stack_route.dart';
-import 'package:myflutter/layout/wrap_flow_route.dart';
-import 'package:myflutter/navigation_page_route.dart';
-import 'package:myflutter/net/net_route.dart';
-import 'package:myflutter/others/other_type_route.dart';
+import 'package:myflutter/demos/banner.dart';
 import 'package:myflutter/platform_view_demo.dart';
-import 'package:myflutter/provider/provider_route.dart';
-import 'package:myflutter/sample/comment_list.dart';
-import 'package:myflutter/scroll/animated_list_route.dart';
-import 'package:myflutter/scroll/custom_scroll_view_route.dart';
-import 'package:myflutter/scroll/grid_view_route.dart';
-import 'package:myflutter/scroll/list_view_route.dart';
-import 'package:myflutter/scroll/notification_listener_route.dart';
-import 'package:myflutter/scroll/page_view_route.dart';
-import 'package:myflutter/scroll/scroll_type_route.dart';
-import 'package:myflutter/scroll/scroll_view_route.dart';
-import 'package:myflutter/scroll/tabbarview_route.dart';
 import 'package:myflutter/second.dart';
-import 'package:myflutter/shape/shape_route.dart';
-import 'package:myflutter/simple/button_route.dart';
-import 'package:myflutter/simple/card_route.dart';
-import 'package:myflutter/simple/form_route.dart';
-import 'package:myflutter/simple/image_route.dart';
-import 'package:myflutter/simple/input_route.dart';
-import 'package:myflutter/simple/keep_alive_route.dart';
-import 'package:myflutter/simple/progress_route.dart';
-import 'package:myflutter/simple/segmented_control_route.dart';
-import 'package:myflutter/simple/slider_route.dart';
-import 'package:myflutter/simple/switch_radio_checkbox_route.dart';
-import 'package:myflutter/simple/table_route.dart';
-import 'package:myflutter/simple/text_route.dart';
 import 'package:myflutter/test_route_widget.dart';
 import 'package:provider/provider.dart';
+import 'basic/animation/animation_page.dart';
+import 'basic/builder/builder_route.dart';
+import 'basic/builder/future_builder_route.dart';
+import 'basic/container/clip_route.dart';
+import 'basic/container/constraint_route.dart';
+import 'basic/container/container_route.dart';
+import 'basic/container/container_type_route.dart';
+import 'basic/container/fitted_box_route.dart';
+import 'basic/container/transform_route.dart';
+import 'basic/datetime/date_time_type_route.dart';
+import 'basic/dialog/dialog_route.dart';
+import 'basic/drag/drag_route.dart';
+import 'basic/layout/align__route.dart';
+import 'basic/layout/flex_route.dart';
+import 'basic/layout/layout_builder_route.dart';
+import 'basic/layout/padding_margin_route.dart';
+import 'basic/layout/row_column_route.dart';
+import 'basic/layout/stack_route.dart';
+import 'basic/layout/wrap_flow_route.dart';
+import 'basic/menu/menu_route.dart';
+import 'basic/scroll/custom_scroll_view_route.dart';
+import 'basic/scroll/grid_view_route.dart';
+import 'basic/scroll/list_view_route.dart';
+import 'basic/scroll/notification_listener_route.dart';
+import 'basic/scroll/page_view_route.dart';
+import 'basic/scroll/scroll_type_route.dart';
+import 'basic/scroll/scroll_view_route.dart';
+import 'basic/scroll/tabbarview_route.dart';
+import 'basic/shape/shape_route.dart';
+import 'basic/simple/button_route.dart';
+import 'basic/simple/card_route.dart';
+import 'basic/simple/form_route.dart';
+import 'basic/simple/image_route.dart';
+import 'basic/simple/input_route.dart';
+import 'basic/simple/keep_alive_route.dart';
+import 'basic/simple/progress_route.dart';
+import 'basic/simple/segmented_control_route.dart';
+import 'basic/simple/slider_route.dart';
+import 'basic/simple/switch_radio_checkbox_route.dart';
+import 'basic/simple/table_route.dart';
+import 'basic/simple/text_route.dart';
+import 'demos/comment_list.dart';
+import 'navigation_page_route.dart';
+import 'others/data/data_route.dart';
+import 'others/gesture_detector/gesture_detector_type_route.dart';
+import 'others/json/json_route.dart';
+import 'others/net/net_route.dart';
+import 'others/provider/provider_route.dart';
 
 void main() {
   // runApp(
@@ -237,18 +237,6 @@ class _MyBodyState extends State<MyBody> {
                         context,
                         MaterialPageRoute(builder: (context) {
                           return const NextPage();
-                        }),
-                      );
-                    },
-                  ),
-                  ListTile(
-                    leading: const Icon(Icons.comment),
-                    title: const Text("评论列表效果"),
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (BuildContext context) {
-                          return CommentListPage();
                         }),
                       );
                     },
@@ -647,10 +635,10 @@ class HomePage extends StatelessWidget {
               },
             ),
             ElevatedButton(
-              child: const Text("功能型组件"),
+              child: const Text("菜单组件"),
               onPressed: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return OtherTypePage();
+                  return const MenuPage();
                 }));
               },
             ),
@@ -741,14 +729,23 @@ class SettingPage extends StatelessWidget {
         spacing: 2,
         children: [
           ElevatedButton(
-            child: const Text("MVVM设计模式"),
+            child: const Text("评论列表"),
             onPressed: () {
-              // Navigator.push(
-              //   context,
-              //   MaterialPageRoute(builder: (context) => const ProviderFirstPage()),
-              // );
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const CommentListPage()),
+              );
             },
           ),
+          ElevatedButton(
+            child: const Text("轮播图"),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const BannerPage()),
+              );
+            },
+          )
         ],
       ),
     );

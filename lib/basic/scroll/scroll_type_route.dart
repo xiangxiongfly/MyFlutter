@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:myflutter/scroll/nested_scroll_view_route.dart';
-import 'package:myflutter/scroll/sliver_persistent_header_route.dart';
-import 'package:myflutter/scroll/sliver_to_box_adapter_route.dart';
-import 'package:myflutter/scroll/sliverappbar_route.dart';
-import 'package:myflutter/scroll/sliverlist_slivergrid_route.dart';
+import 'package:myflutter/basic/scroll/sliver_persistent_header_route.dart';
+import 'package:myflutter/basic/scroll/sliver_to_box_adapter_route.dart';
+import 'package:myflutter/basic/scroll/sliverappbar_route.dart';
+import 'package:myflutter/basic/scroll/sliverlist_slivergrid_route.dart';
+
+import 'nested_scroll_view_route.dart';
 
 class ScrollTypePage extends StatelessWidget {
   const ScrollTypePage({Key? key}) : super(key: key);

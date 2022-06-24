@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:myflutter/animation/animation_curve_page.dart';
-import 'package:myflutter/animation/animation_multi2_page.dart';
-import 'package:myflutter/animation/animation_multi3_page.dart';
-import 'package:myflutter/animation/animation_multi_page.dart';
-import 'package:myflutter/animation/animation_scale_page.dart';
-import 'package:myflutter/animation/animation_tween_page.dart';
-import 'package:myflutter/animation/widget_scale_transition_page.dart';
+import 'package:myflutter/basic/animation/animation_curve_page.dart';
+import 'package:myflutter/basic/animation/animation_multi2_page.dart';
+import 'package:myflutter/basic/animation/animation_multi3_page.dart';
+import 'package:myflutter/basic/animation/animation_multi_page.dart';
+import 'package:myflutter/basic/animation/animation_scale_page.dart';
+import 'package:myflutter/basic/animation/animation_tween_page.dart';
+
+import 'widget_scale_transition_page.dart';
+
 
 class AnimationPage extends StatelessWidget {
   const AnimationPage({Key? key}) : super(key: key);

@@ -1,10 +1,9 @@
 import 'dart:convert';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:myflutter/json/student.dart' as student;
-import 'package:myflutter/json/student_list.dart' as student_list;
+import 'package:myflutter/others/json/student.dart' as student;
+import 'package:myflutter/others/json/student_list.dart' as student_list;
 
 class JsonPage extends StatefulWidget {
   const JsonPage({Key? key}) : super(key: key);

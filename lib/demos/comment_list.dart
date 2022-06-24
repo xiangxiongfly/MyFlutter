@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class CommentListPage extends StatefulWidget {
+  const CommentListPage({Key? key}) : super(key: key);
+
   @override
   State<StatefulWidget> createState() {
     return _CommentListPageState();
@@ -25,46 +27,44 @@ class _CommentListPageState extends State<CommentListPage> {
 }
 
 class Item extends StatelessWidget {
-  late int index;
+  final int index;
 
-  Item(this.index);
+  const Item(this.index, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Card(
-        margin: EdgeInsets.all(2),
-        child: FlatButton(
-          onPressed: () {
-            print("点击了");
-          },
-          child: Padding(
-            padding: EdgeInsets.all(10),
-            child: Column(
-              children: [
-                Container(
-                  child: Text(
-                    "这是一堆评论$index",
-                    style: TextStyle(color: Colors.black, fontSize: 14),
-                    maxLines: 3,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                  margin: EdgeInsets.all(6.0),
-                  alignment: Alignment.topLeft,
+    return Card(
+      margin: const EdgeInsets.all(2),
+      child: FlatButton(
+        onPressed: () {
+          print("点击了");
+        },
+        child: Padding(
+          padding: const EdgeInsets.all(10),
+          child: Column(
+            children: [
+              Container(
+                child: Text(
+                  "这是一堆评论$index",
+                  style: const TextStyle(color: Colors.black, fontSize: 14),
+                  maxLines: 3,
+                  overflow: TextOverflow.ellipsis,
                 ),
-                SizedBox(height: 10),
-                Padding(
-                  padding: EdgeInsets.all(10),
-                  child: Row(
-                    children: [
-                      _getBottomItem(Icons.star, "1000"),
-                      _getBottomItem(Icons.link, "1000"),
-                      _getBottomItem(Icons.subject, "1000"),
-                    ],
-                  ),
+                margin: const EdgeInsets.all(6.0),
+                alignment: Alignment.topLeft,
+              ),
+              const SizedBox(height: 10),
+              Padding(
+                padding: const EdgeInsets.all(10),
+                child: Row(
+                  children: [
+                    _getBottomItem(Icons.star, "1000"),
+                    _getBottomItem(Icons.link, "1000"),
+                    _getBottomItem(Icons.subject, "1000"),
+                  ],
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),
@@ -86,10 +86,10 @@ Widget _getBottomItem(IconData icon, String text) {
             size: 16,
             color: Colors.grey,
           ),
-          SizedBox(height: 5),
+          const SizedBox(height: 5),
           Text(
             text,
-            style: TextStyle(color: Colors.grey, fontSize: 14),
+            style: const TextStyle(color: Colors.grey, fontSize: 14),
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
           ),

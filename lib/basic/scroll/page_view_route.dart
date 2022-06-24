@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:myflutter/demos/banner.dart';
 import 'package:myflutter/navigation_page_route.dart';
-import 'package:myflutter/sample/banner.dart';
 
 class PageViewPage extends StatelessWidget {
   const PageViewPage({Key? key}) : super(key: key);
