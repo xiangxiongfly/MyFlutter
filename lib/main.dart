@@ -5,6 +5,7 @@ import 'package:myflutter/platform_view_demo.dart';
 import 'package:myflutter/second.dart';
 import 'package:myflutter/test_route_widget.dart';
 import 'package:provider/provider.dart';
+
 import 'basic/animation/animation_page.dart';
 import 'basic/builder/builder_route.dart';
 import 'basic/builder/future_builder_route.dart';
@@ -47,6 +48,7 @@ import 'basic/simple/switch_radio_checkbox_route.dart';
 import 'basic/simple/table_route.dart';
 import 'basic/simple/text_route.dart';
 import 'demos/comment_list.dart';
+import 'demos/login.dart';
 import 'navigation_page_route.dart';
 import 'others/data/data_route.dart';
 import 'others/gesture_detector/gesture_detector_type_route.dart';
@@ -743,6 +745,15 @@ class SettingPage extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => const BannerPage()),
+              );
+            },
+          ),
+          ElevatedButton(
+            child: const Text("QQ登陆界面"),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const LoginPage()),
               );
             },
           )
