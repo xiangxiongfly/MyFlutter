@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
 class TransformPage extends StatelessWidget {
+  const TransformPage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     print("math.pi/2   ${math.pi / 2}");
     return Scaffold(
       appBar: AppBar(
-        title: Text("Trasnform"),
+        title: const Text("Transform"),
       ),
       body: Center(
         child: Column(
@@ -15,28 +17,28 @@ class TransformPage extends StatelessWidget {
           children: [
             DecoratedBox(
               child: Transform.translate(
-                offset: Offset(10, 10),
-                child: Text("hello world"),
+                offset: const Offset(10, 10),
+                child: const Text("hello world"),
               ),
-              decoration: BoxDecoration(color: Colors.red),
+              decoration: const BoxDecoration(color: Colors.red),
             ),
-            SizedBox(height: 50),
+            const SizedBox(height: 50),
             DecoratedBox(
               child: Transform.rotate(
                 angle: math.pi / 2,
-                child: Text("hello world"),
+                child: const Text("hello world"),
               ),
-              decoration: BoxDecoration(color: Colors.red),
+              decoration: const BoxDecoration(color: Colors.red),
             ),
-            SizedBox(height: 50),
+            const SizedBox(height: 50),
             DecoratedBox(
               child: Transform.scale(
                 scale: 2,
-                child: Text("hello world"),
+                child: const Text("hello world"),
               ),
-              decoration: BoxDecoration(color: Colors.red),
+              decoration: const BoxDecoration(color: Colors.red),
             ),
-            SizedBox(height: 80),
+            const SizedBox(height: 80),
             Container(
               color: Colors.black,
               child: Transform(
@@ -45,18 +47,18 @@ class TransformPage extends StatelessWidget {
                 child: Container(
                   padding: EdgeInsets.all(8),
                   color: Colors.red,
-                  child: Text("  hello transform!  "),
+                  child: const Text("  hello transform!  "),
                 ),
               ),
             ),
-            SizedBox(height: 50),
-            DecoratedBox(
+            const SizedBox(height: 50),
+            const DecoratedBox(
               child: RotatedBox(
                 quarterTurns: 1,
                 child: Text("hello world"),
               ),
               decoration: BoxDecoration(color: Colors.red),
-            )
+            ),
           ],
         ),
       ),

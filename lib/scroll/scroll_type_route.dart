@@ -32,12 +32,6 @@ class ScrollTypePage extends StatelessWidget {
               ),
               TextButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, "animated_list_route");
-                },
-                child: Text("AnimatedList"),
-              ),
-              TextButton(
-                onPressed: () {
                   Navigator.pushNamed(context, "custom_scroll_view_route");
                 },
                 child: Text("CustomScrollView"),

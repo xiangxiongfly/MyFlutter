@@ -16,12 +16,6 @@ class ContainerTypePage extends StatelessWidget {
                 Navigator.pushNamed(context, "transform_route");
               },
             ),
-            OutlinedButton(
-              child: Text("FittedBox"),
-              onPressed: () {
-                Navigator.pushNamed(context, "fitted_box_route");
-              },
-            )
           ],
         ),
       ),

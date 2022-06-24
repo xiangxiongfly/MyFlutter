@@ -1,7 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class AnimatedListPage extends StatefulWidget {
+  const AnimatedListPage({Key? key}) : super(key: key);
+
   @override
   State<StatefulWidget> createState() {
     return _AnimatedListPageState();
@@ -9,16 +10,16 @@ class AnimatedListPage extends StatefulWidget {
 }
 
 class _AnimatedListPageState extends State<AnimatedListPage> {
-  final _listKey = GlobalKey<AnimatedListState>();
+  final GlobalKey<AnimatedListState> _listKey = GlobalKey<AnimatedListState>();
   var data = <String>[];
   int counter = 5;
 
   @override
   void initState() {
-    super.initState();
     for (int i = 0; i < counter; i++) {
-      data.add("${i + 1}");
+      data.add(i.toString());
     }
+    super.initState();
   }
 
   @override
@@ -26,20 +27,21 @@ class _AnimatedListPageState extends State<AnimatedListPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("AnimatedList"),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.add),
-            onPressed: () {
-              addItem();
-            },
-          ),
-        ],
       ),
       body: AnimatedList(
         key: _listKey,
         initialItemCount: data.length,
-        itemBuilder: (context, index, animation) {
-          return buildItem(context, index);
+        itemBuilder: (BuildContext context, int index, Animation<double> animation) {
+          return FadeTransition(
+            opacity: animation,
+            child: buildItem(context, index),
+          );
+        },
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: const Icon(Icons.add),
+        onPressed: () {
+          addItem();
         },
       ),
     );
@@ -60,7 +62,8 @@ class _AnimatedListPageState extends State<AnimatedListPage> {
   }
 
   void addItem() {
-    data.add("${++counter}");
+    data.add(counter.toString());
+    counter++;
     _listKey.currentState!.insertItem(data.length - 1);
   }
 
@@ -70,8 +73,20 @@ class _AnimatedListPageState extends State<AnimatedListPage> {
       (BuildContext context, Animation<double> animation) {
         var item = buildItem(context, index);
         data.removeAt(index);
-        return item;
+        return FadeTransition(
+          opacity: CurvedAnimation(
+            parent: animation,
+            //让透明度变化的更快一些
+            curve: const Interval(0.5, 1.0),
+          ),
+          child: SizeTransition(
+            sizeFactor: animation,
+            axisAlignment: 0.0,
+            child: item,
+          ),
+        );
       },
+      duration: const Duration(milliseconds: 100),
     );
   }
 }

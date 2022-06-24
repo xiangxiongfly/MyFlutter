@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:myflutter/animation/animation_type_page.dart';
+import 'package:myflutter/animation/animation_page.dart';
 import 'package:myflutter/builder/builder_route.dart';
 import 'package:myflutter/builder/future_builder_route.dart';
 import 'package:myflutter/container/clip_route.dart';
@@ -105,18 +105,16 @@ class MyApp extends StatelessWidget {
         "fourth_page": (context) => const FourthPage(),
         //容器类组件
         "container_type_route": (context) => ContainerTypePage(),
-        "transform_route": (context) => TransformPage(),
-        "fitted_box_route": (context) => FittedBoxPage(),
+        "transform_route": (context) => const TransformPage(),
         //滚动组件
         "scroll_type_route": (context) => ScrollTypePage(),
         "scroll_view_route": (context) => SingleChildScrollViewPage(),
         "notification_listener_route": (context) => NotificationListenerPage(),
-        "animated_list_route": (context) => AnimatedListPage(),
         "custom_scroll_view_route": (context) => CustomScrollViewPage(),
         //手势组件
         "gesture_detector_type_page": (context) => GestureDetectorTypePage(),
         //动画组件
-        "animation_type_page": (context) => AnimationTypePage(),
+        "animation_type_page": (context) => const AnimationPage(),
       },
       initialRoute: "/",
     );
@@ -611,6 +609,14 @@ class HomePage extends StatelessWidget {
               onPressed: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
                   return const FutureBuilderPage();
+                }));
+              },
+            ),
+            ElevatedButton(
+              child: const Text("FittedBox组件"),
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return const FittedBoxPage();
                 }));
               },
             ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:myflutter/scroll/animated_list_route.dart';
 
 class ListViewPage extends StatelessWidget {
   const ListViewPage({Key? key}) : super(key: key);
@@ -49,6 +50,14 @@ class ListViewPage extends StatelessWidget {
                 }));
               },
               child: const Text("下拉刷新"),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return const AnimatedListPage();
+                }));
+              },
+              child: const Text("AnimatedList"),
             ),
           ],
         ),
