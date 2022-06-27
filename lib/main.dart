@@ -4,6 +4,7 @@ import 'package:myflutter/demos/banner.dart';
 import 'package:myflutter/platform_view_demo.dart';
 import 'package:myflutter/second.dart';
 import 'package:myflutter/test_route_widget.dart';
+import 'package:myflutter/utils/sp_utils.dart';
 import 'package:provider/provider.dart';
 
 import 'basic/animation/animation_page.dart';
@@ -57,7 +58,9 @@ import 'others/net/net_route.dart';
 import 'others/provider/provider_route.dart';
 import 'others/sp/sp_route.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await SpUtils.getInstance();
   // runApp(
   //   ChangeNotifierProvider(
   //     create: (context) => CounterModel(0),
