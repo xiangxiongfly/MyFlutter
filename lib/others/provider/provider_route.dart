@@ -76,7 +76,7 @@ class _ProviderSecondPageState extends State<ProviderSecondPage> {
         child: Column(
           children: [
             //监听数据变化
-            Text("${context.watch<CounterModel>().count}"),
+            Text("${Provider.of<CounterModel>(context).count}"),
             ElevatedButton(
               onPressed: () {
                 Navigator.pop(context);
@@ -90,7 +90,7 @@ class _ProviderSecondPageState extends State<ProviderSecondPage> {
         child: const Icon(Icons.add),
         onPressed: () {
           //修改数据
-          context.read<CounterModel>().add();
+          Provider.of<CounterModel>(context, listen: false).add();
         },
       ),
     );

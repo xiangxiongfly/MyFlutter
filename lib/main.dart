@@ -55,6 +55,7 @@ import 'others/gesture_detector/gesture_detector_type_route.dart';
 import 'others/json/json_route.dart';
 import 'others/net/net_route.dart';
 import 'others/provider/provider_route.dart';
+import 'others/sp/sp_route.dart';
 
 void main() {
   // runApp(
@@ -688,6 +689,15 @@ class MessagePage extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => const ProviderFirstPage()),
+              );
+            },
+          ),
+          ElevatedButton(
+            child: const Text("shared_preferences"),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const SpPage()),
               );
             },
           ),
