@@ -121,7 +121,7 @@ class _DataPageState extends State<DataPage> {
     final parentDir = await getApplicationSupportDirectory();
     String path = "${parentDir.path}${Platform.pathSeparator}hello";
     var dir = Directory(path);
-    var newDir = await dir.rename("${parentDir.path}${Platform.pathSeparator}newhello222222");
+    var newDir = await dir.rename("${parentDir.path}${Platform.pathSeparator}newhello");
     print(newDir);
   }
 
