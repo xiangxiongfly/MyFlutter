@@ -91,6 +91,16 @@ class _SpPageState extends State<SpPage> {
               getData2();
             },
             child: const Text("读数据（工具类）")),
+        OutlinedButton(
+            onPressed: () {
+              saveData3();
+            },
+            child: const Text("写数据3（工具类）")),
+        OutlinedButton(
+            onPressed: () {
+              getData3();
+            },
+            child: const Text("读数据3（工具类）")),
       ],
     );
   }
@@ -110,6 +120,14 @@ class _SpPageState extends State<SpPage> {
     SpUtils.setBool("sex", true);
     SpUtils.setDouble("height", 180.2);
     SpUtils.setStringList("address", <String>["北京市2", "海淀区2"]);
+  }
+
+  saveData3(){
+    SpUtils.set("name", "小明3");
+    SpUtils.set("age", 38);
+    SpUtils.set("sex", true);
+    SpUtils.set("height", 180.3);
+    SpUtils.set("address", <String>["北京市3", "海淀区3"]);
   }
 
   getData() async {
@@ -136,6 +154,23 @@ class _SpPageState extends State<SpPage> {
     bool? sex = SpUtils.getBool("sex");
     double? height = SpUtils.getDouble("height");
     List<String>? address = SpUtils.getStringList("address");
+    setState(() {
+      description = """
+         姓名：${name ?? ""}
+         年龄：${age ?? ""}
+         性别：${sex ?? ""}
+         身高：${height ?? ""}
+         地址：$address
+      """;
+    });
+  }
+
+  getData3() {
+    String? name = SpUtils.get<String>("name");
+    int? age = SpUtils.get<int>("age");
+    bool? sex = SpUtils.get<bool>("sex");
+    double? height = SpUtils.get<double>("height");
+    List<String>? address = SpUtils.get<List<String>>("address");
     setState(() {
       description = """
          姓名：${name ?? ""}

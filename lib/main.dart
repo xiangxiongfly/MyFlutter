@@ -662,14 +662,6 @@ class HomePage extends StatelessWidget {
                 Navigator.pushNamed(context, "animation_type_page");
               },
             ),
-            ElevatedButton(
-              child: const Text("数据存储"),
-              onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return DataPage();
-                }));
-              },
-            ),
           ],
         ),
       ),
@@ -702,6 +694,14 @@ class MessagePage extends StatelessWidget {
                 context,
                 MaterialPageRoute(builder: (context) => const SpPage()),
               );
+            },
+          ),
+          ElevatedButton(
+            child: const Text("文件存储"),
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return const DataPage();
+              }));
             },
           ),
           ElevatedButton(
