@@ -17,8 +17,8 @@ class JsonPage extends StatefulWidget {
 class _JsonPageState extends State<JsonPage> {
   @override
   Widget build(BuildContext context) {
-    // _parseJson();
-    // _parseArrayJson();
+    _parseJson();
+    _parseArrayJson();
     _parseJson2();
     _parseArrayJson2();
     return Scaffold(
@@ -79,9 +79,3 @@ class User {
     return 'User{name: $name, age: $age, address: $address}';
   }
 }
-
-// const json = "{
-//     "name":"小明",
-// "age":18,
-// "address":"beijing"
-// }";
