@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:myflutter/demos/banner.dart';
+import 'package:myflutter/others/sqlite/sqlite_route.dart';
 import 'package:myflutter/platform_view_demo.dart';
 import 'package:myflutter/second.dart';
 import 'package:myflutter/test_route_widget.dart';
@@ -701,6 +702,14 @@ class MessagePage extends StatelessWidget {
             onPressed: () {
               Navigator.push(context, MaterialPageRoute(builder: (context) {
                 return const DataPage();
+              }));
+            },
+          ),
+          ElevatedButton(
+            child: const Text("SQLite"),
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return const SqlitePage();
               }));
             },
           ),

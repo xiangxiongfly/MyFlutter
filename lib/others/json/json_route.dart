@@ -1,81 +1,117 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:myflutter/others/json/student.dart' as student;
-import 'package:myflutter/others/json/student_list.dart' as student_list;
+import 'package:myflutter/bean/person.dart';
+import 'package:myflutter/bean/user.dart';
 
-class JsonPage extends StatefulWidget {
+class JsonPage extends StatelessWidget {
   const JsonPage({Key? key}) : super(key: key);
 
   @override
-  State<StatefulWidget> createState() {
-    return _JsonPageState();
-  }
-}
-
-class _JsonPageState extends State<JsonPage> {
-  @override
   Widget build(BuildContext context) {
-    _parseJson();
-    _parseArrayJson();
-    _parseJson2();
-    _parseArrayJson2();
     return Scaffold(
       appBar: AppBar(
         title: const Text("JSON解析"),
       ),
+      body: Center(
+        child: Column(
+          children: [
+            ElevatedButton(
+              onPressed: () {
+                parseJson();
+              },
+              child: const Text("解析Json"),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                parseJsonArray();
+              },
+              child: const Text("解析JsonArray"),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                parseJson2();
+              },
+              child: const Text("解析Json（插件生成）"),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                parseJsonArray2();
+              },
+              child: const Text("解析JsonArray（插件生成）"),
+            ),
+          ],
+        ),
+      ),
     );
   }
-}
 
-_parseJson() {
-  rootBundle.loadString("assets/student.json").then((jsonStr) {
-    final jsonMap = json.decode(jsonStr);
-    User user = User(jsonMap["name"], jsonMap["age"], jsonMap["address"]);
-    print(user);
+  parseJson() {
+    String jsonStr = """{
+    "name":"小明",
+    "age":18,
+    "address":"beijing"
+}""";
+    var jsonMap = json.decode(jsonStr);
+    var user = User(jsonMap["name"], jsonMap["age"], jsonMap["address"]);
+    print(user); //User{name: 小明, age: 18, address: beijing}
+  }
 
-    //User{name: 小明, age: 18, address: beijing}
-  });
-}
+  parseJsonArray() {
+    String jsonArrayStr = """[
+  {
+    "name": "小黑",
+    "age": 18,
+    "address": "shanghai"
+  },
+  {
+    "name": "小白",
+    "age": 28,
+    "address": "beijing"
+  },
+  {
+    "name": "小明",
+    "age": 38,
+    "address": "广州"
+  }
+]""";
+    List jsonArray = json.decode(jsonArrayStr);
+    List<User> userList = jsonArray.map((e) => User(e["name"], e["age"], e["address"])).toList();
+    print(
+        userList); //[User{name: 小黑, age: 18, address: shanghai}, User{name: 小白, age: 28, address: beijing}, User{name: 小明, age: 38, address: 广州}]
+  }
 
-_parseArrayJson() {
-  rootBundle.loadString("assets/students.json").then((jsonStr) {
-    List<dynamic> jsonArr = json.decode(jsonStr);
-    List<User> userList = jsonArr.map((e) => User(e["name"], e["age"], e["address"])).toList();
+  parseJson2() {
+    String jsonStr = """{
+    "name":"小明",
+    "age":18,
+    "address":"beijing"
+}""";
+    var jsonMap = json.decode(jsonStr);
+    var person = Person.fromJson(jsonMap);
+    print(person);
+  }
+
+  parseJsonArray2() {
+    String jsonArrayStr = """[
+  {
+    "name": "小黑",
+    "age": 18,
+    "address": "shanghai"
+  },
+  {
+    "name": "小白",
+    "age": 28,
+    "address": "beijing"
+  },
+  {
+    "name": "小明",
+    "age": 38,
+    "address": "广州"
+  }
+]""";
+    List jsonArray = json.decode(jsonArrayStr);
+    List<Person> userList = jsonArray.map((e) => Person.fromJson(e as Map<String, dynamic>)).toList();
     print(userList);
-
-    // [User{name: 小黑, age: 18, address: shanghai}, User{name: 小白, age: 28, address: beijing}, User{name: 小明, age: 38, address: 广州}]
-  });
-}
-
-_parseJson2() {
-  rootBundle.loadString("assets/student.json").then((jsonStr) {
-    var stu = student.studentFromJson(jsonStr);
-    print(stu);
-
-    // Student{_name: 小明, _age: 18, _address: beijing}
-  });
-}
-
-_parseArrayJson2() {
-  rootBundle.loadString("assets/students.json").then((jsonStr) {
-    final stuList = student_list.studentFromJson(jsonStr);
-    print(stuList);
-
-    //[Student{name: 小黑, age: 18, address: shanghai}, Student{name: 小白, age: 28, address: beijing}, Student{name: 小明, age: 38, address: 广州}]
-  });
-}
-
-class User {
-  final String name;
-  final int age;
-  final String address;
-
-  User(this.name, this.age, this.address);
-
-  @override
-  String toString() {
-    return 'User{name: $name, age: $age, address: $address}';
   }
 }

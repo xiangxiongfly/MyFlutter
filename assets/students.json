@@ -1,17 +1,17 @@
 [
   {
-    "name":"小黑",
-    "age":18,
-    "address":"shanghai"
+    "name": "小黑",
+    "age": 18,
+    "address": "shanghai"
   },
   {
-    "name":"小白",
-    "age":28,
-    "address":"beijing"
+    "name": "小白",
+    "age": 28,
+    "address": "beijing"
   },
   {
-    "name":"小明",
-    "age":38,
-    "address":"广州"
+    "name": "小明",
+    "age": 38,
+    "address": "广州"
   }
 ]
