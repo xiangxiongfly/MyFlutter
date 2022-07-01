@@ -53,7 +53,7 @@ import 'demos/comment_list.dart';
 import 'demos/login.dart';
 import 'navigation_page_route.dart';
 import 'others/data/data_route.dart';
-import 'others/gesture_detector/gesture_detector_type_route.dart';
+import 'others/gesture_detector/gesture_type_route.dart';
 import 'others/json/json_route.dart';
 import 'others/net/net_route.dart';
 import 'others/provider/provider_route.dart';
@@ -118,8 +118,6 @@ class MyApp extends StatelessWidget {
         "scroll_view_route": (context) => SingleChildScrollViewPage(),
         "notification_listener_route": (context) => NotificationListenerPage(),
         "custom_scroll_view_route": (context) => CustomScrollViewPage(),
-        //手势组件
-        "gesture_detector_type_page": (context) => GestureDetectorTypePage(),
         //动画组件
         "animation_type_page": (context) => const AnimationPage(),
       },
@@ -628,12 +626,6 @@ class HomePage extends StatelessWidget {
               },
             ),
             ElevatedButton(
-              child: const Text("手势组件"),
-              onPressed: () {
-                Navigator.pushNamed(context, "gesture_detector_type_page");
-              },
-            ),
-            ElevatedButton(
               child: const Text("日期时间组件"),
               onPressed: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
@@ -726,6 +718,14 @@ class MessagePage extends StatelessWidget {
             onPressed: () {
               Navigator.push(context, MaterialPageRoute(builder: (context) {
                 return const JsonPage();
+              }));
+            },
+          ),
+          ElevatedButton(
+            child: const Text("手势事件处理"),
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return const GestureTypePage();
               }));
             },
           ),

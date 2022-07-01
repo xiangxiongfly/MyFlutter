@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class InkWellPage extends StatelessWidget {
@@ -20,9 +19,9 @@ class InkWellPage extends StatelessWidget {
                 child: Text("InkWell效果"),
               ),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Ink(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 gradient: LinearGradient(
                   colors: [Color(0xFFDE2F21), Color(0xFFEC592F)],
                 ),
@@ -30,10 +29,10 @@ class InkWellPage extends StatelessWidget {
               ),
               child: InkWell(
                 onTap: () {},
-                borderRadius: BorderRadius.all(Radius.circular(20)),
+                borderRadius: const BorderRadius.all(Radius.circular(20)),
                 child: Container(
-                  padding: EdgeInsets.symmetric(vertical: 8, horizontal: 20),
-                  child: Text(
+                  padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
+                  child: const Text(
                     "Ink效果",
                     style: TextStyle(color: Colors.white),
                   ),

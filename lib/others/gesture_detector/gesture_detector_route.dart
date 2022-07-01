@@ -7,65 +7,65 @@ class GestureDetectorPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("点击组件"),
+        title: const Text("GestureDetector"),
       ),
       body: GestureDetector(
-        onTapDown: (TapDownDetails details) {
-          print("按下");
-        },
-        onTapUp: (TapUpDetails details) {
-          print("抬起");
-        },
-        onTapCancel: () {
-          print("点击取消");
-        },
-        onTap: () {
-          print("点击");
-        },
-        onDoubleTap: () {
-          print("双击");
-        },
+        // onTapDown: (TapDownDetails details) {
+        //   print("onTapDown");
+        // },
+        // onTapUp: (TapUpDetails details) {
+        //   print("onTapUp");
+        // },
+        // onTapCancel: () {
+        //   print("onTapCancel");
+        // },
+        // onTap: () {
+        //   print("onTap");
+        // },
+        // onDoubleTap: () {
+        //   print("onDoubleTap");
+        // },
 
         // onLongPressStart: (LongPressStartDetails details) {
-        //   print("长按开始");
+        //   print("onLongPressStart");
         // },
         // onLongPress: () {
-        //   print("长按回调");
+        //   print("onLongPress");
         // },
         // onLongPressMoveUpdate: (LongPressMoveUpdateDetails details) {
-        //   print("长按移动");
+        //   print("onLongPressMoveUpdate");
         // },
         // onLongPressUp: () {
-        //   print("长按抬起");
+        //   print("onLongPressUp");
         // },
         // onLongPressEnd: (LongPressEndDetails details) {
-        //   print("长按结束");
+        //   print("onLongPressEnd");
         // },
 
         // onVerticalDragDown: (DragDownDetails details) {
-        //   print("垂直拖动按下");
+        //   print("onVerticalDragDown");
         // },
         // onVerticalDragStart: (DragStartDetails details) {
-        //   print("垂直拖动开始");
+        //   print("onVerticalDragStart");
         // },
         // onVerticalDragUpdate: (DragUpdateDetails details) {
-        //   print("垂直拖动移动");
+        //   print("onVerticalDragUpdate");
         // },
         // onVerticalDragCancel: () {
-        //   print("垂直拖动取消");
+        //   print("onVerticalDragCancel");
         // },
         // onVerticalDragEnd: (DragEndDetails details) {
-        //   print("垂直拖动结束");
+        //   print("onVerticalDragEnd");
         // },
 
         // onScaleStart: (ScaleStartDetails details) {
-        //   print("缩放开始");
+        //   print("onScaleStart");
         // },
         // onScaleUpdate: (ScaleUpdateDetails details) {
-        //   print("缩放更新中");
+        //   print("onScaleUpdate");
         // },
         // onScaleEnd: (ScaleEndDetails details) {
-        //   print("缩放结束");
+        //   print("onScaleEnd");
         // },
 
         child: Center(
