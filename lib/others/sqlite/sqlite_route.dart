@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:myflutter/utils/sqlite_utils.dart';
 
-import '../../utils/snack_bar_utls.dart';
+import '../../utils/snack_bar_utils.dart';
 import 'Student.dart';
 
 class SqlitePage extends StatefulWidget {

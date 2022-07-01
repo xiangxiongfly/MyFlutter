@@ -42,21 +42,21 @@ class GestureDetectorPage extends StatelessWidget {
         //   print("onLongPressEnd");
         // },
 
-        // onVerticalDragDown: (DragDownDetails details) {
-        //   print("onVerticalDragDown");
-        // },
-        // onVerticalDragStart: (DragStartDetails details) {
-        //   print("onVerticalDragStart");
-        // },
-        // onVerticalDragUpdate: (DragUpdateDetails details) {
-        //   print("onVerticalDragUpdate");
-        // },
-        // onVerticalDragCancel: () {
-        //   print("onVerticalDragCancel");
-        // },
-        // onVerticalDragEnd: (DragEndDetails details) {
-        //   print("onVerticalDragEnd");
-        // },
+        onVerticalDragDown: (DragDownDetails details) {
+          // print("onVerticalDragDown");
+        },
+        onVerticalDragStart: (DragStartDetails details) {
+          // print("onVerticalDragStart");
+        },
+        onVerticalDragUpdate: (DragUpdateDetails details) {
+          // print("onVerticalDragUpdate");
+        },
+        onVerticalDragCancel: () {
+          // print("onVerticalDragCancel");
+        },
+        onVerticalDragEnd: (DragEndDetails details) {
+          // print("onVerticalDragEnd");
+        },
 
         // onScaleStart: (ScaleStartDetails details) {
         //   print("onScaleStart");

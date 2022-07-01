@@ -3,11 +3,10 @@ import 'package:myflutter/basic/animation/animation_curve_page.dart';
 import 'package:myflutter/basic/animation/animation_multi2_page.dart';
 import 'package:myflutter/basic/animation/animation_multi3_page.dart';
 import 'package:myflutter/basic/animation/animation_multi_page.dart';
-import 'package:myflutter/basic/animation/animation_scale_page.dart';
+import 'package:myflutter/basic/animation/animation_simple_page.dart';
 import 'package:myflutter/basic/animation/animation_tween_page.dart';
 
 import 'widget_scale_transition_page.dart';
-
 
 class AnimationPage extends StatelessWidget {
   const AnimationPage({Key? key}) : super(key: key);
@@ -19,15 +18,15 @@ class AnimationPage extends StatelessWidget {
       body: Center(
         child: Column(
           children: [
-            RaisedButton(
-              child: const Text("缩放动画"),
+            ElevatedButton(
+              child: const Text("基本使用"),
               onPressed: () {
                 Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
-                  return AnimationScalePage();
+                  return const AnimationSimplePage();
                 }));
               },
             ),
-            RaisedButton(
+            ElevatedButton(
               child: const Text("区间动画"),
               onPressed: () {
                 Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
@@ -35,7 +34,7 @@ class AnimationPage extends StatelessWidget {
                 }));
               },
             ),
-            RaisedButton(
+            ElevatedButton(
               child: const Text("Curve"),
               onPressed: () {
                 Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
@@ -43,7 +42,7 @@ class AnimationPage extends StatelessWidget {
                 }));
               },
             ),
-            RaisedButton(
+            ElevatedButton(
               child: const Text("多动画混合使用"),
               onPressed: () {
                 Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
@@ -51,7 +50,7 @@ class AnimationPage extends StatelessWidget {
                 }));
               },
             ),
-            RaisedButton(
+            ElevatedButton(
               child: const Text("多动画混合使用2"),
               onPressed: () {
                 Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
@@ -59,7 +58,7 @@ class AnimationPage extends StatelessWidget {
                 }));
               },
             ),
-            RaisedButton(
+            ElevatedButton(
               child: const Text("动画序列"),
               onPressed: () {
                 Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
@@ -67,7 +66,7 @@ class AnimationPage extends StatelessWidget {
                 }));
               },
             ),
-            RaisedButton(
+            ElevatedButton(
               child: const Text("动画组件"),
               onPressed: () {
                 Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {

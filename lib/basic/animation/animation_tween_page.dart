@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 /// 过渡
 class AnimationTweenPage extends StatefulWidget {
+  const AnimationTweenPage({Key? key}) : super(key: key);
+
   @override
   State<StatefulWidget> createState() => _AnimationTweenPageState();
 }

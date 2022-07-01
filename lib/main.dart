@@ -51,6 +51,7 @@ import 'basic/simple/table_route.dart';
 import 'basic/simple/text_route.dart';
 import 'demos/comment_list.dart';
 import 'demos/login.dart';
+import 'demos/slide.dart';
 import 'navigation_page_route.dart';
 import 'others/data/data_route.dart';
 import 'others/gesture_detector/gesture_type_route.dart';
@@ -118,8 +119,6 @@ class MyApp extends StatelessWidget {
         "scroll_view_route": (context) => SingleChildScrollViewPage(),
         "notification_listener_route": (context) => NotificationListenerPage(),
         "custom_scroll_view_route": (context) => CustomScrollViewPage(),
-        //动画组件
-        "animation_type_page": (context) => const AnimationPage(),
       },
       initialRoute: "/",
     );
@@ -645,14 +644,8 @@ class HomePage extends StatelessWidget {
               child: const Text("拖拽组件"),
               onPressed: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return DragPage();
+                  return const DragPage();
                 }));
-              },
-            ),
-            ElevatedButton(
-              child: const Text("动画组件"),
-              onPressed: () {
-                Navigator.pushNamed(context, "animation_type_page");
               },
             ),
           ],
@@ -730,6 +723,14 @@ class MessagePage extends StatelessWidget {
             },
           ),
           ElevatedButton(
+            child: const Text("动画"),
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return const AnimationPage();
+              }));
+            },
+          ),
+          ElevatedButton(
             child: const Text("嵌入原生 Android View"),
             onPressed: () {
               Navigator.push(context, MaterialPageRoute(builder: (context) {
@@ -778,7 +779,16 @@ class SettingPage extends StatelessWidget {
                 MaterialPageRoute(builder: (context) => const LoginPage()),
               );
             },
-          )
+          ),
+          ElevatedButton(
+            child: const Text("左滑删除"),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const SlidePage()),
+              );
+            },
+          ),
         ],
       ),
     );
