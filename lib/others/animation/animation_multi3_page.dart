@@ -1,30 +1,47 @@
-import 'package:flutter/animation.dart';
 import 'package:flutter/material.dart';
 
 /// 多动画混合使用
 class AnimationMulti3Page extends StatefulWidget {
+  const AnimationMulti3Page({Key? key}) : super(key: key);
+
   @override
   State<StatefulWidget> createState() {
     return _AnimationMulti3PageState();
   }
 }
 
-class _AnimationMulti3PageState extends State<AnimationMulti3Page> with SingleTickerProviderStateMixin {
+class _AnimationMulti3PageState extends State<AnimationMulti3Page>
+    with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation _animation;
 
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(vsync: this, duration: Duration(seconds: 2))
+    _controller = AnimationController(vsync: this, duration: const Duration(seconds: 2))
       ..addListener(() {
         setState(() {});
       });
     _animation = TweenSequence([
-      TweenSequenceItem(tween: Tween(begin: 100.0, end: 200.0).chain(CurveTween(curve: Curves.easeIn)), weight: 40),
-      TweenSequenceItem(tween: ConstantTween<double>(200.0), weight: 20),
-      TweenSequenceItem(tween: Tween(begin: 200.0, end: 300.0), weight: 40),
+      TweenSequenceItem(
+        tween: Tween(begin: 100.0, end: 200.0).chain(CurveTween(curve: Curves.easeIn)),
+        weight: 40,
+      ),
+      TweenSequenceItem(
+        tween: ConstantTween<double>(200.0),
+        weight: 20,
+      ),
+      TweenSequenceItem(
+        tween: Tween(begin: 200.0, end: 300.0),
+        weight: 40,
+      ),
     ]).animate(_controller);
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 
   @override
@@ -51,11 +68,5 @@ class _AnimationMulti3PageState extends State<AnimationMulti3Page> with SingleTi
         ),
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
   }
 }

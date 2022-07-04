@@ -1,13 +1,15 @@
-import 'package:flutter/animation.dart';
 import 'package:flutter/material.dart';
 
 /// 多动画混合使用
 class AnimationMulti2Page extends StatefulWidget {
+  const AnimationMulti2Page({Key? key}) : super(key: key);
+
   @override
   State<StatefulWidget> createState() => _AnimationMulti2PageState();
 }
 
-class _AnimationMulti2PageState extends State<AnimationMulti2Page> with SingleTickerProviderStateMixin {
+class _AnimationMulti2PageState extends State<AnimationMulti2Page>
+    with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _sizeAnimation;
   late Animation<Color?> _colorAnimation;
@@ -15,13 +17,22 @@ class _AnimationMulti2PageState extends State<AnimationMulti2Page> with SingleTi
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(vsync: this, duration: Duration(seconds: 2))
+    _controller = AnimationController(vsync: this, duration: const Duration(seconds: 2))
       ..addListener(() {
         setState(() {});
       });
-    _sizeAnimation = _controller.drive(CurveTween(curve: Interval(0.0, 0.5))).drive(Tween(begin: 100, end: 200));
-    _colorAnimation =
-        _controller.drive(CurveTween(curve: Interval(0.5, 1.0))).drive(ColorTween(begin: Colors.blue, end: Colors.red));
+    _sizeAnimation = _controller
+        .drive(CurveTween(curve: const Interval(0.0, 0.5)))
+        .drive(Tween(begin: 100, end: 200));
+    _colorAnimation = _controller
+        .drive(CurveTween(curve: const Interval(0.5, 1.0)))
+        .drive(ColorTween(begin: Colors.blue, end: Colors.red));
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 
   @override
@@ -48,11 +59,5 @@ class _AnimationMulti2PageState extends State<AnimationMulti2Page> with SingleTi
         ),
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
   }
 }

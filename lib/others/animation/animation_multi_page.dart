@@ -1,13 +1,15 @@
-import 'package:flutter/animation.dart';
 import 'package:flutter/material.dart';
 
 /// 多动画混合使用
 class AnimationMultiPage extends StatefulWidget {
+  const AnimationMultiPage({Key? key}) : super(key: key);
+
   @override
   State<StatefulWidget> createState() => _AnimationMultiPageState();
 }
 
-class _AnimationMultiPageState extends State<AnimationMultiPage> with TickerProviderStateMixin {
+class _AnimationMultiPageState extends State<AnimationMultiPage>
+    with TickerProviderStateMixin {
   late AnimationController _sizeController;
   late AnimationController _colorController;
   late Animation<double> _sizeAnimation;
@@ -16,18 +18,23 @@ class _AnimationMultiPageState extends State<AnimationMultiPage> with TickerProv
   @override
   void initState() {
     super.initState();
-    _sizeController = AnimationController(vsync: this, duration: Duration(seconds: 2))
-      ..addListener(() {
-        setState(() {});
-      });
-    _sizeAnimation = _sizeController.drive(CurveTween(curve: Curves.linear)).drive(Tween(begin: 100, end: 200));
+    _sizeController =
+        AnimationController(vsync: this, duration: const Duration(seconds: 2))
+          ..addListener(() {
+            setState(() {});
+          });
+    _sizeAnimation = _sizeController
+        .drive(CurveTween(curve: Curves.linear))
+        .drive(Tween(begin: 100, end: 200));
 
-    _colorController = AnimationController(vsync: this, duration: Duration(seconds: 2))
-      ..addListener(() {
-        setState(() {});
-      });
-    _colorAnimation =
-        _colorController.drive(CurveTween(curve: Curves.linear)).drive(ColorTween(begin: Colors.blue, end: Colors.red));
+    _colorController =
+        AnimationController(vsync: this, duration: const Duration(seconds: 2))
+          ..addListener(() {
+            setState(() {});
+          });
+    _colorAnimation = _colorController
+        .drive(CurveTween(curve: Curves.linear))
+        .drive(ColorTween(begin: Colors.blue, end: Colors.red));
   }
 
   @override

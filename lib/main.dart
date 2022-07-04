@@ -2,21 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:myflutter/demos/banner.dart';
 import 'package:myflutter/others/sqlite/sqlite_route.dart';
+import 'package:myflutter/others/transform/transform_route.dart';
 import 'package:myflutter/platform_view_demo.dart';
 import 'package:myflutter/second.dart';
 import 'package:myflutter/test_route_widget.dart';
 import 'package:myflutter/utils/sp_utils.dart';
 import 'package:provider/provider.dart';
 
-import 'basic/animation/animation_page.dart';
 import 'basic/builder/builder_route.dart';
 import 'basic/builder/future_builder_route.dart';
 import 'basic/container/clip_route.dart';
 import 'basic/container/constraint_route.dart';
 import 'basic/container/container_route.dart';
-import 'basic/container/container_type_route.dart';
 import 'basic/container/fitted_box_route.dart';
-import 'basic/container/transform_route.dart';
 import 'basic/datetime/date_time_type_route.dart';
 import 'basic/dialog/dialog_route.dart';
 import 'basic/drag/drag_route.dart';
@@ -53,6 +51,7 @@ import 'demos/comment_list.dart';
 import 'demos/login.dart';
 import 'demos/slide.dart';
 import 'navigation_page_route.dart';
+import 'others/animation/animation_page.dart';
 import 'others/data/data_route.dart';
 import 'others/gesture_detector/gesture_type_route.dart';
 import 'others/json/json_route.dart';
@@ -111,9 +110,6 @@ class MyApp extends StatelessWidget {
         "second_page": (context) => const SecondPage(),
         "third_page": (context) => const ThirdPage(),
         "fourth_page": (context) => const FourthPage(),
-        //容器类组件
-        "container_type_route": (context) => ContainerTypePage(),
-        "transform_route": (context) => const TransformPage(),
         //滚动组件
         "scroll_type_route": (context) => ScrollTypePage(),
         "scroll_view_route": (context) => SingleChildScrollViewPage(),
@@ -613,12 +609,6 @@ class HomePage extends StatelessWidget {
               },
             ),
             ElevatedButton(
-              child: const Text("容器类组件"),
-              onPressed: () {
-                Navigator.pushNamed(context, "container_type_route");
-              },
-            ),
-            ElevatedButton(
               child: const Text("滚动组件"),
               onPressed: () {
                 Navigator.pushNamed(context, "scroll_type_route");
@@ -719,6 +709,14 @@ class MessagePage extends StatelessWidget {
             onPressed: () {
               Navigator.push(context, MaterialPageRoute(builder: (context) {
                 return const GestureTypePage();
+              }));
+            },
+          ),
+          ElevatedButton(
+            child: const Text("变形"),
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return const TransformPage();
               }));
             },
           ),
