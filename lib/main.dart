@@ -705,7 +705,7 @@ class MessagePage extends StatelessWidget {
             },
           ),
           ElevatedButton(
-            child: const Text("手势事件处理"),
+            child: const Text("手势事件"),
             onPressed: () {
               Navigator.push(context, MaterialPageRoute(builder: (context) {
                 return const GestureTypePage();
