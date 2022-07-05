@@ -11,11 +11,14 @@ class SlidePage extends StatelessWidget {
         title: const Text("左滑删除"),
       ),
       body: Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: const [
-            SlideDelete(),
-          ],
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: const [
+              SlideDelete(),
+            ],
+          ),
         ),
       ),
     );
@@ -37,22 +40,25 @@ class _SlideDeleteState extends State<SlideDelete> {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Container(
-        alignment: Alignment.centerLeft,
-        height: 70,
-        child: Slide(
-          actionsWidth: 100,
-          child: _createItem(),
-          actions: [
-            _createDelete(),
-          ],
+    return ClipRect(
+      child: Center(
+        child: Container(
+          alignment: Alignment.centerLeft,
+          height: 70,
+          child: Slide(
+            actionsWidth: 150,
+            child: _createItem(),
+            actions: [
+              _createFollow(),
+              _createDelete(),
+            ],
+          ),
         ),
       ),
     );
   }
 
-  _createDelete() {
+  Widget _createDelete() {
     return GestureDetector(
       onTap: () {
         if (delete) {
@@ -66,21 +72,29 @@ class _SlideDeleteState extends State<SlideDelete> {
       },
       child: Container(
         alignment: Alignment.center,
-        width: 100,
+        width: 75,
         color: Colors.red,
         child: Text(delete ? "确认删除" : "删除"),
       ),
     );
   }
 
+  Widget _createFollow() {
+    return Container(
+      alignment: Alignment.center,
+      width: 75,
+      color: Colors.yellow,
+      child: const Text("关注"),
+    );
+  }
+
   Widget _createItem() {
     return Container(
-      color: Colors.white,
-      margin: const EdgeInsets.only(left: 4),
+      color: Colors.blue,
       child: Padding(
         padding: const EdgeInsets.only(left: 20),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: const [
             Text("左滑删除"),
@@ -93,12 +107,12 @@ class _SlideDeleteState extends State<SlideDelete> {
 }
 
 class Slide extends StatefulWidget {
-  Key? key;
   List<Widget> actions = [];
   Widget child;
   final double actionsWidth;
 
-  Slide({this.key, required this.actionsWidth, required this.child, required this.actions}) : super(key: key);
+  Slide({Key? key, required this.actionsWidth, required this.child, required this.actions})
+      : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
