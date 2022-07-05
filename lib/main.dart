@@ -54,11 +54,11 @@ import 'demos/progress_button.dart';
 import 'demos/slide.dart';
 import 'navigation_page_route.dart';
 import 'others/animation/animation_page.dart';
-import 'others/data/data_route.dart';
 import 'others/gesture_detector/gesture_type_route.dart';
 import 'others/gesture_detector/inkwell_route.dart';
 import 'others/json/json_route.dart';
 import 'others/net/net_route.dart';
+import 'others/path_provider/data_route.dart';
 import 'others/provider/provider_route.dart';
 import 'others/sp/sp_route.dart';
 
