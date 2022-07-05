@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'gesture_detector_route.dart';
 import 'gesture_recognizer_route.dart';
-import 'inkwell_route.dart';
 import 'listener_route.dart';
 
 class GestureTypePage extends StatelessWidget {
@@ -46,17 +45,6 @@ class GestureTypePage extends StatelessWidget {
                   context,
                   MaterialPageRoute(builder: (BuildContext context) {
                     return const ListenerPage();
-                  }),
-                );
-              },
-            ),
-            ElevatedButton(
-              child: const Text("InkWell水波纹效果"),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (BuildContext context) {
-                    return const InkWellPage();
                   }),
                 );
               },

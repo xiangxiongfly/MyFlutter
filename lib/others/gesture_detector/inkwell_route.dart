@@ -16,7 +16,26 @@ class InkWellPage extends StatelessWidget {
               splashColor: Colors.red,
               child: const Padding(
                 padding: EdgeInsets.all(10),
-                child: Text("InkWell效果"),
+                child: Text("InkWell水波纹效果"),
+              ),
+            ),
+            const SizedBox(height: 10),
+            InkWell(
+              onTap: () {},
+              highlightColor: Colors.blue,
+              child: const Padding(
+                padding: EdgeInsets.all(10),
+                child: Text("InkWell高亮效果"),
+              ),
+            ),
+            const SizedBox(height: 10),
+            InkWell(
+              onTap: () {},
+              splashColor: Colors.red,
+              highlightColor: Colors.blue,
+              child: const Padding(
+                padding: EdgeInsets.all(10),
+                child: Text("InkWell混合效果"),
               ),
             ),
             const SizedBox(height: 10),
@@ -33,7 +52,7 @@ class InkWellPage extends StatelessWidget {
                 child: Container(
                   padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
                   child: const Text(
-                    "Ink效果",
+                    "Ink&InkWell",
                     style: TextStyle(color: Colors.white),
                   ),
                 ),

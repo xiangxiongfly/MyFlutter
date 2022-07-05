@@ -49,11 +49,14 @@ import 'basic/simple/table_route.dart';
 import 'basic/simple/text_route.dart';
 import 'demos/comment_list.dart';
 import 'demos/login.dart';
+import 'demos/person_info.dart';
+import 'demos/progress_button.dart';
 import 'demos/slide.dart';
 import 'navigation_page_route.dart';
 import 'others/animation/animation_page.dart';
 import 'others/data/data_route.dart';
 import 'others/gesture_detector/gesture_type_route.dart';
+import 'others/gesture_detector/inkwell_route.dart';
 import 'others/json/json_route.dart';
 import 'others/net/net_route.dart';
 import 'others/provider/provider_route.dart';
@@ -609,6 +612,17 @@ class HomePage extends StatelessWidget {
               },
             ),
             ElevatedButton(
+              child: const Text("InkWell"),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (BuildContext context) {
+                    return const InkWellPage();
+                  }),
+                );
+              },
+            ),
+            ElevatedButton(
               child: const Text("滚动组件"),
               onPressed: () {
                 Navigator.pushNamed(context, "scroll_type_route");
@@ -757,6 +771,24 @@ class SettingPage extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => const CommentListPage()),
+              );
+            },
+          ),
+          ElevatedButton(
+            child: const Text("个人信息"),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const PersonInfoPage()),
+              );
+            },
+          ),
+          ElevatedButton(
+            child: const Text("进度条按钮"),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const ProgressButtonPage()),
               );
             },
           ),

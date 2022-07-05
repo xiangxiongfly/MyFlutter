@@ -16,11 +16,17 @@ class _CommentListPageState extends State<CommentListPage> {
       appBar: AppBar(
         title: const Text("评论列表"),
       ),
-      body: ListView.builder(
-        itemBuilder: (BuildContext context, int index) {
-          return Item(index);
-        },
-        itemCount: 20,
+      body: Container(
+        color: Colors.grey.shade300,
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: ListView.builder(
+            itemBuilder: (BuildContext context, int index) {
+              return Item(index);
+            },
+            itemCount: 20,
+          ),
+        ),
       ),
     );
   }

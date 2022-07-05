@@ -1,14 +1,10 @@
 main() {
-  String path="/aaab";
-  print(getFileName(path));
-
-}
-
-
-String getFileName(String path) {
-  int index = path.lastIndexOf("/");
-  if (index <= 0) {
-    return path;
-  }
-  return path.substring(index + 1);
+  var result = 10.5.clamp(5, 10.0); // 10.0
+  print(result);
+  result = 0.75.clamp(5, 10.0); // 5
+  print(result);
+  result = (-10).clamp(-5, 5.0); // -5
+  print(result);
+  result = (-0.0).clamp(-5, 5.0); // -0.0
+  print(result);
 }
