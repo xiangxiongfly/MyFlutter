@@ -307,6 +307,7 @@ class _CustomTextFieldPageState extends State<CustomTextFieldPage> {
                     borderRadius: BorderRadius.all(Radius.circular(100)),
                     borderSide: BorderSide(color: Colors.black),
                   ),
+                  contentPadding: EdgeInsets.zero,
                 ),
               ),
             ),
@@ -315,6 +316,13 @@ class _CustomTextFieldPageState extends State<CustomTextFieldPage> {
               child: Column(
                 children: [
                   Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: _hasFocus1 ? Colors.red : Colors.grey,
+                        width: 1,
+                      ),
+                      borderRadius: const BorderRadius.all(Radius.circular(10)),
+                    ),
                     child: TextField(
                       focusNode: focusNode1,
                       cursorColor: Colors.black,
@@ -329,20 +337,21 @@ class _CustomTextFieldPageState extends State<CustomTextFieldPage> {
                           color: _hasFocus1 ? Colors.red : Colors.grey,
                         ),
                         border: InputBorder.none,
+                        contentPadding: EdgeInsets.zero,
                       ),
-                    ),
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: _hasFocus1 ? Colors.red : Colors.grey,
-                        width: 1,
-                      ),
-                      borderRadius: const BorderRadius.all(Radius.circular(10)),
                     ),
                   ),
                   const SizedBox(
                     height: 5,
                   ),
                   Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: _hasFocus2 ? Colors.red : Colors.grey,
+                        width: 1,
+                      ),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
                     child: TextField(
                       focusNode: focusNode2,
                       cursorColor: Colors.black,
@@ -357,15 +366,9 @@ class _CustomTextFieldPageState extends State<CustomTextFieldPage> {
                           color: _hasFocus2 ? Colors.red : Colors.grey,
                         ),
                         border: InputBorder.none,
+                        contentPadding: EdgeInsets.zero,
                       ),
                       obscureText: true,
-                    ),
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: _hasFocus2 ? Colors.red : Colors.grey,
-                        width: 1,
-                      ),
-                      borderRadius: BorderRadius.circular(10),
                     ),
                   ),
                 ],

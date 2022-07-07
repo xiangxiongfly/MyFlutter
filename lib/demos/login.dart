@@ -148,6 +148,7 @@ class _LoginPage extends State<LoginPage> {
         FilteringTextInputFormatter.digitsOnly,
       ],
       decoration: InputDecoration(
+        contentPadding: EdgeInsets.zero,
         filled: true,
         fillColor: const Color(0x30CCCCCC),
         enabledBorder: const OutlineInputBorder(
@@ -186,6 +187,7 @@ class _LoginPage extends State<LoginPage> {
     return TextField(
       controller: _pwdController,
       decoration: InputDecoration(
+        contentPadding: EdgeInsets.zero,
         filled: true,
         fillColor: const Color(0x30CCCCCC),
         enabledBorder: const OutlineInputBorder(
