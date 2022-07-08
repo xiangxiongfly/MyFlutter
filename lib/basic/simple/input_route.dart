@@ -100,6 +100,9 @@ class _SimpleTextFieldPageState extends State<SimpleTextFieldPage> {
                 controller: _usernameController,
                 inputFormatters: [
                   FilteringTextInputFormatter.allow(RegExp("[a-zA-Z]")),
+                  // LengthLimitingTextInputFormatter(11),
+                  // FilteringTextInputFormatter.digitsOnly,
+                  // FilteringTextInputFormatter.singleLineFormatter,
                 ],
                 decoration: const InputDecoration(
                   labelText: "用户名",
@@ -112,7 +115,7 @@ class _SimpleTextFieldPageState extends State<SimpleTextFieldPage> {
               ),
               TextField(
                 inputFormatters: [
-                  FilteringTextInputFormatter.allow(RegExp("[a-zA-Z0-9.]")),
+                  FilteringTextInputFormatter.allow(RegExp("[@a-zA-Z0-9.]")),
                 ],
                 decoration: const InputDecoration(
                   labelText: "邮箱",
