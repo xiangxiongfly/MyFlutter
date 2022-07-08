@@ -13,7 +13,7 @@ class SliverAppBarPage extends StatelessWidget {
             expandedHeight: 200,
             flexibleSpace: FlexibleSpaceBar(
               title: const Text("SliverAppBar"),
-              background: Image.asset("images/avatar.jpg", fit: BoxFit.cover),
+              background: Image.asset("assets/images/avatar.jpg", fit: BoxFit.cover),
             ),
           ),
           SliverFixedExtentList(

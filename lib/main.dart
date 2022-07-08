@@ -217,7 +217,7 @@ class _MyBodyState extends State<MyBody> {
                     padding: const EdgeInsets.symmetric(horizontal: 16),
                     child: ClipOval(
                       child: Image.asset(
-                        "images/avatar.jpg",
+                        "assets/images/avatar.jpg",
                         width: 80,
                       ),
                     ),

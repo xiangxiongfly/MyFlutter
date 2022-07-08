@@ -16,7 +16,7 @@ class NestedScrollViewPage extends StatelessWidget {
               collapsedHeight: 0,
               expandedHeight: 200,
               flexibleSpace: FlexibleSpaceBar(
-                background: Image.asset("images/bird.jpg", fit: BoxFit.cover),
+                background: Image.asset("assets/images/bird.jpg", fit: BoxFit.cover),
               ),
             ),
           ];

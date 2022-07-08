@@ -22,13 +22,13 @@ class ImagePage extends StatelessWidget {
               const Text("加载本地图片1："),
               const Image(
                 color: Colors.black,
-                image: AssetImage("images/pub.png"),
+                image: AssetImage("assets/images/pub.png"),
                 width: 100,
                 repeat: ImageRepeat.repeat,
               ),
               const Text("加载本地图片2："),
               Image.asset(
-                "images/logo.png",
+                "assets/images/logo.png",
                 width: 100,
               ),
               const SizedBox(height: 20),
@@ -121,7 +121,7 @@ class ImagePage extends StatelessWidget {
                   bool wasSynchronouslyLoaded,
                 ) {
                   if (frame == null) {
-                    return Image.asset("images/logo.png", width: 100);
+                    return Image.asset("assets/images/logo.png", width: 100);
                   } else {
                     return child;
                   }
@@ -132,7 +132,7 @@ class ImagePage extends StatelessWidget {
                   Object error,
                   StackTrace? stackTrace,
                 ) {
-                  return Image.asset("images/user.png", width: 100);
+                  return Image.asset("assets/images/user.png", width: 100);
                 },
               ),
               Text(

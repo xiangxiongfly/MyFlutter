@@ -43,7 +43,7 @@ class ContainerPage extends StatelessWidget {
                 height: 150,
                 decoration: BoxDecoration(
                   image: const DecorationImage(
-                    image: AssetImage("images/avatar.jpg"),
+                    image: AssetImage("assets/images/avatar.jpg"),
                     fit: BoxFit.cover,
                   ),
                   shape: BoxShape.circle,

@@ -5,7 +5,7 @@ class ClipPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Widget avatar = Image.asset("images/avatar.jpg", width: 100, height: 100);
+    Widget avatar = Image.asset("assets/images/avatar.jpg", width: 100, height: 100);
     return Scaffold(
       appBar: AppBar(
         title: const Text("Clip剪裁组件"),
@@ -47,7 +47,7 @@ class ClipPage extends StatelessWidget {
                   child: SizedBox(
                     width: 100,
                     height: 60,
-                    child: Image.asset("images/avatar.jpg", fit: BoxFit.cover),
+                    child: Image.asset("assets/images/avatar.jpg", fit: BoxFit.cover),
                   ),
                 ),
                 const SizedBox(height: 10),

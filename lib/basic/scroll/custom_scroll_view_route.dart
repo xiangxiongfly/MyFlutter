@@ -38,7 +38,7 @@ CustomScrollView buildCustomScrollView2() {
     flexibleSpace: FlexibleSpaceBar(
       title: const Text("hello world"),
       background: Image.asset(
-        "images/logo.png",
+        "assets/images/logo.png",
         fit: BoxFit.cover,
       ),
     ),

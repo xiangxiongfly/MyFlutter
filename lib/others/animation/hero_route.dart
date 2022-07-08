@@ -43,7 +43,7 @@ class _HeroFirstPageState extends State<HeroFirstPage> {
               child: Container(
                 color: Colors.redAccent,
                 child: Image.asset(
-                  'images/logo.png',
+                  'assets/images/logo.png',
                 ),
               ),
             ),
@@ -68,7 +68,7 @@ class HeroSecondPage extends StatelessWidget {
         child: Hero(
           tag: "hero",
           child: Image.asset(
-            'images/logo.png',
+            'assets/images/logo.png',
           ),
         ),
       ),

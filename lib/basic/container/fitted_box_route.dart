@@ -18,7 +18,7 @@ class FittedBoxPage extends StatelessWidget {
                   width: 100,
                   height: 100,
                   color: Colors.red,
-                  child: const Image(image: AssetImage("images/bird.jpg")),
+                  child: const Image(image: AssetImage("assets/images/bird.jpg")),
                 ),
                 const Text("BoxFit.fill"),
                 Container(
@@ -27,7 +27,7 @@ class FittedBoxPage extends StatelessWidget {
                   color: Colors.red,
                   child: const FittedBox(
                     fit: BoxFit.fill,
-                    child: Image(image: AssetImage("images/bird.jpg")),
+                    child: Image(image: AssetImage("assets/images/bird.jpg")),
                   ),
                 ),
                 const SizedBox(height: 20),
@@ -38,7 +38,7 @@ class FittedBoxPage extends StatelessWidget {
                   color: Colors.red,
                   child: const FittedBox(
                     fit: BoxFit.contain,
-                    child: Image(image: AssetImage("images/bird.jpg")),
+                    child: Image(image: AssetImage("assets/images/bird.jpg")),
                   ),
                 ),
                 const SizedBox(height: 20),
@@ -49,7 +49,7 @@ class FittedBoxPage extends StatelessWidget {
                   color: Colors.red,
                   child: const FittedBox(
                     fit: BoxFit.cover,
-                    child: Image(image: AssetImage("images/bird.jpg")),
+                    child: Image(image: AssetImage("assets/images/bird.jpg")),
                   ),
                 ),
                 const SizedBox(height: 20),
@@ -60,7 +60,7 @@ class FittedBoxPage extends StatelessWidget {
                   color: Colors.red,
                   child: const FittedBox(
                     fit: BoxFit.fitWidth,
-                    child: Image(image: AssetImage("images/bird.jpg")),
+                    child: Image(image: AssetImage("assets/images/bird.jpg")),
                   ),
                 ),
                 const SizedBox(height: 20),
@@ -71,7 +71,7 @@ class FittedBoxPage extends StatelessWidget {
                   color: Colors.red,
                   child: const FittedBox(
                     fit: BoxFit.fitHeight,
-                    child: Image(image: AssetImage("images/bird.jpg")),
+                    child: Image(image: AssetImage("assets/images/bird.jpg")),
                   ),
                 ),
                 const SizedBox(height: 20),
@@ -82,7 +82,7 @@ class FittedBoxPage extends StatelessWidget {
                 //   color: Colors.red,
                 //   child: const FittedBox(
                 //     fit: BoxFit.none,
-                //     child: Image(image: AssetImage("images/bird.jpg")),
+                //     child: Image(image: AssetImage("assets/images/bird.jpg")),
                 //   ),
                 // ),
                 const SizedBox(height: 20),
@@ -93,7 +93,7 @@ class FittedBoxPage extends StatelessWidget {
                   color: Colors.red,
                   child: const FittedBox(
                     fit: BoxFit.scaleDown,
-                    child: Image(image: AssetImage("images/bird.jpg")),
+                    child: Image(image: AssetImage("assets/images/bird.jpg")),
                   ),
                 ),
               ],
