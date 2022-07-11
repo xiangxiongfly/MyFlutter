@@ -93,8 +93,8 @@ class _LoginPage extends State<LoginPage> {
     return Row(
       children: [
         Expanded(
-          child: Container(),
           flex: 1,
+          child: Container(),
         ),
         Column(
           children: [
@@ -132,8 +132,8 @@ class _LoginPage extends State<LoginPage> {
           ],
         ),
         Expanded(
-          child: Container(),
           flex: 1,
+          child: Container(),
         ),
       ],
     );
@@ -245,6 +245,11 @@ class _LoginPage extends State<LoginPage> {
         shape: const CircleBorder(side: BorderSide(color: Color(0x00ffffff))),
         color: Colors.blue,
         disabledColor: const Color(0x30cccccc),
+        onPressed: submitEnable
+            ? () {
+                submit(context);
+              }
+            : null,
         child: const Padding(
           padding: EdgeInsets.all(20),
           child: Icon(
@@ -253,11 +258,6 @@ class _LoginPage extends State<LoginPage> {
             size: 30,
           ),
         ),
-        onPressed: submitEnable
-            ? () {
-                submit(context);
-              }
-            : null,
       ),
     );
   }
