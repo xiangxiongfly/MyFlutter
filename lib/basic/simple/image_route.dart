@@ -16,7 +16,7 @@ class ImagePage extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.all(20),
+          padding: const EdgeInsets.all(20),
           child: Column(
             children: [
               const Text("加载本地图片1："),
@@ -59,9 +59,9 @@ class ImagePage extends StatelessWidget {
                   } else {
                     return AnimatedOpacity(
                       opacity: frame == null ? 0 : 1,
-                      duration: const Duration(seconds: 2),
-                      child: child,
+                      duration: const Duration(seconds: 5),
                       curve: Curves.easeOut,
+                      child: child,
                     );
                   }
                 },
@@ -93,8 +93,7 @@ class ImagePage extends StatelessWidget {
                 width: 100,
                 height: 100,
                 padding: const EdgeInsets.all(3),
-                decoration: const BoxDecoration(
-                    shape: BoxShape.circle, color: Colors.blue),
+                decoration: const BoxDecoration(shape: BoxShape.circle, color: Colors.blue),
                 child: Container(
                   decoration: const BoxDecoration(
                     shape: BoxShape.circle,

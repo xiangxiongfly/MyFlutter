@@ -11,6 +11,7 @@ import 'package:provider/provider.dart';
 
 import 'basic/builder/builder_route.dart';
 import 'basic/builder/future_builder_route.dart';
+import 'basic/builder/stream_builder_route.dart';
 import 'basic/container/clip_route.dart';
 import 'basic/container/constraint_route.dart';
 import 'basic/container/container_route.dart';
@@ -20,7 +21,7 @@ import 'basic/dialog/dialog_route.dart';
 import 'basic/drag/drag_route.dart';
 import 'basic/layout/align__route.dart';
 import 'basic/layout/flex_route.dart';
-import 'basic/layout/layout_builder_route.dart';
+import 'basic/builder/layout_builder_route.dart';
 import 'basic/layout/padding_margin_route.dart';
 import 'basic/layout/row_column_route.dart';
 import 'basic/layout/stack_route.dart';
@@ -49,6 +50,7 @@ import 'basic/simple/table_route.dart';
 import 'basic/simple/text_route.dart';
 import 'demos/comment_list.dart';
 import 'demos/login.dart';
+import 'demos/login2/login2.dart';
 import 'demos/person_info.dart';
 import 'demos/progress_button.dart';
 import 'demos/slide.dart';
@@ -490,15 +492,6 @@ class HomePage extends StatelessWidget {
               },
             ),
             ElevatedButton(
-              child: const Text("LayoutBuilder组件"),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const LayoutBuilderPage()),
-                );
-              },
-            ),
-            ElevatedButton(
               child: const Text("ListView组件"),
               onPressed: () {
                 Navigator.push(
@@ -588,6 +581,15 @@ class HomePage extends StatelessWidget {
               },
             ),
             ElevatedButton(
+              child: const Text("LayoutBuilder组件"),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const LayoutBuilderPage()),
+                );
+              },
+            ),
+            ElevatedButton(
               child: const Text("Builder组件"),
               onPressed: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
@@ -600,6 +602,14 @@ class HomePage extends StatelessWidget {
               onPressed: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
                   return const FutureBuilderPage();
+                }));
+              },
+            ),
+            ElevatedButton(
+              child: const Text("StreamBuilder组件"),
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return const StreamBuilderPage();
                 }));
               },
             ),
@@ -807,6 +817,15 @@ class SettingPage extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => const LoginPage()),
+              );
+            },
+          ),
+          ElevatedButton(
+            child: const Text("登陆界面"),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const Login2Page()),
               );
             },
           ),

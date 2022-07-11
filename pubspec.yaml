@@ -39,6 +39,7 @@ dependencies:
   shared_preferences: ^2.0.15
   json_annotation: ^4.5.0
   sqflite: ^2.0.3
+  shake_animation_widget: ^3.0.3
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -77,6 +78,7 @@ flutter:
     - assets/images/user.png
     - assets/images/avatar.jpg
     - assets/images/bird.jpg
+    - assets/images/welcome.jpg
     - assets/json/student.json
     - assets/json/students.json
 

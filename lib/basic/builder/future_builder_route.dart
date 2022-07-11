@@ -10,12 +10,13 @@ class FutureBuilderPage extends StatefulWidget {
 }
 
 class _FutureBuilderPageState extends State<FutureBuilderPage> {
-  final Future<String> _futureSuccess = Future.delayed(const Duration(seconds: 3), () {
+  late Future<dynamic> _futureSuccess = Future.delayed(const Duration(seconds: 3), () {
     return "成功了";
   });
-  final Future<dynamic> _futureError = Future.delayed(const Duration(seconds: 3), () {
+  late Future<dynamic> _futureError = Future.delayed(const Duration(seconds: 3), () {
     return Future.error("失败了");
   });
+
   String _msg = "加载中";
   String _msg2 = "加载中";
 
@@ -38,8 +39,12 @@ class _FutureBuilderPageState extends State<FutureBuilderPage> {
                     widget = const Icon(Icons.error, color: Colors.red, size: 50);
                     _msg = snapshot.error.toString();
                   } else {
+                    if (snapshot.hasData) {
+                      _msg = snapshot.data.toString();
+                    } else {
+                      _msg = "无数据";
+                    }
                     widget = const Icon(Icons.check_circle, color: Colors.green, size: 50);
-                    _msg = snapshot.data.toString();
                   }
                 } else {
                   widget = const CircularProgressIndicator();
@@ -64,6 +69,17 @@ class _FutureBuilderPageState extends State<FutureBuilderPage> {
                 );
               },
             ),
+            ElevatedButton(
+              onPressed: () {
+                setState(() {
+                  _futureSuccess = Future.delayed(const Duration(seconds: 3), () {
+                    return "成功了";
+                  });
+                });
+              },
+              child: const Text("发送成功数据"),
+            ),
+            const SizedBox(height: 10),
             FutureBuilder(
               future: _futureError,
               builder: (context, snapshot) {
@@ -98,6 +114,16 @@ class _FutureBuilderPageState extends State<FutureBuilderPage> {
                   ),
                 );
               },
+            ),
+            ElevatedButton(
+              onPressed: () {
+                setState(() {
+                  _futureError = Future.delayed(const Duration(seconds: 3), () {
+                    return Future.error("失败了");
+                  });
+                });
+              },
+              child: const Text("发送失败数据"),
             ),
           ],
         ),
