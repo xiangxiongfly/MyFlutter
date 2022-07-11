@@ -17,10 +17,52 @@ class DialogPage extends StatelessWidget {
             children: [
               OutlinedButton(
                 onPressed: () {
-                  showAlertDialog(context);
+                  showDialogFunction(context);
                 },
-                child: const Text("AlertDialog弹窗"),
+                child: const Text("showDialog"),
               ),
+              OutlinedButton(
+                onPressed: () {
+                  showCupertinoDialogFunction(context);
+                },
+                child: const Text("showCupertinoDialog"),
+              ),
+              OutlinedButton(
+                onPressed: () {
+                  showGeneralDialogFunction(context);
+                },
+                child: const Text("showGeneralDialog 移动动画"),
+              ),
+              OutlinedButton(
+                onPressed: () {
+                  showGeneralDialogFunction2(context);
+                },
+                child: const Text("showGeneralDialog2 缩放动画"),
+              ),
+              Builder(builder: (context) {
+                return OutlinedButton(
+                  onPressed: () {
+                    showBottomSheetFunction(context);
+                  },
+                  child: const Text("showBottomSheet"),
+                );
+              }),
+              Builder(builder: (context) {
+                return OutlinedButton(
+                  onPressed: () {
+                    showModalBottomSheetFunction(context);
+                  },
+                  child: const Text("showModalBottomSheet"),
+                );
+              }),
+              Builder(builder: (context) {
+                return OutlinedButton(
+                  onPressed: () {
+                    showCupertinoModalPopupFunction(context);
+                  },
+                  child: const Text("showCupertinoModalPopup"),
+                );
+              }),
               OutlinedButton(
                 onPressed: () {
                   showCustomAlertDialog(context);
@@ -53,8 +95,8 @@ class DialogPage extends StatelessWidget {
   }
 }
 
-/// AlertDialog
-showAlertDialog(context) {
+/// showDialog
+showDialogFunction(context) {
   showDialog(
     context: context,
     builder: (BuildContext context) {
@@ -62,14 +104,273 @@ showAlertDialog(context) {
         title: const Text("提示"),
         content: const Text("确定删除吗？"),
         actions: [
-          FlatButton(
+          TextButton(
             onPressed: () {
               Navigator.of(context).pop();
             },
             child: const Text("取消"),
           ),
-          FlatButton(onPressed: () {}, child: const Text("确定")),
+          TextButton(onPressed: () {}, child: const Text("确定")),
         ],
+      );
+    },
+  );
+}
+
+/// showCupertinoDialog
+showCupertinoDialogFunction(context) {
+  showCupertinoDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: const Text("提示"),
+        content: const Text("确定删除吗？"),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            child: const Text("取消"),
+          ),
+          TextButton(onPressed: () {}, child: const Text("确定")),
+        ],
+      );
+    },
+  );
+}
+
+/// showGeneralDialog：平移动画
+showGeneralDialogFunction(context) {
+  showGeneralDialog(
+    context: context,
+    pageBuilder:
+        (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) {
+      return AlertDialog(
+        title: const Text("提示"),
+        content: const Text("确定删除吗？"),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            child: const Text("取消"),
+          ),
+          TextButton(onPressed: () {}, child: const Text("确定")),
+        ],
+      );
+    },
+    transitionDuration: const Duration(seconds: 1),
+    transitionBuilder: (BuildContext context, Animation<double> animation,
+        Animation<double> secondaryAnimation, Widget child) {
+      return FractionalTranslation(
+        //从左向右滑出
+        // translation: Offset(animation.value - 1, 0),
+        //从右向左滑出
+        // translation: Offset(1 - animation.value, 0),
+        //从顶部滑出
+        // translation: Offset(0, animation.value - 1),
+        //从底部滑出
+        translation: Offset(0, 1 - animation.value),
+        child: child,
+      );
+    },
+  );
+}
+
+/// showGeneralDialog：缩放动画
+showGeneralDialogFunction2(context) {
+  showGeneralDialog(
+    context: context,
+    pageBuilder:
+        (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) {
+      return AlertDialog(
+        title: const Text("提示"),
+        content: const Text("确定删除吗？"),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            child: const Text("取消"),
+          ),
+          TextButton(onPressed: () {}, child: const Text("确定")),
+        ],
+      );
+    },
+    transitionBuilder: (BuildContext context, Animation<double> animation,
+        Animation<double> secondaryAnimation, Widget child) {
+      return ScaleTransition(
+        alignment: Alignment.center,
+        scale: animation,
+        child: child,
+      );
+    },
+  );
+}
+
+/// showBottomSheet：底部弹窗
+showBottomSheetFunction(context) {
+  showBottomSheet(
+    context: context,
+    builder: (BuildContext context) {
+      return Container(
+        padding: const EdgeInsets.all(10),
+        color: Colors.white,
+        height: 240,
+        width: double.infinity,
+        child: Column(
+          children: [
+            Container(
+              alignment: Alignment.center,
+              height: 55,
+              child: const Text(
+                "提示",
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              ),
+            ),
+            const Expanded(
+              child: Text(
+                "这是一些信息这是一些信息这是一些信息这是一些信息这是一些信息这是一些信息",
+                style: TextStyle(fontSize: 14),
+              ),
+            ),
+            SizedBox(
+              height: 65,
+              child: Row(
+                children: [
+                  Expanded(
+                    child: TextButton(
+                      child: const Text("再考虑下"),
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                    ),
+                  ),
+                  Expanded(
+                    child: TextButton(
+                      child: const Text("考虑好了"),
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      );
+    },
+  );
+}
+
+/// showModalBottomSheet：Material风格的底部弹窗
+showModalBottomSheetFunction(context) {
+  showModalBottomSheet(
+    context: context,
+    builder: (BuildContext context) {
+      return Container(
+        padding: const EdgeInsets.all(10),
+        color: Colors.white,
+        height: 240,
+        width: double.infinity,
+        child: Column(
+          children: [
+            Container(
+              alignment: Alignment.center,
+              height: 55,
+              child: const Text(
+                "提示",
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              ),
+            ),
+            const Expanded(
+              child: Text(
+                "这是一些信息这是一些信息这是一些信息这是一些信息这是一些信息这是一些信息",
+                style: TextStyle(fontSize: 14),
+              ),
+            ),
+            SizedBox(
+              height: 65,
+              child: Row(
+                children: [
+                  Expanded(
+                    child: TextButton(
+                      child: const Text("再考虑下"),
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                    ),
+                  ),
+                  Expanded(
+                    child: TextButton(
+                      child: const Text("考虑好了"),
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      );
+    },
+  );
+}
+
+/// showCupertinoModalPopup：iOS风格的底部弹窗
+showCupertinoModalPopupFunction(context) {
+  showCupertinoModalPopup(
+    context: context,
+    builder: (BuildContext context) {
+      return Container(
+        padding: const EdgeInsets.all(10),
+        color: Colors.white,
+        height: 240,
+        width: double.infinity,
+        child: Column(
+          children: [
+            Container(
+              alignment: Alignment.center,
+              height: 55,
+              child: const Text(
+                "提示",
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              ),
+            ),
+            const Expanded(
+              child: Text(
+                "这是一些信息这是一些信息这是一些信息这是一些信息这是一些信息这是一些信息",
+                style: TextStyle(fontSize: 14),
+              ),
+            ),
+            SizedBox(
+              height: 65,
+              child: Row(
+                children: [
+                  Expanded(
+                    child: TextButton(
+                      child: const Text("再考虑下"),
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                    ),
+                  ),
+                  Expanded(
+                    child: TextButton(
+                      child: const Text("考虑好了"),
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       );
     },
   );
@@ -191,8 +492,9 @@ showCustomDialog(context) async {
               height: 80,
               child: Center(child: Text("确认删除吗？")),
             ),
-            const Divider(
+            Container(
               height: 1,
+              width: double.infinity,
               color: Colors.grey,
             ),
             SizedBox(
