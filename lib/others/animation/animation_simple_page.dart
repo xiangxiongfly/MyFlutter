@@ -97,10 +97,10 @@ class _AnimationSimplePageState extends State<AnimationSimplePage>
           PopupMenuButton(
             itemBuilder: (BuildContext context) {
               return <PopupMenuEntry>[
-                PopupMenuItem(child: const Text('缩放动画'), onTap: _scaleAnim),
-                PopupMenuItem(child: const Text('透明度动画'), onTap: _alphaAnim),
-                PopupMenuItem(child: const Text('旋转动画'), onTap: _rotationAnim),
-                PopupMenuItem(child: const Text('平移动画'), onTap: _slideAnim),
+                PopupMenuItem(onTap: _scaleAnim, child: const Text('缩放动画')),
+                PopupMenuItem(onTap: _alphaAnim, child: const Text('透明度动画')),
+                PopupMenuItem(onTap: _rotationAnim, child: const Text('旋转动画')),
+                PopupMenuItem(onTap: _slideAnim, child: const Text('平移动画')),
               ];
             },
           ),

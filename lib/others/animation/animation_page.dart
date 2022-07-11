@@ -7,7 +7,7 @@ import 'animation_multi_page.dart';
 import 'animation_simple_page.dart';
 import 'animation_tween_page.dart';
 import 'hero_route.dart';
-import 'widget_scale_transition_page.dart';
+import 'widget_animations_page.dart';
 
 class AnimationPage extends StatelessWidget {
   const AnimationPage({Key? key}) : super(key: key);
@@ -71,7 +71,7 @@ class AnimationPage extends StatelessWidget {
               child: const Text("动画组件"),
               onPressed: () {
                 Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
-                  return ScaleTransitionPage();
+                  return const ScaleTransitionPage();
                 }));
               },
             ),
