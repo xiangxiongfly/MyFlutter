@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:myflutter/demos/login2/shake_text_filed.dart';
 import 'package:myflutter/utils/snack_bar_utils.dart';
-import 'package:shake_animation_widget/shake_animation_widget.dart';
+import 'anim_lib/shake_animation_controller.dart';
 import 'keyboard_placeholder_widget.dart';
 
 class Login2Page extends StatefulWidget {

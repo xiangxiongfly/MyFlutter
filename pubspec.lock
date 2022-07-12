@@ -469,13 +469,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.2.0"
-  shake_animation_widget:
-    dependency: "direct main"
-    description:
-      name: shake_animation_widget
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "3.0.3"
   shared_preferences:
     dependency: "direct main"
     description:

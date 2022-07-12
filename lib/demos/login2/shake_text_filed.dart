@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:shake_animation_widget/shake_animation_widget.dart';
+import 'anim_lib/shake_animation_controller.dart';
+import 'anim_lib/shake_animation_type.dart';
+import 'anim_lib/shake_animation_widget.dart';
 
 /// 抖动的输入框
 class ShakeTextFiled extends StatefulWidget {
