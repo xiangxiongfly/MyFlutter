@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/cupertino.dart';
 
 /// 键盘占位
@@ -13,11 +15,11 @@ class KeyboardPlaceholderWidget extends StatefulWidget {
 
   @override
   State<StatefulWidget> createState() {
-    return _KeyboardPlaceholderWdget();
+    return _KeyboardPlaceholderWidgetState();
   }
 }
 
-class _KeyboardPlaceholderWdget extends State<KeyboardPlaceholderWidget>
+class _KeyboardPlaceholderWidgetState extends State<KeyboardPlaceholderWidget>
     with WidgetsBindingObserver {
   late double currentHeight;
   late double minHeight;
@@ -26,7 +28,7 @@ class _KeyboardPlaceholderWdget extends State<KeyboardPlaceholderWidget>
   @override
   void initState() {
     super.initState();
-    //添加监听
+    //监听
     WidgetsBinding.instance.addObserver(this);
     minHeight = widget.minHeight;
     maxHeight = widget.maxHeight;
@@ -35,38 +37,57 @@ class _KeyboardPlaceholderWdget extends State<KeyboardPlaceholderWidget>
 
   @override
   void dispose() {
-    super.dispose();
     //解绑
     WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
   }
 
-  //应用尺寸改变时回调
+  double _keyboardHeight = 0;
+
+  /// 应用尺寸改变时回调
   @override
   void didChangeMetrics() {
     super.didChangeMetrics();
-    /*
-     *Frame是一次绘制过程，称其为一帧，
-     * Flutter engine受显示器垂直同步信号"VSync"的驱使不断的触发绘制，
-     *Flutter可以实现60fps（Frame Per-Second），
-     * 就是指一秒钟可以触发60次重绘，FPS值越大，界面就越流畅。
-     */
+
+    print("didChangeMetrics");
+
+// 获取页面高度
+    var pageHeight = MediaQuery.of(context).size.height;
+    if (pageHeight <= 0) {
+      return;
+    }
+
+    // 软键盘顶部  px
+    final keyboardTopPixels = window.physicalSize.height - window.viewInsets.bottom;
+    // 转换为 dp
+    final keyboardTopPoints = keyboardTopPixels / window.devicePixelRatio;
+    // 软键盘高度
+    final keyboardHeight = pageHeight - keyboardTopPoints;
+
+    setState(() {
+      _keyboardHeight = keyboardHeight;
+    });
+
     WidgetsBinding.instance.addPostFrameCallback((_) {
       //注意，不要在此类回调中再触发新的Frame，这可以会导致循环刷新。
       setState(() {
         ///获取底部遮挡区域的高度
-        double keyboderFlexHeight = MediaQuery.of(context).viewInsets.bottom;
+        // double keyboderFlexHeight = MediaQuery.of(context).viewInsets.bottom;
+        double keyboderFlexHeight = _keyboardHeight;
         print("键盘的高度 keyboderFlexHeight $keyboderFlexHeight");
-        if (MediaQuery.of(context).viewInsets.bottom == 0) {
+        if (keyboderFlexHeight == 0) {
           //关闭键盘 启动logo动画反向执行 0.0 -1.0
           // logo 布局区域显示出来
           setState(() {
             currentHeight = maxHeight;
+            print("currentHeight $currentHeight");
           });
         } else {
           //显示键盘 启动logo动画正向执行 1.0-0.0
           // logo布局区域缩放隐藏
           setState(() {
             currentHeight = minHeight;
+            print("currentHeight $currentHeight");
           });
         }
       });

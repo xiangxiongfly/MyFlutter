@@ -20,6 +20,8 @@ class _Login2PageState extends State<Login2Page> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      //键盘顶起不影响布局
+      resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
       body: SizedBox(
         width: double.infinity,
@@ -101,48 +103,50 @@ class _LoginInputLayoutState extends State<LoginInputLayout> {
         body: SizedBox(
           width: double.infinity,
           height: double.infinity,
-          child: _buildLogin(),
+          child: _buildLoginWidget(),
         ),
       ),
     );
   }
 
-  Widget _buildLogin() {
-    return Column(
-      mainAxisSize: MainAxisSize.max,
-      children: [
-        const KeyboardPlaceholderWidget(
-          minHeight: 170,
-          maxHeight: 200,
-        ),
-        Container(
-          margin: const EdgeInsets.only(left: 30, right: 30),
-          padding: const EdgeInsets.all(16),
-          decoration: BoxDecoration(
-            color: Colors.white.withOpacity(0.8),
-            borderRadius: BorderRadius.circular(12),
+  Widget _buildLoginWidget() {
+    return SingleChildScrollView(
+      child: Column(
+        mainAxisSize: MainAxisSize.max,
+        children: [
+          const KeyboardPlaceholderWidget(
+            minHeight: 170,
+            maxHeight: 200,
           ),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              _buildUsernameWidget(),
-              const SizedBox(height: 20),
-              _buildPasswordWidget(),
-              const SizedBox(height: 40),
-              SizedBox(
-                width: double.infinity,
-                height: 40,
-                child: ElevatedButton(
-                  child: const Text("登陆"),
-                  onPressed: () {
-                    checkLoginFunction();
-                  },
+          Container(
+            margin: const EdgeInsets.only(left: 30, right: 30),
+            padding: const EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              color: Colors.white.withOpacity(0.8),
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                _buildUsernameWidget(),
+                const SizedBox(height: 20),
+                _buildPasswordWidget(),
+                const SizedBox(height: 40),
+                SizedBox(
+                  width: double.infinity,
+                  height: 40,
+                  child: ElevatedButton(
+                    child: const Text("登陆"),
+                    onPressed: () {
+                      checkLoginFunction();
+                    },
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 

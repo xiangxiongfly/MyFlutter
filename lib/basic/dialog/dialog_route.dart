@@ -15,46 +15,46 @@ class DialogPage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              OutlinedButton(
-                onPressed: () {
-                  showDialogFunction(context);
-                },
-                child: const Text("showDialog"),
-              ),
-              OutlinedButton(
-                onPressed: () {
-                  showCupertinoDialogFunction(context);
-                },
-                child: const Text("showCupertinoDialog"),
-              ),
-              OutlinedButton(
-                onPressed: () {
-                  showGeneralDialogFunction(context);
-                },
-                child: const Text("showGeneralDialog 移动动画"),
-              ),
-              OutlinedButton(
-                onPressed: () {
-                  showGeneralDialogFunction2(context);
-                },
-                child: const Text("showGeneralDialog2 缩放动画"),
-              ),
-              Builder(builder: (context) {
-                return OutlinedButton(
-                  onPressed: () {
-                    showBottomSheetFunction(context);
-                  },
-                  child: const Text("showBottomSheet"),
-                );
-              }),
-              Builder(builder: (context) {
-                return OutlinedButton(
-                  onPressed: () {
-                    showModalBottomSheetFunction(context);
-                  },
-                  child: const Text("showModalBottomSheet"),
-                );
-              }),
+              // OutlinedButton(
+              //   onPressed: () {
+              //     showDialogFunction(context);
+              //   },
+              //   child: const Text("showDialog"),
+              // ),
+              // OutlinedButton(
+              //   onPressed: () {
+              //     showCupertinoDialogFunction(context);
+              //   },
+              //   child: const Text("showCupertinoDialog"),
+              // ),
+              // OutlinedButton(
+              //   onPressed: () {
+              //     showGeneralDialogFunction(context);
+              //   },
+              //   child: const Text("showGeneralDialog 移动动画"),
+              // ),
+              // OutlinedButton(
+              //   onPressed: () {
+              //     showGeneralDialogFunction2(context);
+              //   },
+              //   child: const Text("showGeneralDialog2 缩放动画"),
+              // ),
+              // Builder(builder: (context) {
+              //   return OutlinedButton(
+              //     onPressed: () {
+              //       showBottomSheetFunction(context);
+              //     },
+              //     child: const Text("showBottomSheet"),
+              //   );
+              // }),
+              // Builder(builder: (context) {
+              //   return OutlinedButton(
+              //     onPressed: () {
+              //       showModalBottomSheetFunction(context);
+              //     },
+              //     child: const Text("showModalBottomSheet"),
+              //   );
+              // }),
               Builder(builder: (context) {
                 return OutlinedButton(
                   onPressed: () {
@@ -63,30 +63,30 @@ class DialogPage extends StatelessWidget {
                   child: const Text("showCupertinoModalPopup"),
                 );
               }),
-              OutlinedButton(
-                onPressed: () {
-                  showCustomAlertDialog(context);
-                },
-                child: const Text("AlertDialog自定义样式"),
-              ),
-              OutlinedButton(
-                onPressed: () {
-                  showCupertinoAlertDialog(context);
-                },
-                child: const Text("CupertinoAlertDialog"),
-              ),
-              OutlinedButton(
-                onPressed: () {
-                  showSimpleDialog(context);
-                },
-                child: const Text("SimpleDialog"),
-              ),
-              OutlinedButton(
-                onPressed: () {
-                  showCustomDialog(context);
-                },
-                child: const Text("自定义Dialog"),
-              ),
+              // OutlinedButton(
+              //   onPressed: () {
+              //     showCustomAlertDialog(context);
+              //   },
+              //   child: const Text("AlertDialog自定义样式"),
+              // ),
+              // OutlinedButton(
+              //   onPressed: () {
+              //     showCupertinoAlertDialog(context);
+              //   },
+              //   child: const Text("CupertinoAlertDialog"),
+              // ),
+              // OutlinedButton(
+              //   onPressed: () {
+              //     showSimpleDialog(context);
+              //   },
+              //   child: const Text("SimpleDialog"),
+              // ),
+              // OutlinedButton(
+              //   onPressed: () {
+              //     showCustomDialog(context);
+              //   },
+              //   child: const Text("自定义Dialog"),
+              // ),
             ],
           ),
         ),
@@ -240,7 +240,7 @@ showBottomSheetFunction(context) {
                 children: [
                   Expanded(
                     child: TextButton(
-                      child: const Text("再考虑下"),
+                      child: const Text("取消"),
                       onPressed: () {
                         Navigator.of(context).pop();
                       },
@@ -248,7 +248,7 @@ showBottomSheetFunction(context) {
                   ),
                   Expanded(
                     child: TextButton(
-                      child: const Text("考虑好了"),
+                      child: const Text("确定"),
                       onPressed: () {
                         Navigator.of(context).pop();
                       },
