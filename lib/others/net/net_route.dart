@@ -90,7 +90,7 @@ class _NetPageState extends State<NetPage> {
 
   /// HttpClient get请求
   getByHttpClient() async {
-    String _result;
+    String result;
     var httpClient = HttpClient();
     try {
       final uri = Uri(
@@ -102,24 +102,24 @@ class _NetPageState extends State<NetPage> {
       HttpClientResponse response = await request.close();
       if (response.statusCode == HttpStatus.ok) {
         String responseBody = await response.transform(utf8.decoder).join();
-        _result = responseBody;
+        result = responseBody;
       } else {
-        _result = "请求失败：${response.statusCode}";
+        result = "请求失败：${response.statusCode}";
       }
     } catch (exception) {
-      _result = "请求失败：$exception";
+      result = "请求失败：$exception";
     }
     setState(() {
-      _data = _result;
+      _data = result;
     });
     if (kDebugMode) {
-      print(_result);
+      print(result);
     }
   }
 
   /// HttpClient post请求
   postByHttpClient() async {
-    String _result = "";
+    String result = "";
     var httpClient = HttpClient();
     try {
       final uri = Uri(
@@ -131,64 +131,65 @@ class _NetPageState extends State<NetPage> {
       HttpClientResponse response = await request.close();
       if (response.statusCode == HttpStatus.ok) {
         String responseBody = await response.transform(utf8.decoder).join();
-        _result = responseBody;
+        result = responseBody;
       } else {
-        _result = "请求失败：${response.statusCode}";
+        result = "请求失败：${response.statusCode}";
       }
     } catch (exception) {
-      _result = "请求失败：$exception";
+      result = "请求失败：$exception";
     }
     setState(() {
-      _data = _result;
+      _data = result;
     });
     if (kDebugMode) {
-      print(_result);
+      print(result);
     }
   }
 
   /// http get请求
   getByHttp() async {
-    String _result = "";
+    String result = "";
     const url = "https://www.wanandroid.com/article/list/0/json";
     var client = http.Client();
     try {
       http.Response response = await client.get(Uri.parse(url));
       if (response.statusCode == 200) {
-        _result = response.body;
+        result = response.body;
       } else {
-        _result = "请求失败：${response.statusCode}";
+        result = "请求失败：${response.statusCode}";
       }
     } catch (exception) {
-      _result = "请求失败：$exception";
+      result = "请求失败：$exception";
     }
     setState(() {
-      _data = _result;
+      _data = result;
     });
     if (kDebugMode) {
-      print(_result);
+      print(result);
     }
   }
 
   /// http post请求
   postByHttp() async {
-    String _result = "";
+    String result = "";
     const url = "https://www.wanandroid.com/user/login";
     var client = http.Client();
     try {
-      http.Response response = await client.post(Uri.parse(url), body: {"username": "Tom", "password": "123456"});
+      http.Response response =
+          await client.post(Uri.parse(url), body: {"username": "Tom", "password": "123456"});
       if (response.statusCode == 200) {
-        _result = response.body;
+        result = response.body;
       } else {
-        _result = "失败：${response.statusCode}";
+        result = "失败：${response.statusCode}";
       }
     } catch (exception) {
-      _result = "异常：$exception";
+      result = "异常：$exception";
     }
     setState(() {
-      _data = _result;
+      _data = result;
     });
     if (kDebugMode) {
-      print(_result);
+      print(result);
     }
   }
 
@@ -197,24 +198,24 @@ class _NetPageState extends State<NetPage> {
   /// Dio get请求
   getByDio() async {
     token = CancelToken();
-    String _result = "";
+    String result = "";
     const url = "https://www.wanandroid.com/article/list/0/json";
-    var client = Dio()..interceptors.add(MyInterceptor());
+    var dio = Dio()..interceptors.add(MyInterceptor());
     try {
-      Response response = await client.get(url, cancelToken: token);
-      _result = response.data.toString();
+      Response response = await dio.get(url, cancelToken: token);
+      result = response.data.toString();
     } on DioError catch (e) {
       if (e.response != null) {
-        _result = "请求失败：${e.response!.statusCode}";
+        result = "请求失败：${e.response!.statusCode}";
       } else {
-        _result = "请求失败：$e";
+        result = "请求失败：$e";
       }
     }
     setState(() {
-      _data = _result;
+      _data = result;
     });
     if (kDebugMode) {
-      print(_result);
+      print(result);
     }
   }
 
@@ -225,71 +226,69 @@ class _NetPageState extends State<NetPage> {
 
   /// dio post请求
   postByDio() async {
-    String _result = "";
+    String result = "";
     const url = "https://www.wanandroid.com/user/login";
-    var client = Dio();
+    var dio = Dio();
     try {
-      Response response = await client.post<String>(url, queryParameters: {"username": "Tom", "password": "123456"});
-      _result = response.data;
+      Response response =
+          await dio.post<String>(url, data: {"username": "Tom", "password": "123456"});
+      result = response.data;
     } on DioError catch (e) {
       if (e.response != null) {
-        _result = "失败错误码：${e.response!.statusCode}";
+        result = "失败错误码：${e.response!.statusCode}";
       } else {
-        _result = "其他异常：$e";
+        result = "其他异常：$e";
       }
     }
     setState(() {
-      _data = _result;
+      _data = result;
     });
     if (kDebugMode) {
-      print(_result);
+      print(result);
     }
   }
 
   /// Dio FormData提交
   postFormByDio() async {
-    String _result = "";
+    String result = "";
     const url = "https://www.wanandroid.com/user/login";
-    var client = Dio();
+    var dio = Dio();
     var formData = FormData.fromMap({"username": "Tom", "password": "123456"});
     try {
-      Response response = await client.post<String>(url, data: formData);
-      _result = response.data;
+      Response response = await dio.post<String>(url, data: formData);
+      result = response.data;
     } on DioError catch (e) {
       if (e.response != null) {
-        _result = "失败错误码：${e.response!.statusCode}";
+        result = "失败错误码：${e.response!.statusCode}";
       } else {
-        _result = "其他异常：$e";
+        result = "其他异常：$e";
       }
     }
     setState(() {
-      _data = _result;
+      _data = result;
     });
     if (kDebugMode) {
-      print(_result);
+      print(result);
     }
   }
 
   /// Dio简单封装使用
   getByHttpManager() async {
-    String _result = "";
+    String result = "";
     const url = "https://www.wanandroid.com/article/list/0/json";
     try {
       Response response = await HttpManager().client.get(url);
-      _result = response.data.toString();
+      result = response.data.toString();
     } on DioError catch (e) {
       if (e.response != null) {
-        _result = "失败错误码：${e.response!.statusCode}";
+        result = "失败错误码：${e.response!.statusCode}";
       } else {
-        _result = "其他异常：$e";
+        result = "其他异常：$e";
       }
     }
     setState(() {
-      _data = _result;
+      _data = result;
     });
-    if (kDebugMode) {
-      print(_result);
-    }
   }
 }
 
@@ -319,9 +318,9 @@ class HttpManager {
 
   static HttpManager? _instance;
 
-  late Dio _client;
+  late Dio _dio;
 
-  Dio get client => _client;
+  Dio get client => _dio;
 
   factory HttpManager() => _getInstance();
 
@@ -335,6 +334,10 @@ class HttpManager {
       connectTimeout: CONNECT_TIMEOUT,
       receiveTimeout: RECEIVE_TIMEOUT,
     );
-    _client = Dio(options)..interceptors.add(LogInterceptor());
+    _dio = Dio(options)
+      ..interceptors.add(LogInterceptor(
+        requestBody: true,
+        responseBody: true,
+      ));
   }
 }

@@ -6,17 +6,23 @@ import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
 
 class DBManager {
-  static final DBManager _instance = DBManager._internal();
+  /// 数据库名
+  final String _dbName = "dbName";
+
+  /// 数据库版本
+  final int _version = 1;
+
+  static final DBManager _instance = DBManager._();
 
   factory DBManager() {
     return _instance;
   }
 
-  DBManager._internal();
+  DBManager._();
 
   static Database? _db;
 
-  Future<Database?> get db async {
+  Future<Database> get db async {
     // if (_db != null) {
     //   return _db;
     // }
@@ -28,10 +34,10 @@ class DBManager {
   /// 初始化数据库
   Future<Database> _initDB() async {
     Directory directory = await getApplicationDocumentsDirectory();
-    String path = join(directory.path, "dbName");
+    String path = join(directory.path, _dbName);
     return await openDatabase(
       path,
-      version: 1,
+      version: _version,
       onCreate: _onCreate,
       onUpgrade: _onUpgrade,
     );
@@ -55,8 +61,8 @@ class DBManager {
 
   /// 保存数据
   Future saveData(Student student) async {
-    var _db = await db;
-    return await _db?.insert("Student", student.toJson());
+    Database database = await db;
+    return await database.insert("Student", student.toJson());
   }
 
   /// 使用SQL保存数据
@@ -64,59 +70,53 @@ class DBManager {
     const String sql = """
     INSERT INTO Student(name,age,sex) values(?,?,?)
     """;
-    var _db = await db;
-    return await _db?.rawInsert(sql, [student.name, student.age, student.sex]);
+    Database database = await db;
+    return await database.rawInsert(sql, [student.name, student.age, student.sex]);
   }
 
   /// 查询全部数据
   Future<List<Student>?> findAll() async {
-    var _db = await db;
-    List<Map<String, Object?>>? result = await _db?.query("Student");
-    if (result == null) {
-      return null;
+    Database? database = await db;
+    List<Map<String, Object?>> result = await database.query("Student");
+    if (result.isNotEmpty) {
+      return result.map((e) => Student.fromJson(e)).toList();
     } else {
-      if (result.isNotEmpty) {
-        return result.map((e) => Student.fromJson(e)).toList();
-      } else {
-        return [];
-      }
+      return [];
     }
   }
 
   ///条件查询
   Future<List<Student>?> find(int sex) async {
-    var _db = await db;
-    List<Map<String, dynamic>>? result = await _db?.query("Student", where: "sex=?", whereArgs: [sex]);
-    if (result == null) {
-      return null;
+    Database database = await db;
+    List<Map<String, Object?>> result =
+        await database.query("Student", where: "sex=?", whereArgs: [sex]);
+    if (result.isNotEmpty) {
+      return result.map((e) => Student.fromJson(e)).toList();
     } else {
-      if (result.isNotEmpty) {
-        return result.map((e) => Student.fromJson(e)).toList();
-      } else {
-        return [];
-      }
+      return [];
     }
   }
 
   /// 修改
   Future<int> update(Student student) async {
-    var _db = await db;
+    Database database = await db;
     student.age = 99;
-    int? count = await _db?.update("Student", student.toJson(), where: "id=?", whereArgs: [student.id]);
-    return count ?? 0;
+    int count =
+        await database.update("Student", student.toJson(), where: "id=?", whereArgs: [student.id]);
+    return count;
   }
 
   /// 删除
   Future<int> delete(int id) async {
-    var _db = await db;
-    int? count = await _db?.delete("Student", where: "id=?", whereArgs: [id]);
-    return count ?? 0;
+    Database database = await db;
+    int count = await database.delete("Student", where: "id=?", whereArgs: [id]);
+    return count;
   }
 
   /// 删除全部
   Future<int> deleteAll() async {
-    var _db = await db;
-    int? count = await _db?.delete("Student");
-    return count ?? 0;
+    Database database = await db;
+    int count = await database.delete("Student");
+    return count;
   }
 }
