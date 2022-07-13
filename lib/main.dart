@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:myflutter/basic/paint/paint_route.dart';
+import 'package:myflutter/basic/timer.dart';
 import 'package:myflutter/demos/banner.dart';
 import 'package:myflutter/others/sqlite/sqlite_route.dart';
 import 'package:myflutter/others/transform/transform_route.dart';
@@ -640,6 +641,17 @@ class HomePage extends StatelessWidget {
                   context,
                   MaterialPageRoute(builder: (BuildContext context) {
                     return const PaintPage();
+                  }),
+                );
+              },
+            ),
+            ElevatedButton(
+              child: const Text("Timer定时任务"),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (BuildContext context) {
+                    return const TimerPage();
                   }),
                 );
               },
