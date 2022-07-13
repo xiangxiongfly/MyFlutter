@@ -512,6 +512,7 @@ class _ImagePaintPageState extends State<ImagePaintPage> {
     );
   }
 
+  /// 加载Assets图片
   Future<ui.Image> loadImageByAssets() async {
     AssetImage assetImage = const AssetImage("assets/images/bird.jpg");
     Completer<ui.Image> completer = Completer();
@@ -526,6 +527,7 @@ class _ImagePaintPageState extends State<ImagePaintPage> {
     return completer.future;
   }
 
+  /// 加载网络图片
   Future<ui.Image> loadImageByNet() async {
     String imageUrl = "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png";
     NetworkImage networkImage = NetworkImage(imageUrl);
