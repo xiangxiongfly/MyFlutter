@@ -5,7 +5,7 @@ import 'package:myflutter/basic/timer.dart';
 import 'package:myflutter/demos/banner.dart';
 import 'package:myflutter/others/sqlite/sqlite_route.dart';
 import 'package:myflutter/others/transform/transform_route.dart';
-import 'package:myflutter/platform_view_demo.dart';
+import 'package:myflutter/others/channel/flutter_native_channel.dart';
 import 'package:myflutter/second.dart';
 import 'package:myflutter/test_route_widget.dart';
 import 'package:myflutter/utils/sp_utils.dart';
@@ -777,10 +777,10 @@ class MessagePage extends StatelessWidget {
             },
           ),
           ElevatedButton(
-            child: const Text("嵌入原生 Android View"),
+            child: const Text("Flutter与原生双向通信"),
             onPressed: () {
               Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return const PlatformViewDemo();
+                return const FlutterNativeChannel();
               }));
             },
           ),
