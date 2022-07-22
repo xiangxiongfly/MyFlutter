@@ -7,24 +7,26 @@ import android.util.Log
 import android.widget.Toast
 import io.flutter.embedding.android.FlutterActivity
 import io.flutter.embedding.engine.dart.DartExecutor
-import io.flutter.plugin.common.BasicMessageChannel
-import io.flutter.plugin.common.BinaryMessenger
-import io.flutter.plugin.common.MethodChannel
-import io.flutter.plugin.common.StandardMessageCodec
+import io.flutter.plugin.common.*
+import java.util.*
+import kotlin.collections.HashMap
 
 class MainActivity : FlutterActivity() {
 
     private lateinit var mContext: Context
-    private var mMethodChannel: MethodChannel? = null
-    private var basicMessageChannel: BasicMessageChannel<Any>? = null
+
     private val mHandler = Handler()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        mContext = this;
+        TestViewFactory.registerWith(flutterEngine)
+        mContext = this
         registerMethodChannelFunction()
-        registerBasicMessageChannelFunction();
+        registerBasicMessageChannelFunction()
+        registerEventChannel()
     }
+
+    private var mMethodChannel: MethodChannel? = null
 
     private fun registerMethodChannelFunction() {
         if (flutterEngine == null) {
@@ -87,17 +89,19 @@ class MainActivity : FlutterActivity() {
         }
     }
 
+    private var mBasicMessageChannel: BasicMessageChannel<Any>? = null
+
     private fun registerBasicMessageChannelFunction() {
         //获取BinaryMessenger
         val binaryMessenger = flutterEngine!!.dartExecutor.binaryMessenger
         //构建消息通道
-        basicMessageChannel = BasicMessageChannel<Any>(
+        mBasicMessageChannel = BasicMessageChannel(
             binaryMessenger,
             "flutter_and_native_200",
             StandardMessageCodec.INSTANCE
         )
-        //设置坚挺
-        basicMessageChannel?.setMessageHandler { message, reply ->
+        //设置监听
+        mBasicMessageChannel?.setMessageHandler { message, reply ->
             val arguments: HashMap<String, Any> = message as HashMap<String, Any>
             try {
                 basicMessageChannelCallFunction(reply, arguments)
@@ -109,7 +113,6 @@ class MainActivity : FlutterActivity() {
                 reply.reply(resultMap)
             }
         }
-
     }
 
     private fun basicMessageChannelCallFunction(
@@ -120,12 +123,61 @@ class MainActivity : FlutterActivity() {
         if (methodName == "test4") {
             Toast.makeText(mContext, "Flutter调用Android test4方法", Toast.LENGTH_SHORT).show()
             val resultMap = HashMap<String, Any>()
-            resultMap["message"] = "从Android返回：${System.currentTimeMillis()} "
+            resultMap["message"] = "从Android返回(basicMessageChannel)：${System.currentTimeMillis()} "
             resultMap["code"] = 500
-            //该方法只能使用一次
+            //设置返回值，该方法只能使用一次
             reply.reply(resultMap)
+        } else if (methodName == "test5") {
+            //向Flutter发送消息
+            Toast.makeText(mContext, "Flutter调用Android test5方法", Toast.LENGTH_SHORT).show()
+            val resultMap = HashMap<String, Any>()
+            resultMap["message"] = "向Flutter发送消息：${System.currentTimeMillis()} "
+            resultMap["code"] = 600
+            mBasicMessageChannel?.send(resultMap)
         }
+    }
 
+    private var mEventSink: EventChannel.EventSink? = null
 
+    private fun registerEventChannel() {
+        val binaryMessenger = flutterEngine!!.dartExecutor.binaryMessenger
+        val mEventChannel = EventChannel(binaryMessenger, "flutter_and_native_300")
+        mEventChannel.setStreamHandler(object : EventChannel.StreamHandler {
+            override fun onListen(arguments: Any?, events: EventChannel.EventSink?) {
+                mEventSink = events
+                startTimer()
+            }
+
+            override fun onCancel(arguments: Any?) {
+                mEventSink = null
+                stopTimer()
+            }
+        })
+    }
+
+    fun eventSendMessageFunction(message: String) {
+        if (mEventSink != null) {
+            mEventSink!!.success(message)
+        } else {
+            Log.e("TAG", "mEventSink is null")
+        }
+    }
+
+    private var mTimer: Timer? = null
+
+    fun startTimer() {
+        mTimer = Timer()
+        mTimer!!.schedule(object : TimerTask() {
+            override fun run() {
+                mHandler.post {
+                    eventSendMessageFunction(System.currentTimeMillis().toString())
+                }
+            }
+        }, 1200, 1000)
+    }
+
+    fun stopTimer() {
+        mTimer?.cancel()
+        mTimer = null
     }
 }
