@@ -2,12 +2,8 @@ package com.example.flutter_android;
 
 import android.content.Context;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.util.Map;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import io.flutter.embedding.engine.FlutterEngine;
 import io.flutter.plugin.common.MessageCodec;
 import io.flutter.plugin.common.StandardMessageCodec;
