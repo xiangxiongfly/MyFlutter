@@ -118,8 +118,8 @@ class MyApp extends StatelessWidget {
         "third_page": (context) => const ThirdPage(),
         "fourth_page": (context) => const FourthPage(),
         //滚动组件
-        "scroll_type_route": (context) => ScrollTypePage(),
-        "scroll_view_route": (context) => SingleChildScrollViewPage(),
+        "scroll_type_route": (context) => const ScrollTypePage(),
+        "scroll_view_route": (context) => const SingleChildScrollViewPage(),
         "notification_listener_route": (context) => NotificationListenerPage(),
         "custom_scroll_view_route": (context) => CustomScrollViewPage(),
       },
@@ -174,13 +174,13 @@ class _MyBodyState extends State<MyBody> {
         drawer: buildDrawer(),
         //页面主体部分
         body: PageView(
-          children: pages,
           controller: _controller,
           onPageChanged: (index) {
             setState(() {
               _selectedIndex = index;
             });
           },
+          children: pages,
         ),
         //底部导航栏
         bottomNavigationBar: buildBottomNavigationBar(),
@@ -281,8 +281,8 @@ class _MyBodyState extends State<MyBody> {
     return BottomNavigationBar(
       items: const [
         BottomNavigationBarItem(icon: Icon(Icons.home), label: "home"),
-        BottomNavigationBarItem(icon: Icon(Icons.message), label: "message"),
-        BottomNavigationBarItem(icon: Icon(Icons.settings), label: "settings"),
+        BottomNavigationBarItem(icon: Icon(Icons.message), label: "others"),
+        BottomNavigationBarItem(icon: Icon(Icons.settings), label: "demo"),
       ],
       currentIndex: _selectedIndex,
       selectedItemColor: Colors.red,

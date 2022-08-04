@@ -12,7 +12,6 @@ import io.flutter.plugin.platform.PlatformViewFactory;
 import io.flutter.plugin.platform.PlatformViewRegistry;
 
 public class TestViewFactory extends PlatformViewFactory {
-
     public TestViewFactory() {
         super(StandardMessageCodec.INSTANCE);
     }
