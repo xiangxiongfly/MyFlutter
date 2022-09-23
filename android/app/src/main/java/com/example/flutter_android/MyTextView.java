@@ -7,7 +7,6 @@ import android.widget.TextView;
 
 import java.util.Map;
 
-import androidx.annotation.Nullable;
 import io.flutter.plugin.platform.PlatformView;
 
 public class MyTextView implements PlatformView {

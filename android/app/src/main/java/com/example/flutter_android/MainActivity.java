@@ -6,7 +6,6 @@ import android.os.Handler;
 import android.util.Log;
 import android.widget.Toast;
 
-
 import java.util.HashMap;
 import java.util.Timer;
 import java.util.TimerTask;
